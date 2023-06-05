@@ -1,0 +1,164 @@
+{
+    "books": [
+        {
+            "id": 0,
+            "title": "Главные по гитарам",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 1,
+            "title": "Забытые чердаки",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 2,
+            "title": "Монстр из снов младенцев",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "si-fi"
+        },
+        {
+            "id": 3,
+            "title": "Тёмная сторона белой мысли",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2020,
+            "genre": "detective"
+        },
+        {
+            "id": 4,
+            "title": "Братство смерти",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2020,
+            "genre": "fantasy"
+        },
+        {
+            "id": 5,
+            "title": "Вечное счастье",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 6,
+            "title": "Тайное сообщество",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "Ivan Bronco",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 7,
+            "title": "Величественные ритуалы",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "Ivan Bronco",
+            "year": 2008,
+            "genre": "detective"
+        },
+        {
+            "id": 8,
+            "title": "Мир без котов",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "Ivan Bronco",
+            "year": 2006,
+            "genre": "detective"
+        },
+        {
+            "id": 9,
+            "title": "Странные сны",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "Adam Jensen",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 10,
+            "title": "Далёкий путь",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 11,
+            "title": "Дом на берегу озера",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2020,
+            "genre": "si-fi"
+        },
+        {
+            "id": 12,
+            "title": "Неоновое поколение",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2019,
+            "genre": "fantasy"
+        },
+        {
+            "id": 13,
+            "title": "Космический парк",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "fantasy"
+        },
+        {
+            "id": 14,
+            "title": "Потерянные души",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "Bilbo M. Baggins",
+            "year": 2018,
+            "genre": "si-fi"
+        },
+        {
+            "id": 15,
+            "title": "Река скорби",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "fantasy"
+        },
+        {
+            "id": 16,
+            "title": "Ледяная башня",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "Ricardo Augustin Milos",
+            "year": 2016,
+            "genre": "detective"
+        },
+        {
+            "id": 17,
+            "title": "Тайна тихой улицы",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2023,
+            "genre": "detective"
+        },
+        {
+            "id": 18,
+            "title": "Песнопения богов смерти",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2022,
+            "genre": "detective"
+        },
+        {
+            "id": 19,
+            "title": "Сладкая вишня",
+            "imageIrl": "https://www.adorebooks.in/wp-content/uploads/2022/02/You-Can.jpg",
+            "author": "George Mathew Adams",
+            "year": 2022,
+            "genre": "detective"
+        }
+    ]
+}
