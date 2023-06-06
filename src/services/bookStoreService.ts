@@ -1,70 +1,22 @@
-import { BookItemType } from "../types/BooksTypes";
-
 export default class BookStoreService {
-  static titleList: string[] = [
-    "Главные по гитарам",
-    "Забытые чердаки",
-    "Монстр из снов младенцев",
-    "Тёмная сторона белой мысли",
-    "Братство смерти",
-    "Вечное счастье",
-    "Тайное сообщество",
-    "Величественные ритуалы",
-    "Странные сны",
-    "Мир без котов",
-    "Далёкий путь",
-    "Неоновое поколение",
-    "Космический парк",
-    "Потерянные души",
-    "Река скорби",
-    "Ледяная башня",
-    "Тайна тихой улицы",
-    "Песнопения богов смерти",
-    "Сладкая вишня",
-    "Дом на берегу озера",
-  ]
+  fetchNewBooks = async () => {
+    const response = await fetch('https://api.itbook.store/1.0/new');
+    const data = response.json();
 
-  static autorsList: string[] = [
-    "Покровский Л. М.",
-    "Мартынова Н. А.",
-    "Ермаков М. Г.",
-    "Степанов А. Г.",
-    "Карпов Д. Я.",
-    "Лосев Д. К.",
-    "Демин Д. Л.",
-    "Павлов Г. А.",
-    "Титова Е. Я.",
-    "Сорокина К. А.",
-    "Осипов А. А.",
-    "Зайцева С. В.",
-    "Борисова Е. А.",
-    "Архипов Н. Д.",
-    "Кондратьев М. М.",
-    "Орлов А. А.",
-    "Горшков А. В.",
-    "Зайцева М. Н.",
-    "Петрова А. В.",
-    "Столяров Ф. Д.",
-  ]
+    return data;
+  }
 
-  static bookList: BookItemType[] = this.titleList.map((title, index) => {
-    const authors = this.autorsList[index];
+  fetchBookDetails = async ({isbn13}: any) => {
+    const response = await fetch(`https://api.itbook.store/1.0/books/${isbn13}`);
+    const data = response.json();
 
-    return this.createBookItem(index, title, [authors])
-  })
+    return data;
+  }
 
-  static createBookItem(
-    id: number,
-    title: string,
-    authors = ["Author A.A."]
-  ): BookItemType {
+  fetchBooksQuerry = async ({querry}: any) => {
+    const response = await fetch(`https://api.itbook.store/1.0/search/${querry}`);
+    const data = response.json();
 
-    return {
-      id,
-      title: title,
-      authors,
-      price: Math.trunc(Math.random() * 1500),
-      imageUrl: ''
-    }
+    return data;
   }
 }

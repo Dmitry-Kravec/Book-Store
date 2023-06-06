@@ -1,20 +1,24 @@
-import React from 'react';
-import '../styles/App.css';
+import { Routes, Route } from 'react-router-dom';
 
+import AppHeader from './AppHeader';
+import BookListPage from '../pages/BookListPage';
+import ShoppingCartPage from '../pages/ShoppingCartPage';
 
-import BookStoreService from '../services/bookStoreService';
+import '../styles/app.scss';
 
 function App() {
-
-  console.log(BookStoreService.bookList)
-
+  console.log("RENder APP");
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
+    <div className="app">
+      <AppHeader />
+      <div className='page-content'>
+        <Routes>
+          <Route path='/' element={<BookListPage />} />
+          <Route path='/cart' element={<ShoppingCartPage />} />
+          <Route path='*' element={<h2>404 Not Found</h2>}/>
+        </Routes>
+      </div>
     </div>
   );
 }

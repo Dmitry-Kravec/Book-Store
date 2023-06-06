@@ -1,0 +1,20 @@
+.app-header {
+    min-height: 100px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #282c34;
+    color: white;
+}
+
+.navigation-list {
+    list-style-type: none;
+    display: flex;
+    column-gap: 15px;
+
+    &__item-link {
+        text-decoration: none;
+        color: white;
+    }
+}

@@ -1,0 +1,24 @@
+$page-content-max-width-desktop: 1000px;
+
+.app {
+  text-align: center;
+}
+
+.page-content {
+  width: $page-content-max-width-desktop;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-header {
+  &__container {
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+  }
+
+  &__label {
+    display: flex;
+    column-gap: 5px;
+  }
+}
