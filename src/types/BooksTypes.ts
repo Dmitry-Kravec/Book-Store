@@ -1,5 +1,6 @@
-//import { type } from "os"
-import * as bookListActions from '../redux/actions/bookListActionCreators'
+import * as bookListActions from '../redux/actions/bookListActionCreators';
+import * as shoppingCartActions from '../redux/actions/shoppingCartActionCreators';
+import rootReducer from '../redux/rootReducer';
 
 /*
 authors : "Saurabh Shrivastava, Neelanjali Srivastav, Alberto Artasanchez, Imtiaz Sayed"
@@ -19,8 +20,11 @@ url: "https://itbook.store/books/9781803238951"
 year: "2023"
 */
 
+export type ReduxStateType = ReturnType<typeof rootReducer>
 
-export type BookItemType = {
+export type CustomBookFieldType = [fieldValues: string[], fieldName: string]
+
+export type BookApiItemType = {
   image: string,
   isbn13: string,
   price: string,
@@ -28,22 +32,42 @@ export type BookItemType = {
   title: string,
 };
 
+export type BookItemType = BookApiItemType & {
+  authors: string,
+  publisher: string,
+};
+
 export type BookExtendedItemType = BookItemType & {
-   authors: string, //
-   publisher: string,
    pages: string, //
    year: string,
    rating: string,
    desc: string,
 };
 
-export type BooksStateType = {
-  booksData: BookItemType[],
-  areBooksLoading: boolean,
-  hasBooksLoadingError: boolean,
+export enum SortType {
+  none = 'None',
+  authors_az = 'Authors (A - Z)',
+  authors_za = 'Authors (Z - A)',
+  publisher_az = 'Publisher (A - Z)',
+  publisher_za = 'Publisher (Z - A)',
+  price_asc = 'Price (ascending)',
+  price_dsc = 'Price (descending)',
 }
 
-export type BookListTypes = ReturnType<
+type FilterableFields = 'authors' | 'publisher';
+
+type FiltersType = Record<FilterableFields, string>;
+
+export type BooksStateType = {
+  booksData: BookItemType[],
+  sort: SortType,
+  filters: FiltersType
+}
+
+export type BookListActionsType = ReturnType<
+  typeof bookListActions.changeSortType |
+  typeof bookListActions.changePublisherFilterValue |
+  typeof bookListActions.changeAuthorsFilterValue |
   typeof bookListActions.fetchNewBooks |
   typeof bookListActions.fetchNewBooksSuccess |
   typeof bookListActions.fetchNewBooksError |
@@ -51,3 +75,17 @@ export type BookListTypes = ReturnType<
   typeof bookListActions.fetchBookDetailsSuccess |
   typeof bookListActions.fetchBookDetailsError
 >;
+
+export type ShoppingCartBookItemType = {
+  book: BookItemType,
+  quantity: number,
+}
+
+export type ShoppingCartStateType = {
+  selectedBooks: ShoppingCartBookItemType[]
+}
+
+export type ShoppingCartActionsType = ReturnType<
+  typeof shoppingCartActions.addBookToCart |
+  typeof shoppingCartActions.removeBookFromCart
+>

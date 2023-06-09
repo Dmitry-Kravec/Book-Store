@@ -1,37 +1,52 @@
-import { BookListTypes, BooksStateType } from "../types/BooksTypes"
-import { FETCH_NEW_BOOKS, FETCH_NEW_BOOKS_ERROR, FETCH_NEW_BOOKS_SUCCESS } from "./actionConstants"
+import { BookListActionsType, BooksStateType, SortType } from "../types/BooksTypes"
+import { FETCH_NEW_BOOKS_REQUESTED, FETCH_NEW_BOOKS_FAILURE, FETCH_NEW_BOOKS_SUCCESS, CHANGE_SORT_TYPE, CHANGE_PUBLISHER_FILTER_VALUE, CHANGE_AUTHORS_FILTER_VALUE } from "./actionConstants"
 
 const initialState: BooksStateType = {
   booksData: [],
-  areBooksLoading: false,
-  hasBooksLoadingError: false,
+  sort: SortType.none,
+  filters: {
+    authors: 'All',
+    publisher: 'All',
+  }
 }
 
 
-const BooksReducer = (state = initialState, action: BookListTypes): BooksStateType => {
-  switch(action.type) {
-    case FETCH_NEW_BOOKS:
+const booksReducer = (state = initialState, action: BookListActionsType): BooksStateType => {
+  switch (action.type) {
+    case CHANGE_SORT_TYPE:
+      return {
+        ...state,
+        sort: action.payload
+      }
+    case CHANGE_PUBLISHER_FILTER_VALUE:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          publisher: action.payload,
+        }
+      }
+    case CHANGE_AUTHORS_FILTER_VALUE:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          authors: action.payload,
+        }
+      }
+    case FETCH_NEW_BOOKS_REQUESTED:
       return {
         ...state,
         booksData: [],
-        areBooksLoading: true,
-        hasBooksLoadingError: false,
       }
     case FETCH_NEW_BOOKS_SUCCESS:
       return {
         ...state,
         booksData: action.payload,
-        areBooksLoading: false,
-      }
-    case FETCH_NEW_BOOKS_ERROR:
-      return {
-        ...state,
-        areBooksLoading: false,
-        hasBooksLoadingError: true,
       }
     default:
       return state;
   }
 }
 
-export default BooksReducer;
+export { booksReducer };

@@ -1,20 +1,20 @@
 export default class BookStoreService {
-  fetchNewBooks = async () => {
+  getNewBooks = async () => {
     const response = await fetch('https://api.itbook.store/1.0/new');
     const data = response.json();
 
     return data;
   }
 
-  fetchBookDetails = async ({isbn13}: any) => {
+  getBookDetails = async (isbn13: string) => {
     const response = await fetch(`https://api.itbook.store/1.0/books/${isbn13}`);
     const data = response.json();
 
     return data;
   }
 
-  fetchBooksQuerry = async ({querry}: any) => {
-    const response = await fetch(`https://api.itbook.store/1.0/search/${querry}`);
+  getFilteredBooks = async (searchQuerry: string) => {
+    const response = await fetch(`https://api.itbook.store/1.0/search/${searchQuerry}`);
     const data = response.json();
 
     return data;
