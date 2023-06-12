@@ -1,9 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { ReactNode } from "react";
 
-const ShoppingCart = () => {
+import '../styles/shopping-cart.scss'
+
+type ShoppingCartProps = {
+    children: ReactNode
+}
+
+const ShoppingCart = ({children} : ShoppingCartProps) => {
     return (
-        <NavLink to='/cart' className='shopping-cart'>Корзина</NavLink>
+        <div className="shopping-cart">
+            {children}
+            <div className="shopping-cart__dropdown">
+                {/* / */}
+            </div>
+        </div>
     )
 }
 
-export default ShoppingCart;
+export {ShoppingCart};
