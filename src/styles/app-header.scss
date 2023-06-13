@@ -1,6 +1,5 @@
 .app-header {
     height: 100px;
-    padding: 0 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +8,8 @@
 
     &__content {
         width: var(--max-content-width);
+        padding-left: var(--content-padding);
+        padding-right: var(--content-padding);
         display: flex;
         align-items: center;
         justify-content: space-between;

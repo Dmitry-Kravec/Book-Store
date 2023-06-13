@@ -1,9 +1,9 @@
-import { BookListActionsType, BooksStateType, SortType } from "../types/BooksTypes"
+import { BookListActionsType, BooksStateType, SortField, SortMethod, SortType } from "../types/BooksTypes"
 import { FETCH_NEW_BOOKS_REQUESTED, FETCH_NEW_BOOKS_FAILURE, FETCH_NEW_BOOKS_SUCCESS, CHANGE_SORT_TYPE, CHANGE_PUBLISHER_FILTER_VALUE, CHANGE_AUTHORS_FILTER_VALUE } from "./actionConstants"
 
 const initialState: BooksStateType = {
   booksData: [],
-  sort: SortType.none,
+  sort: {},
   filters: {
     authors: 'All',
     publisher: 'All',

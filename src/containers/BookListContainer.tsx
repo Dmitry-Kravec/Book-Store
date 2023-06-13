@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 
-import { getBooksData } from "../redux/selectors";
+import { getBooksData, getSortedAndFilteredBooksData } from "../redux/selectors";
 import { useFetchNewBooks, } from "../requests/BooksRequests";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import BookList from "../components/BookList";
 
 const BookListContainer = () => {
     const { isLoading, getNewBooks } = useFetchNewBooks();
-    const booksData = useTypedSelector(getBooksData)
+    const booksData = useTypedSelector(getSortedAndFilteredBooksData)
+    //const booksData = useTypedSelector(getBooksData)
 
     useEffect(() => {
         getNewBooks();

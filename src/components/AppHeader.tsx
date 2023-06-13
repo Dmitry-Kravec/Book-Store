@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-import { ShoppingCart } from "./ShoppingCart";
-import logo from "../images/logo.png";
+import { ShoppingCart } from './ShoppingCart';
+import logo from '../images/logo.png';
 import catalog_icon from "../images/catalog-Icon.svg";
 import shopping_carticon from "../images/shopping-cart-Icon.svg";
 

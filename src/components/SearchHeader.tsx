@@ -1,20 +1,74 @@
-import { useDispatch, useSelector } from "react-redux";
-import { SortType } from "../types/BooksTypes";
-import {
-  changeAuthorsFilterValue,
-  changePublisherFilterValue,
-  changeSortType,
-} from "../redux/actions/bookListActionCreators";
-import {
-  getAllAuthors,
-  getAllPublishers,
-  getAuthorsFilterValue,
-  getPublisherFilterValue,
-  getSort,
-} from "../redux/selectors";
+import { ReactNode } from "react";
 
 import "../styles/search-header.scss";
 
+type SearchHeaderProps = {
+  currentSort: string,
+  currentPublisherFilterValue: string,
+  currentAuthorsFilterValue: string,
+  onChangeValueInSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  publishersOption: ReactNode[],
+  authorsOption: ReactNode[],
+  sortOption: ReactNode[],
+}
+
+const SearchHeader = ({
+  currentSort,
+  currentPublisherFilterValue,
+  currentAuthorsFilterValue,
+  onChangeValueInSelect,
+  publishersOption,
+  authorsOption,
+  sortOption,
+} : SearchHeaderProps) => {
+  return (
+    <div className="search-header">
+      <div className="search-header__label-container search-header__label-container_groving">
+        <label htmlFor="publisher" className="search-header__label">
+          Фильтр:
+        </label>
+        <select
+            value={currentPublisherFilterValue}
+            name="publisher"
+            onChange={onChangeValueInSelect}
+            className="search-header__select"
+          >
+            {publishersOption}
+          </select>
+          <select
+            value={currentAuthorsFilterValue}
+            name="authors"
+            onChange={onChangeValueInSelect}
+            className="search-header__select"
+          >
+            {authorsOption}
+          </select>
+      </div>
+      <div className="search-header__label-container search-header__label-container_margin-rigth_auto">
+        <label htmlFor="sort" className="search-header__label">
+          Сортировка:
+        </label>
+        <select
+          value={currentSort}
+          name="sort"
+          onChange={onChangeValueInSelect}
+          className="search-header__select"
+        >
+          {sortOption}
+        </select>
+      </div>
+      <div className="view-toggle">
+        <a className="view-toggle__grid"></a>
+        <a className="view-toggle__row"></a>
+      </div>
+    </div>
+  );
+};
+
+export { SearchHeader };
+
+
+/*
 const SearchHeader = () => {
   const dispatch = useDispatch();
 
@@ -40,7 +94,7 @@ const SearchHeader = () => {
     );
   });
 
-  const sortOption = Object.values(SortType).map((el) => {
+  const sortOption = Object.values(SortEntries).map((el) => {
     return (
       <option key={el} value={el}>
         {el}
@@ -48,7 +102,7 @@ const SearchHeader = () => {
     );
   });
 
-  const changeSortTypeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChangeSelectValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.name) {
       case "publisher":
         dispatch(changePublisherFilterValue(e.target.value));
@@ -57,7 +111,7 @@ const SearchHeader = () => {
         dispatch(changeAuthorsFilterValue(e.target.value));
         break;
       case "sort":
-        dispatch(changeSortType(e.target.value as SortType));
+        dispatch(changeSortType(mapSortEntryToSortType(e.target.value as SortEntries)));
         break;
     }
   };
@@ -71,7 +125,7 @@ const SearchHeader = () => {
         <select
             value={currentPublisherFilterValue}
             name="publisher"
-            onChange={changeSortTypeHandler}
+            onChange={onChangeSelectValue}
             className="search-header__select"
           >
             {publishersOption}
@@ -79,7 +133,7 @@ const SearchHeader = () => {
           <select
             value={currentAuthorsFilterValue}
             name="authors"
-            onChange={changeSortTypeHandler}
+            onChange={onChangeSelectValue}
             className="search-header__select"
           >
             {authorsOption}
@@ -90,9 +144,9 @@ const SearchHeader = () => {
           Сортировка:
         </label>
         <select
-          value={sort}
+          value={mapSortTypeToSortEntry(sort)}
           name="sort"
-          onChange={changeSortTypeHandler}
+          onChange={onChangeSelectValue}
           className="search-header__select"
         >
           {sortOption}
@@ -105,5 +159,4 @@ const SearchHeader = () => {
     </div>
   );
 };
-
-export default SearchHeader;
+*/

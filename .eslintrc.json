@@ -1,0 +1,48 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"plugin:react/recommended",
+		"airbnb",
+		"plugin:react/jsx-runtime"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"react",
+		"@typescript-eslint"
+	],
+	"rules": {
+		"indent": [1, "tab", {"SwitchCase": 1}],
+		"no-tabs": 0,
+		"react/function-component-definition": 0,
+		"react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+		"react/jsx-indent": [1, "tab"],
+		"react/jsx-indent-props": [1, "tab"],
+		"react/jsx-one-expression-per-line": 0,
+		"import/no-unresolved": 0,
+		"linebreak-style": 0,
+		//"no-unused-vars": [1, { "args": "none" }],
+		"no-unused-vars": [0],
+		"no-unused-expressions" : [1, {"allowTernary": true}],
+		"function-paren-newline": [1, "consistent"],
+		//"object-curly-spacing": [1, "never"],
+		"object-curly-newline": [1, { "multiline": true, "consistent": true }],
+		"implicit-arrow-linebreak": 0, //[1, "below"],
+		"jsx-a11y/no-autofocus": 1,
+		"jsx-a11y/label-has-associated-control": 0,
+		"react/jsx-wrap-multilines": 1,
+		"no-shadow": 0,
+		//"no-shadow": 1,
+		"default-param-last": 1,
+		"jsx-a11y/anchor-is-valid": 1
+	}
+}
