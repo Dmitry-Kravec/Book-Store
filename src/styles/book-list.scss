@@ -1,15 +1,11 @@
 .book-list {
-    &--view--grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-  
-      .book-list__item {
-    
-      }
-    
-      .book-list__item-image {
-        
-      }
-    }
-  
-  }
+	&--view--grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+
+		.book-list__item {}
+
+		.book-list__item-image {}
+	}
+
+}

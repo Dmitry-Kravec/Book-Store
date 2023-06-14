@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import "../styles/search-header.scss";
+import '../styles/search-header.scss';
 
 type SearchHeaderProps = {
   currentSort: string,
@@ -13,60 +13,57 @@ type SearchHeaderProps = {
 }
 
 const SearchHeader = ({
-  currentSort,
-  currentPublisherFilterValue,
-  currentAuthorsFilterValue,
-  onChangeValueInSelect,
-  publishersOption,
-  authorsOption,
-  sortOption,
-} : SearchHeaderProps) => {
-  return (
-    <div className="search-header">
-      <div className="search-header__label-container search-header__label-container_groving">
-        <label htmlFor="publisher" className="search-header__label">
-          Фильтр:
-        </label>
-        <select
-            value={currentPublisherFilterValue}
-            name="publisher"
-            onChange={onChangeValueInSelect}
-            className="search-header__select"
-          >
-            {publishersOption}
-          </select>
-          <select
-            value={currentAuthorsFilterValue}
-            name="authors"
-            onChange={onChangeValueInSelect}
-            className="search-header__select"
-          >
-            {authorsOption}
-          </select>
-      </div>
-      <div className="search-header__label-container search-header__label-container_margin-rigth_auto">
-        <label htmlFor="sort" className="search-header__label">
-          Сортировка:
-        </label>
-        <select
-          value={currentSort}
-          name="sort"
-          onChange={onChangeValueInSelect}
-          className="search-header__select"
-        >
-          {sortOption}
-        </select>
-      </div>
-      <div className="view-toggle">
-        <a className="view-toggle__grid"></a>
-        <a className="view-toggle__row"></a>
-      </div>
-    </div>
-  );
-};
+	currentSort,
+	currentPublisherFilterValue,
+	currentAuthorsFilterValue,
+	onChangeValueInSelect,
+	publishersOption,
+	authorsOption,
+	sortOption,
+} : SearchHeaderProps) => (
+	<div className="search-header">
+		<div className="search-header__label-container search-header__label-container_groving">
+			<label htmlFor="publisher" className="search-header__label">
+				Фильтр:
+			</label>
+			<select
+				value={currentPublisherFilterValue}
+				name="publisher"
+				onChange={onChangeValueInSelect}
+				className="search-header__select"
+			>
+				{publishersOption}
+			</select>
+			<select
+				value={currentAuthorsFilterValue}
+				name="authors"
+				onChange={onChangeValueInSelect}
+				className="search-header__select"
+			>
+				{authorsOption}
+			</select>
+		</div>
+		<div className="search-header__label-container search-header__label-container_margin-rigth_auto">
+			<label htmlFor="sort" className="search-header__label">
+				Сортировка:
+			</label>
+			<select
+				value={currentSort}
+				name="sort"
+				onChange={onChangeValueInSelect}
+				className="search-header__select"
+			>
+				{sortOption}
+			</select>
+		</div>
+		<div className="view-toggle">
+			<span className="view-toggle__grid" />
+			<span className="view-toggle__row" />
+		</div>
+	</div>
+);
 
-export { SearchHeader };
-
+export default SearchHeader;
 
 /*
 const SearchHeader = () => {
@@ -139,7 +136,7 @@ const SearchHeader = () => {
             {authorsOption}
           </select>
       </div>
-      <div className="search-header__label-container search-header__label-container_margin-rigth_auto">
+<div className="search-header__label-container search-header__label-container_margin-rigth_auto">
         <label htmlFor="sort" className="search-header__label">
           Сортировка:
         </label>

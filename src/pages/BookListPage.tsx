@@ -1,16 +1,14 @@
-import BookListContainer from "../containers/BookListContainer";
-import { SearchHeaderContainer } from "../containers/SearchHeaderContainer";
+import BookListContainer from '../containers/BookListContainer';
+import SearchHeaderContainer from '../containers/SearchHeaderContainer';
 
-import '../styles/book-list-page.scss'
+import '../styles/book-list-page.scss';
 
-const BookListPage = () => {
-    return (
-        <article className='book-list-page'>
-            <h3 className='book-list-page__header'>Каталог</h3>
-            <SearchHeaderContainer />
-            <BookListContainer />
-        </article>
-    )
-}
+const BookListPage = () => (
+	<article className="book-list-page">
+		<h3 className="book-list-page__header">Каталог</h3>
+		<SearchHeaderContainer />
+		<BookListContainer />
+	</article>
+);
 
 export default BookListPage;

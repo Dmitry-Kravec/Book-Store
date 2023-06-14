@@ -1,7 +1,5 @@
-const ShoppingCartPage = () => {
-    return (
-        <div>ShoppingCartPage</div>
-    )
-}
+const ShoppingCartPage = () => (
+	<div>ShoppingCartPage</div>
+);
 
 export default ShoppingCartPage;

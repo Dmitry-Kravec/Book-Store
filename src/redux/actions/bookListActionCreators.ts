@@ -1,67 +1,49 @@
-import { Dispatch } from "redux"
-import { BookExtendedItemType, BookItemType, SortType } from "../../types/BooksTypes"
-import { FETCH_BOOK_DETAILS_REQUESTED, FETCH_BOOK_DETAILS_FAILURE, FETCH_BOOK_DETAILS_SUCCESS, FETCH_NEW_BOOKS_REQUESTED, FETCH_NEW_BOOKS_FAILURE, FETCH_NEW_BOOKS_SUCCESS, CHANGE_SORT_TYPE, CHANGE_PUBLISHER_FILTER_VALUE, CHANGE_AUTHORS_FILTER_VALUE } from "../actionConstants"
+import { Dispatch } from 'redux';
+import { BookExtendedItemType, BookItemType, SortType } from '../../types/BooksTypes';
+import { FETCH_BOOK_DETAILS_REQUESTED, FETCH_BOOK_DETAILS_FAILURE, FETCH_BOOK_DETAILS_SUCCESS, FETCH_NEW_BOOKS_REQUESTED, FETCH_NEW_BOOKS_FAILURE, FETCH_NEW_BOOKS_SUCCESS, CHANGE_SORT_TYPE, CHANGE_PUBLISHER_FILTER_VALUE, CHANGE_AUTHORS_FILTER_VALUE } from '../actionConstants';
 
-//import BookStoreService from "../../services/bookStoreService";
+// import BookStoreService from "../../services/bookStoreService";
 
-export const changeSortType = (sort: SortType) => {
-    return {
-        type: CHANGE_SORT_TYPE,
-        payload: sort,
-    }
-}
+export const changeSortType = (sort: SortType) => ({
+	type: CHANGE_SORT_TYPE,
+	payload: sort,
+});
 
-export const changePublisherFilterValue = (value: string) => {
-    return {
-        type: CHANGE_PUBLISHER_FILTER_VALUE,
-        payload: value,
-    }
-}
+export const changePublisherFilterValue = (value: string) => ({
+	type: CHANGE_PUBLISHER_FILTER_VALUE,
+	payload: value,
+});
 
-export const changeAuthorsFilterValue = (value: string) => {
-    return {
-        type: CHANGE_AUTHORS_FILTER_VALUE,
-        payload: value,
-    }
-}
+export const changeAuthorsFilterValue = (value: string) => ({
+	type: CHANGE_AUTHORS_FILTER_VALUE,
+	payload: value,
+});
 
-export const fetchNewBooks = () => {
-    return {
-        type: FETCH_NEW_BOOKS_REQUESTED
-    }
-}
+export const fetchNewBooks = () => ({
+	type: FETCH_NEW_BOOKS_REQUESTED,
+});
 
-export const fetchNewBooksSuccess = (data: BookItemType[]) => {
-    return {
-        type: FETCH_NEW_BOOKS_SUCCESS,
-        payload: data,
-    }
-}
+export const fetchNewBooksSuccess = (data: BookItemType[]) => ({
+	type: FETCH_NEW_BOOKS_SUCCESS,
+	payload: data,
+});
 
-export const fetchNewBooksError = (error: any) => {
-    return {
-        type: FETCH_NEW_BOOKS_FAILURE
-    }
-}
+export const fetchNewBooksError = (error: any) => ({
+	type: FETCH_NEW_BOOKS_FAILURE,
+});
 
-export const fetchBookDetails = () => {
-    return {
-        type: FETCH_BOOK_DETAILS_REQUESTED
-    }
-}
+export const fetchBookDetails = () => ({
+	type: FETCH_BOOK_DETAILS_REQUESTED,
+});
 
-export const fetchBookDetailsSuccess = (data: BookExtendedItemType) => {
-    return {
-        type: FETCH_BOOK_DETAILS_SUCCESS,
-        payload: data,
-    }
-}
+export const fetchBookDetailsSuccess = (data: BookExtendedItemType) => ({
+	type: FETCH_BOOK_DETAILS_SUCCESS,
+	payload: data,
+});
 
-export const fetchBookDetailsError = (error: any) => {
-    return {
-        type: FETCH_BOOK_DETAILS_FAILURE
-    }
-}
+export const fetchBookDetailsError = (error: any) => ({
+	type: FETCH_BOOK_DETAILS_FAILURE,
+});
 
 // export const getNewBooksRequest = (bookStoreService: BookStoreService, dispatch: Dispatch) => {
 //     dispatch(fetchNewBooks());
@@ -74,7 +56,8 @@ export const fetchBookDetailsError = (error: any) => {
 //         .catch((err) => dispatch(fetchNewBooksError(err)))
 // }
 
-// export const getBooksDetailsRequest = (bookStoreService: BookStoreService, dispatch: Dispatch, isbn13: string) => {
+// export const getBooksDetailsRequest =
+// (bookStoreService: BookStoreService, dispatch: Dispatch, isbn13: string) => {
 //     dispatch(fetchBookDetails());
 
 //       bookStoreService.getBookDetails(isbn13)

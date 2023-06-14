@@ -1,4 +1,4 @@
-import * as bookListActions from '../redux/actions/bookListActionCreators.ts';
+import * as bookListActions from '../redux/actions/bookListActionCreators';
 import * as shoppingCartActions from '../redux/actions/shoppingCartActionCreators';
 import rootReducer from '../redux/rootReducer';
 

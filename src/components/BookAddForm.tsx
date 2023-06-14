@@ -1,30 +1,28 @@
-import QuantityButtons, { QuantityButtonsProps } from "./QuantityButtons";
+import QuantityButtons, { QuantityButtonsProps } from './QuantityButtons';
 
 type BookAddFormProps = QuantityButtonsProps & {
     handleSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void,
 }
 
 const BookAddForm = ({
-    handleSubmit,
-    quantity,
-    handleQuantityChange,
-    handleQuantityInputChange,
-} : BookAddFormProps) => {
-    return (
-        <form
-            className='book-add-form'
-            onSubmit={handleSubmit}
-        >
-            <span>Quantity:</span>
-            <QuantityButtons
-                handleQuantityInputChange={handleQuantityInputChange}
-                handleQuantityChange={handleQuantityChange}
-                quantity={quantity}
-            />
+	handleSubmit,
+	quantity,
+	handleQuantityChange,
+	handleQuantityInputChange,
+} : BookAddFormProps) => (
+	<form
+		className="book-add-form"
+		onSubmit={handleSubmit}
+	>
+		<span>Quantity:</span>
+		<QuantityButtons
+			handleQuantityInputChange={handleQuantityInputChange}
+			handleQuantityChange={handleQuantityChange}
+			quantity={quantity}
+		/>
 
-            <button type="submit" className="book-add-form__submit-button">Buy</button>
-        </form>
-    )
-}
+		<button type="submit" className="book-add-form__submit-button">Buy</button>
+	</form>
+);
 
 export default BookAddForm;

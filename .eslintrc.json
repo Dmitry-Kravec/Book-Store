@@ -3,6 +3,9 @@
 		"browser": true,
 		"es2021": true
 	},
+	"globals": {
+        "React": "readonly"
+    },
 	"extends": [
 		"plugin:react/recommended",
 		"airbnb",
@@ -43,6 +46,9 @@
 		"no-shadow": 0,
 		//"no-shadow": 1,
 		"default-param-last": 1,
-		"jsx-a11y/anchor-is-valid": 1
+		"jsx-a11y/anchor-is-valid": 1,
+		//"import/extensions": ["ignorePackages", {"tsx": "never"}]
+		"import/extensions": ["error", "never"],
+		"react/require-default-props": [0]
 	}
 }

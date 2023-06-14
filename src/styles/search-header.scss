@@ -1,86 +1,91 @@
 .search-header {
-  display: flex;
-  justify-content: space-between;
-  column-gap: 50px;
+	display: flex;
+	justify-content: space-between;
+	column-gap: 50px;
 
-  &__label-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 5px;
+	&__label-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 5px;
 
-    &_margin-rigth_auto {
-      margin-right: auto;
-    }
-  }
+		&_margin-rigth_auto {
+			margin-right: auto;
+		}
+	}
 
-  &__select {
-    height: 30px;
-  }
+	&__select {
+		height: 30px;
+	}
 
-  @media (max-width: 800px) {
-    column-gap: 20px;
-    row-gap: 10px;
-    flex-wrap: wrap-reverse;
+	@media (max-width: 800px) {
+		column-gap: 20px;
+		row-gap: 10px;
+		flex-wrap: wrap-reverse;
 
-    &__label-container_groving {
-      flex-basis: 100%;
-      justify-content: flex-start;
-    }
-  }
+		&__label-container_groving {
+			flex-basis: 100%;
+			justify-content: flex-start;
+		}
+	}
 
-  @media (max-width: 600px) {
-    &__select {
-      flex-grow: 1;
-    }
-  }
+	@media (max-width: 600px) {
+		&__select {
+			flex-grow: 1;
+		}
+	}
 }
 
 .view-toggle {
-  display: flex;
-  border: 1px solid #cccfd6;
+	display: flex;
+	border: 1px solid #cccfd6;
 
-  &__row,
-  &__grid {
-    --current-shadow-color: #dcdcdc;
+	&__row,
+	&__grid {
+		--current-color: #dcdcdc;
 
-    display: inline-block;
-    position: relative;
-    padding: 4px;
-    width: 30px;
-    height: 30px;
-    box-sizing: border-box;
-    cursor: pointer;
+		display: inline-block;
+		position: relative;
+		padding: 4px;
+		width: 30px;
+		height: 30px;
+		box-sizing: border-box;
+		cursor: pointer;
 
-    &::before {
-      top: 6px;
-      left: 6px;
-      content: "";
-      position: absolute;
-      background-color: #e2e4e8;
-      transition: all 0.5s ease;
-    }
+		&::before {
+			top: 6px;
+			left: 6px;
+			content: "";
+			position: absolute;
+			background-color: var(--current-color);
+			transition: all 0.5s ease;
 
-    &.active {
-      --current-shadow-color: #353535;
+		}
 
-      background-color: #ebebeb;
+		&:hover {
+			--current-color: #8c8c8c;
+		}
 
-      &::before {
-        background-color: var(--current-shadow-color);
-      }
-    }
-  }
+		&.active {
+			--current-color: #353535;
 
-  &__row::before {
-    box-shadow: 0 7px 0 var(--current-shadow-color), 0 14px 0 var(--current-shadow-color);
-    height: 4px;
-    width: 18px;
-  }
+			background-color: #ebebeb;
 
-  &__grid::before {
-    box-shadow: 0 10px 0 var(--current-shadow-color), 10px 10px 0 var(--current-shadow-color), 10px 0 0 var(--current-shadow-color);
-    height: 8px;
-    width: 8px;
-  }
+			&::before {
+				background-color: var(--current-color);
+			}
+		}
+	}
+
+	&__row::before {
+		box-shadow: 0 7px 0 var(--current-color), 0 14px 0 var(--current-color);
+		height: 4px;
+		width: 18px;
+	}
+
+	&__grid::before {
+		box-shadow: 0 10px 0 var(--current-color), 10px 10px 0 var(--current-color), 10px 0 0 var(--current-color);
+		height: 8px;
+		width: 8px;
+	}
 }
