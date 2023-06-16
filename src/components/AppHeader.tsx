@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Popover } from 'antd';
 
 import ShoppingCart from './ShoppingCart';
 import logo from '../images/logo.png';
@@ -31,7 +32,23 @@ const AppHeader = () => (
 					</NavLink>
 				</li>
 				<li className="navigation-list__item">
-					<ShoppingCart>
+					<Popover
+						rootClassName="navigation-list__item-popover"
+						placement="bottom"
+						trigger="click"
+						content={<ShoppingCart />}
+					>
+						<span className="navigation-list__item-link">
+							<img
+								src={shoppingCarticon}
+								className="navigation-list__shopping-cart-icon"
+								alt="shopping-cart"
+								width="35"
+							/>
+							<span className="navigation-list__item-label">Корзина</span>
+						</span>
+					</Popover>
+					{/* <ShoppingCart>
 						<NavLink to="/cart" className="navigation-list__item-link">
 							<img
 								src={shoppingCarticon}
@@ -41,7 +58,7 @@ const AppHeader = () => (
 							/>
 							<span className="navigation-list__item-label">Корзина</span>
 						</NavLink>
-					</ShoppingCart>
+					</ShoppingCart> */}
 				</li>
 			</ul>
 		</div>

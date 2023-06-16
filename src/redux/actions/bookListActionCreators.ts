@@ -1,12 +1,28 @@
-import { Dispatch } from 'redux';
-import { BookExtendedItemType, BookItemType, SortType } from '../../types/BooksTypes';
-import { FETCH_BOOK_DETAILS_REQUESTED, FETCH_BOOK_DETAILS_FAILURE, FETCH_BOOK_DETAILS_SUCCESS, FETCH_NEW_BOOKS_REQUESTED, FETCH_NEW_BOOKS_FAILURE, FETCH_NEW_BOOKS_SUCCESS, CHANGE_SORT_TYPE, CHANGE_PUBLISHER_FILTER_VALUE, CHANGE_AUTHORS_FILTER_VALUE } from '../actionConstants';
+// import { Dispatch } from 'redux';
+import { BookExtendedItemType, BookItemType, SortType, ViewType } from '../../types/BooksTypes';
+import {
+	FETCH_BOOK_DETAILS_REQUESTED,
+	FETCH_BOOK_DETAILS_FAILURE,
+	FETCH_BOOK_DETAILS_SUCCESS,
+	FETCH_NEW_BOOKS_REQUESTED,
+	FETCH_NEW_BOOKS_FAILURE,
+	FETCH_NEW_BOOKS_SUCCESS,
+	CHANGE_SORT_TYPE,
+	CHANGE_PUBLISHER_FILTER_VALUE,
+	CHANGE_AUTHORS_FILTER_VALUE,
+	CHANGE_VIEW,
+} from '../actionConstants';
 
 // import BookStoreService from "../../services/bookStoreService";
 
 export const changeSortType = (sort: SortType) => ({
 	type: CHANGE_SORT_TYPE,
 	payload: sort,
+});
+
+export const changeView = (view: ViewType) => ({
+	type: CHANGE_VIEW,
+	payload: view,
 });
 
 export const changePublisherFilterValue = (value: string) => ({

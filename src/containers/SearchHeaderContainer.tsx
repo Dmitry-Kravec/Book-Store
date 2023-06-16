@@ -1,10 +1,11 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SortField, SortMethod, SortType } from '../types/BooksTypes';
+import { SortField, SortMethod, SortType, ViewType } from '../types/BooksTypes';
 import {
 	changeAuthorsFilterValue,
 	changePublisherFilterValue,
 	changeSortType,
+	changeView,
 } from '../redux/actions/bookListActionCreators';
 import {
 	getAllAuthors,
@@ -12,6 +13,7 @@ import {
 	getAuthorsFilterValue,
 	getPublisherFilterValue,
 	getSort,
+	getView,
 } from '../redux/selectors';
 
 import SearchHeader from '../components/SearchHeader';
@@ -71,6 +73,7 @@ const sortOption = Object.values(SortEntries).map((el) => (
 const SearchHeaderContainer = () => {
 	const dispatch = useDispatch();
 
+	const currentView = useSelector(getView);
 	const currentSort = useSelector(getSort);
 	const currentPublisherFilterValue = useSelector(getPublisherFilterValue);
 	const currentAuthorsFilterValue = useSelector(getAuthorsFilterValue);
@@ -106,6 +109,12 @@ const SearchHeaderContainer = () => {
 		}
 	}, []);
 
+	const onChangeView = useCallback(
+		(e: React.SyntheticEvent<HTMLButtonElement>) => {
+			dispatch(changeView(e.currentTarget.value as ViewType));
+		}, [],
+	);
+
 	return (
 		<SearchHeader
 			currentSort={mapSortTypeToSortEntry(currentSort)}
@@ -115,6 +124,8 @@ const SearchHeaderContainer = () => {
 			publishersOption={publishersOption}
 			authorsOption={authorsOption}
 			sortOption={sortOption}
+			onChangeView={onChangeView}
+			currentView={`${currentView}_active`}
 		/>
 	);
 };

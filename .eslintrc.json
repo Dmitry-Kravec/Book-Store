@@ -49,6 +49,9 @@
 		"jsx-a11y/anchor-is-valid": 1,
 		//"import/extensions": ["ignorePackages", {"tsx": "never"}]
 		"import/extensions": ["error", "never"],
-		"react/require-default-props": [0]
+		"react/require-default-props": [0],
+		"jsx-a11y/click-events-have-key-events": "off",
+		"jsx-a11y/no-noninteractive-element-interactions": "off"
+
 	}
 }

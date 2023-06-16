@@ -1,0 +1,32 @@
+.shopping-cart-payment {
+	display: flex;
+    justify-content: flex-end;
+    column-gap: 35px;
+
+	&__total-cost-container {
+		display: flex;
+    	align-items: center;
+    	min-width: 160px;
+		column-gap: 5px;
+	}
+
+	&__total-cost-title {
+		font-weight: bold;
+	}
+
+	&__payment-button {
+		height: 35px;
+		padding: 5px 10px;
+		border-radius: 5px;
+		color: white;
+		background-color: #753ad3;
+		border: 1px solid #a254e2;
+		font-weight: bold;
+		transition: 0.4s transform ease;
+
+		&:hover {
+			transform: scale(1.1);
+			cursor: pointer;
+		}
+	}
+}

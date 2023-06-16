@@ -1,18 +1,22 @@
 import { ReactNode } from 'react';
 
 import '../styles/search-header.scss';
+import { ViewType } from '../types/BooksTypes';
 
 type SearchHeaderProps = {
-  currentSort: string,
-  currentPublisherFilterValue: string,
-  currentAuthorsFilterValue: string,
-  onChangeValueInSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-  publishersOption: ReactNode[],
-  authorsOption: ReactNode[],
-  sortOption: ReactNode[],
+	currentView: string,
+	currentSort: string,
+	currentPublisherFilterValue: string,
+	currentAuthorsFilterValue: string,
+	onChangeValueInSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+	publishersOption: ReactNode[],
+	authorsOption: ReactNode[],
+	sortOption: ReactNode[],
+	onChangeView: (e: React.SyntheticEvent<HTMLButtonElement>) => void,
 }
 
 const SearchHeader = ({
+	currentView,
 	currentSort,
 	currentPublisherFilterValue,
 	currentAuthorsFilterValue,
@@ -20,6 +24,7 @@ const SearchHeader = ({
 	publishersOption,
 	authorsOption,
 	sortOption,
+	onChangeView,
 } : SearchHeaderProps) => (
 	<div className="search-header">
 		<div className="search-header__label-container search-header__label-container_groving">
@@ -57,8 +62,8 @@ const SearchHeader = ({
 			</select>
 		</div>
 		<div className="view-toggle">
-			<span className="view-toggle__grid" />
-			<span className="view-toggle__row" />
+			<button className={`view-toggle__grid view-toggle__${currentView}`} type="button" aria-label="grid-toggle" value="grid" onClick={onChangeView} />
+			<button className={`view-toggle__row view-toggle__${currentView}`} type="button" aria-label="row-toggle" value="row" onClick={onChangeView} />
 		</div>
 	</div>
 );

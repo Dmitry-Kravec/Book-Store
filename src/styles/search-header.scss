@@ -50,13 +50,15 @@
 		width: 30px;
 		height: 30px;
 		box-sizing: border-box;
+		border: none;
+		background-color: unset;
 		cursor: pointer;
 
 		&::before {
-			top: 6px;
-			left: 6px;
 			content: "";
 			position: absolute;
+			top: 6px;
+			left: 6px;
 			background-color: var(--current-color);
 			transition: all 0.5s ease;
 
@@ -66,7 +68,7 @@
 			--current-color: #8c8c8c;
 		}
 
-		&.active {
+		&%_active {
 			--current-color: #353535;
 
 			background-color: #ebebeb;
@@ -77,15 +79,27 @@
 		}
 	}
 
-	&__row::before {
-		box-shadow: 0 7px 0 var(--current-color), 0 14px 0 var(--current-color);
-		height: 4px;
-		width: 18px;
+	&__row {
+		&.view-toggle__row_active {
+			@extend %_active
+		}
+
+		&::before {
+			height: 4px;
+			width: 18px;
+			box-shadow: 0 7px 0 var(--current-color), 0 14px 0 var(--current-color);
+		}
 	}
 
-	&__grid::before {
-		box-shadow: 0 10px 0 var(--current-color), 10px 10px 0 var(--current-color), 10px 0 0 var(--current-color);
-		height: 8px;
-		width: 8px;
+	&__grid {
+		&.view-toggle__grid_active {
+			@extend %_active
+		}
+
+		&::before {
+			height: 8px;
+			width: 8px;
+			box-shadow: 0 10px 0 var(--current-color), 10px 10px 0 var(--current-color), 10px 0 0 var(--current-color);
+		}
 	}
 }

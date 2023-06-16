@@ -1,5 +1,5 @@
 import { ShoppingCartActionsType, ShoppingCartBookItemType, ShoppingCartStateType } from '../types/BooksTypes';
-import { ADD_BOOK_TO_CART, REMOVE_BOOK_FROM_CART } from './actionConstants';
+import { UPDATE_BOOK_IN_CART } from './actionConstants';
 
 const initialState: ShoppingCartStateType = {
 	selectedBooks: [],
@@ -60,10 +60,7 @@ const updateOrder = (state: ShoppingCartStateType, action: ShoppingCartActionsTy
 
 const shoppingCartReducer = (state = initialState, action: ShoppingCartActionsType) => {
 	switch (action.type) {
-		case ADD_BOOK_TO_CART: {
-			return updateOrder(state, action);
-		}
-		case REMOVE_BOOK_FROM_CART: {
+		case UPDATE_BOOK_IN_CART: {
 			return updateOrder(state, action);
 		}
 		default:

@@ -1,17 +1,21 @@
-import { BookItemType } from '../types/BooksTypes';
-import BookListItem from './BookListItem';
+import { BookItemType, ViewType } from '../types/BooksTypes';
 
 import '../styles/book-list.scss';
 
-type BookListProps = {
-    booksData: BookItemType[],
-    currentView?: string,
+export type BookListItemProps = {
+    book: BookItemType
 }
 
-const BookList = ({ booksData, currentView }: BookListProps) => (
-	<div className="book-list--view--grid">
+type BookListProps = {
+    booksData: BookItemType[],
+    currentView: ViewType,
+	ItemComponent: React.FunctionComponent<BookListItemProps>
+}
+
+const BookList = ({ booksData, currentView, ItemComponent }: BookListProps) => (
+	<div className={`book-list book-list_view_${currentView}`}>
 		{
-			booksData && booksData.map((book) => (<BookListItem key={book.isbn13} book={book} />))
+			booksData && booksData.map((book) => (<ItemComponent key={book.isbn13} book={book} />))
 		}
 	</div>
 );

@@ -1,7 +1,16 @@
 .book-list {
-	&--view--grid {
+	&_view_grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
+
+		.book-list__item {}
+
+		.book-list__item-image {}
+	}
+
+	&_view_row {
+		display: grid;
+		grid-template-columns: 1fr;
 
 		.book-list__item {}
 

@@ -7,8 +7,8 @@ authors : "Saurabh Shrivastava, Neelanjali Srivastav, Alberto Artasanchez, Imtia
 desc : "Are you excited to harness the power of AWS a
   nd unlock endless possibilities for your business? Look
   no further than the second edition of AWS for Solutions
-    Architects! Packed with all-new content, this book is
-    a must-have guide for anyone looking to build scalable cloud solutions and drive digital ..."
+	Architects! Packed with all-new content, this book is
+	a must-have guide for anyone looking to build scalable cloud solutions and drive digital ..."
 error : "0"
 image : "https://itbook.store/img/books/9781803238951.png"
 isbn10 : "180323895X"
@@ -31,23 +31,23 @@ export type ReduxStateType = ReturnType<typeof rootReducer>
 export type CustomBookFieldType = [fieldValues: string[], fieldName: string]
 
 export type BookApiItemType = {
-  image: string,
-  isbn13: string,
-  price: string,
-  subtitle: string,
-  title: string,
+	image: string,
+	isbn13: string,
+	price: string,
+	subtitle: string,
+	title: string,
 };
 
 export type BookItemType = BookApiItemType & {
-  authors: string,
-  publisher: string,
+	authors: string,
+	publisher: string,
 };
 
 export type BookExtendedItemType = BookItemType & {
-   pages: string, //
-   year: string,
-   rating: string,
-   desc: string,
+	pages: string, //
+	year: string,
+	rating: string,
+	desc: string,
 };
 
 // export enum SortField {
@@ -66,53 +66,56 @@ export type BookExtendedItemType = BookItemType & {
 // export type SortType = [SortField, SortMethod]
 
 export enum SortField {
-  authors = 'authors',
-  publisher = 'publisher',
-  price = 'price',
+	authors = 'authors',
+	publisher = 'publisher',
+	price = 'price',
 }
 
 export enum SortMethod {
-  asc = 'asc',
-  dsc = 'dsc',
+	asc = 'asc',
+	dsc = 'dsc',
 }
 
 export type SortType = {
-  field?: SortField,
-  direction?: SortMethod,
+	field?: SortField,
+	direction?: SortMethod,
 }
 
-type FilterableFields = 'authors' | 'publisher';
+export type FilterableFields = 'authors' | 'publisher';
 
 export type FiltersType = Record<FilterableFields, string>;
 
+export type ViewType = 'grid' | 'row';
+
 export type BooksStateType = {
-  booksData: BookItemType[],
-  sort: SortType,
-  filters: FiltersType
+	booksData: BookItemType[],
+	sort: SortType,
+	filters: FiltersType,
+	view: ViewType,
 }
 
 export type BookListActionsType = ReturnType<
-  typeof bookListActions.changeSortType |
-  typeof bookListActions.changePublisherFilterValue |
-  typeof bookListActions.changeAuthorsFilterValue |
-  typeof bookListActions.fetchNewBooks |
-  typeof bookListActions.fetchNewBooksSuccess |
-  typeof bookListActions.fetchNewBooksError |
-  typeof bookListActions.fetchBookDetails |
-  typeof bookListActions.fetchBookDetailsSuccess |
-  typeof bookListActions.fetchBookDetailsError
->;
+	typeof bookListActions.changeView |
+	typeof bookListActions.changeSortType |
+	typeof bookListActions.changePublisherFilterValue |
+	typeof bookListActions.changeAuthorsFilterValue |
+	typeof bookListActions.fetchNewBooks |
+	typeof bookListActions.fetchNewBooksSuccess |
+	typeof bookListActions.fetchNewBooksError |
+	typeof bookListActions.fetchBookDetails |
+	typeof bookListActions.fetchBookDetailsSuccess |
+	typeof bookListActions.fetchBookDetailsError
+	>;
 
 export type ShoppingCartBookItemType = {
-  book: BookItemType,
-  quantity: number,
+	book: BookItemType,
+	quantity: number,
 }
 
 export type ShoppingCartStateType = {
-  selectedBooks: ShoppingCartBookItemType[]
+	selectedBooks: ShoppingCartBookItemType[]
 }
 
 export type ShoppingCartActionsType = ReturnType<
-  typeof shoppingCartActions.addBookToCart |
-  typeof shoppingCartActions.removeBookFromCart
+	typeof shoppingCartActions.updateBookInCart
 >

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addBookToCart } from '../redux/actions/shoppingCartActionCreators';
+import { updateBookInCart } from '../redux/actions/shoppingCartActionCreators';
 import { BookItemType } from '../types/BooksTypes';
 import BookAddForm from '../components/BookAddForm';
 
@@ -16,7 +16,7 @@ const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 		e.preventDefault();
 
 		if (quantity !== 0) {
-			dispatch(addBookToCart(book, quantity));
+			dispatch(updateBookInCart(book, quantity));
 			setQuantity(0);
 		}
 	}, [quantity]);

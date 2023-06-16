@@ -1,5 +1,13 @@
 import { BookListActionsType, BooksStateType, SortField, SortMethod, SortType } from '../types/BooksTypes';
-import { FETCH_NEW_BOOKS_REQUESTED, FETCH_NEW_BOOKS_FAILURE, FETCH_NEW_BOOKS_SUCCESS, CHANGE_SORT_TYPE, CHANGE_PUBLISHER_FILTER_VALUE, CHANGE_AUTHORS_FILTER_VALUE } from './actionConstants';
+import {
+	FETCH_NEW_BOOKS_REQUESTED,
+	FETCH_NEW_BOOKS_FAILURE,
+	FETCH_NEW_BOOKS_SUCCESS,
+	CHANGE_SORT_TYPE,
+	CHANGE_PUBLISHER_FILTER_VALUE,
+	CHANGE_AUTHORS_FILTER_VALUE,
+	CHANGE_VIEW,
+} from './actionConstants';
 
 const initialState: BooksStateType = {
 	booksData: [],
@@ -8,10 +16,16 @@ const initialState: BooksStateType = {
 		authors: 'All',
 		publisher: 'All',
 	},
+	view: 'grid',
 };
 
 const booksReducer = (state = initialState, action: BookListActionsType): BooksStateType => {
 	switch (action.type) {
+		case CHANGE_VIEW:
+			return {
+				...state,
+				view: action.payload,
+			};
 		case CHANGE_SORT_TYPE:
 			return {
 				...state,

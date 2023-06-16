@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect';
-import { FiltersType, ReduxStateType, SortField, SortMethod, SortType, BookItemType } from '../types/BooksTypes';
+import { FiltersType, ReduxStateType, SortField, SortMethod, SortType, BookItemType, ShoppingCartBookItemType } from '../types/BooksTypes';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
 // export const getHasBooksLoadingError =
 // (state: ReduxStateType) => state.books.hasBooksLoadingError;
+export const getView = (state: ReduxStateType) => state.books.view;
 export const getSort = (state: ReduxStateType) => state.books.sort;
 export const getPublisherFilterValue = (state: ReduxStateType) => state.books.filters.publisher;
 export const getAuthorsFilterValue = (state: ReduxStateType) => state.books.filters.authors;
@@ -79,5 +80,21 @@ export const getSortedAndFilteredBooksData = createSelector(
 		}
 
 		return books;
+	},
+);
+
+// перенести в другой файл
+export const getSelectedBooks = (state: ReduxStateType) => state.shoppingCart.selectedBooks;
+export const getSelectedBooksCount = (state: ReduxStateType) =>
+	state.shoppingCart.selectedBooks.length;
+
+export const getShoppingCartTotalCost = createSelector(
+	getSelectedBooks,
+	(selectedBooks) => {
+		const currencyLetter = selectedBooks.length ? selectedBooks[0].book.price[0] : '';
+		return currencyLetter + selectedBooks.reduce((sum, cartItem) => {
+			const price = Number(cartItem.book.price.slice(1));
+			return Number((sum + cartItem.quantity * price).toFixed(2));
+		}, 0);
 	},
 );
