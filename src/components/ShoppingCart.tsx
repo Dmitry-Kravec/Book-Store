@@ -1,19 +1,29 @@
 import { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Popover } from 'antd';
+import { useSelector } from 'react-redux';
 
 import '../styles/shopping-cart.scss';
-import ShoppingCartListContainer from '../containers/ShoppingCartListContainer';
+// import ShoppingCartListContainer from '../containers/ShoppingCartListContainer';
+import { getSelectedBooks } from '../redux/selectors';
+import ShoppingCartItemsList from './ShoppingCartItemsList';
 
 type ShoppingCartProps = {
     children: ReactNode
 }
 
-const ShoppingCart = () => (
-	<>
-		<ShoppingCartListContainer />
-		<NavLink to="/cart">CART</NavLink>
-	</>
-);
+const ShoppingCart = () => {
+	const booksData = useSelector(getSelectedBooks);
+
+	return (
+		<div className="shopping-cart-mini">
+			{
+				booksData.length
+					? <ShoppingCartItemsList booksData={booksData} />
+					: <div>Вашей корзине нет товаров</div>
+			}
+			<NavLink to="/cart">В корзину</NavLink>
+		</div>
+	);
+};
 
 export default ShoppingCart;

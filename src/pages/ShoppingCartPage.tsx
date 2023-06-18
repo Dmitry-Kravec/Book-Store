@@ -2,14 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import ShoppingCartPayment from '../components/ShoppingCartPayment';
-import ShoppingCartListContainer from '../containers/ShoppingCartListContainer';
-import { getSelectedBooksCount } from '../redux/selectors';
+// import ShoppingCartListContainer from '../containers/ShoppingCartListContainer';
+import { getSelectedBooksCount, getSelectedBooks } from '../redux/selectors';
 
 import '../styles/shopping-cart-page.scss';
+import ShoppingCartItemsList from '../components/ShoppingCartItemsList';
 
 const ShoppingCartPage = () => {
 	const navigate = useNavigate();
-	const selectedBooksCount = useSelector(getSelectedBooksCount);
+	const booksData = useSelector(getSelectedBooks);
 
 	const goBack = () => navigate(-1);
 
@@ -20,10 +21,10 @@ const ShoppingCartPage = () => {
 				<span className="shopping-cart-page__title">Корзина</span>
 			</h3>
 			{
-				selectedBooksCount
+				booksData.length
 					? (
 						<>
-							<ShoppingCartListContainer />
+							<ShoppingCartItemsList booksData={booksData} />
 							<ShoppingCartPayment />
 						</>
 					)

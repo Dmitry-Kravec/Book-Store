@@ -9,6 +9,7 @@
 	color: white;
 
 	&__content {
+		box-sizing: border-box;
 		width: var(--max-content-width);
 		padding-left: var(--content-padding);
 		padding-right: var(--content-padding);

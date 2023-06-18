@@ -9,10 +9,11 @@
 		display: flex;
     	align-items: center;
     	justify-content: center;
+		position: relative;
 	}
 
 	&__title {
-		margin-right: auto;
+
 	}
 
 	&__empty {
@@ -20,12 +21,13 @@
 	}
 
 	&__go-back-button {
+		position: absolute;
+		left: 0;
 		width: 35px;
 		height: 35px;
 		border: none;
 		box-shadow: 1px 1px 6px 0 black;
 		border-radius: 50%;
-		margin-right: auto;
 		transition: 0.3s box-shadow ease;
 
 		&::before {

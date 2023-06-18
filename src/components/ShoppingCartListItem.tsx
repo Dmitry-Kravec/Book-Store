@@ -18,11 +18,11 @@ const ShoppingCartListItem = ({
 			<div className="shopping-cart-list-item__block">
 				<img className="shopping-cart-list-item__image" src={image} alt="Book" width="50" height="50" />
 				<div className="shopping-cart-list-item__title">{title}</div>
+				<div className="shopping-cart-list-item__price">{price}</div>
 			</div>
 			<div className="shopping-cart-list-item__block">
-				<div className="shopping-cart-list-item__price">{price}</div>
-				<div className="shopping-cart-list-item__total-price">{priceCurrency + (priceValue * quantity).toFixed(2)}</div>
 				<ShoppingCartFormContainer quantity={quantity} book={book} />
+				<div className="shopping-cart-list-item__total-price">{priceCurrency + (priceValue * quantity).toFixed(2)}</div>
 			</div>
 		</div>
 	);

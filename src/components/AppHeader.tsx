@@ -48,17 +48,6 @@ const AppHeader = () => (
 							<span className="navigation-list__item-label">Корзина</span>
 						</span>
 					</Popover>
-					{/* <ShoppingCart>
-						<NavLink to="/cart" className="navigation-list__item-link">
-							<img
-								src={shoppingCarticon}
-								className="navigation-list__shopping-cart-icon"
-								alt="shopping-cart"
-								width="35"
-							/>
-							<span className="navigation-list__item-label">Корзина</span>
-						</NavLink>
-					</ShoppingCart> */}
 				</li>
 			</ul>
 		</div>
