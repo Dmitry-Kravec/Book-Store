@@ -16,7 +16,7 @@ const BookListContainer = () => {
 
 	useEffect(() => {
 		getNewBooks();
-	}, []);
+	}, [getNewBooks]);
 
 	if (isLoading) return (<div>Loading...</div>);
 

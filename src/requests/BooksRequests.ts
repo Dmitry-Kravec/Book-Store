@@ -61,7 +61,7 @@ const useFetchNewBooks = () => {
 			})
 			.catch((error) => console.log('useFetchNewBooks promise fetch error ', error))
 			.finally(() => setIsLoading(false));
-	}, []);
+	}, [dispatch]);
 
 	return { isLoading, getNewBooks };
 };
@@ -78,7 +78,7 @@ const useFetchBookDetails = () => {
 			.then((json) => dispatch(fetchBookDetailsSuccess(json)))
 			.catch((error) => console.log('useFetchBookDetails promise fetch error ', error))
 			.finally(() => setIsLoading(false));
-	}, []);
+	}, [dispatch]);
 
 	return { isLoading, getBooksDetails };
 };
@@ -95,7 +95,7 @@ const useFetchFilteredBooks = () => {
 			.then((json) => dispatch(fetchNewBooksSuccess(json.books)))
 			.catch((error) => console.log('useFetchFilteredBooks promise fetch error ', error))
 			.finally(() => setIsLoading(false));
-	}, []);
+	}, [dispatch]);
 
 	return { isLoading, getFilteredBooks };
 };

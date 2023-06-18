@@ -19,7 +19,7 @@ const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 			dispatch(updateBookInCart(book, quantity));
 			setQuantity(0);
 		}
-	}, [quantity]);
+	}, [book, quantity, dispatch]);
 
 	const handleQuantityInputChange = useCallback(
 		({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
