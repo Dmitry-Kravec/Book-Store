@@ -4,7 +4,7 @@ import BookListPage from '../pages/BookListPage';
 import ShoppingCartPage from '../pages/ShoppingCartPage';
 import Layout from './Layout';
 
-import '../styles/app.scss';
+import '../styles/style.scss';
 
 function App() {
 	return (

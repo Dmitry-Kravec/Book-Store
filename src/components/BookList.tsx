@@ -1,7 +1,5 @@
 import { BookItemType, ViewType } from '../types/BooksTypes';
 
-import '../styles/book-list.scss';
-
 export type BookListItemProps = {
     book: BookItemType
 }

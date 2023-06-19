@@ -5,14 +5,14 @@ import { getSelectedBooks } from '../redux/selectors';
 const ShoppingCartListContainer = () => { // не используется
 	const booksData = useSelector(getSelectedBooks);
 
-	if (!booksData.length) {
-		return (
-			<div>В вашей корзине нет товаров</div>
-		);
-	}
+	let content = <ShoppingCartItemsList booksData={booksData} />;
+
+	if (!booksData.length) content = <div>В вашей корзине нет товаров</div>;
 
 	return (
-		<ShoppingCartItemsList booksData={booksData} />
+		<div className="shopping-cart-list-container">
+			{content}
+		</div>
 	);
 };
 

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { FiltersType, ReduxStateType, SortField, SortMethod, SortType, BookItemType, ShoppingCartBookItemType } from '../types/BooksTypes';
+import { FiltersType, ReduxStateType, SortField, SortMethod, SortType, BookItemType, ShoppingCartBookItemType, FilterableFields } from '../types/BooksTypes';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
 // export const getHasBooksLoadingError =
@@ -12,37 +12,23 @@ export const getFilters = (state: ReduxStateType) => state.books.filters;
 
 export const getAllPublishers = createSelector(
 	getBooksData,
-	(books) => {
-		const publishers = new Set(books.map((book) => book.publisher));
-		return ['All', ...Array.from(publishers)];
-	},
+	(books) => Array.from(new Set(books.map((book) => book.publisher))),
 );
 
 export const getAllAuthors = createSelector(
 	getBooksData,
-	(books) => {
-		const authors = new Set(books.map((book) => book.authors));
-		return ['All', ...Array.from(authors)];
-	},
+	(books) => Array.from(new Set(books.map((book) => book.authors))),
 );
 
 export const getFilteredBooksData = createSelector(
 	getBooksData,
 	getFilters,
 	(books, filters) => {
-		const filtersEntries = Object.entries(filters);
-
+		const filtersKeys = Object.keys(filters) as FilterableFields[];
 		const filteredBooks = books.filter((book) => {
-			const isRightBook = filtersEntries.reduce<boolean>((acc, [key, value]) => {
-				const keyWithType = key as keyof FiltersType;
-				if (acc && book[keyWithType] !== value && value !== 'All') {
-					return false;
-				}
+			const isRightBook = filtersKeys.findIndex((key) => filters[key] !== 'All' && book[key] !== filters[key]);
 
-				return acc;
-			}, true);
-
-			return isRightBook;
+			return isRightBook === -1;
 		});
 
 		return filteredBooks;
@@ -83,10 +69,8 @@ export const getSortedAndFilteredBooksData = createSelector(
 	},
 );
 
-// перенести в другой файл
+// перенести в другой файл?
 export const getSelectedBooks = (state: ReduxStateType) => state.shoppingCart.selectedBooks;
-export const getSelectedBooksCount = (state: ReduxStateType) =>
-	state.shoppingCart.selectedBooks.length;
 
 export const getShoppingCartTotalCost = createSelector(
 	getSelectedBooks,

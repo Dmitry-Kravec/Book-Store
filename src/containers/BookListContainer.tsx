@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { getBooksData, getSortedAndFilteredBooksData, getView } from '../redux/selectors';
@@ -18,15 +18,17 @@ const BookListContainer = () => {
 		getNewBooks();
 	}, [getNewBooks]);
 
-	if (isLoading) return (<div>Loading...</div>);
+	let content = (
+		<BookList booksData={booksData} currentView={currentView} ItemComponent={ItemComponent} />);
 
-	if (!booksData.length) return (<div>Товары не найдены</div>);
+	if (isLoading) content = (<div>Loading...</div>);
 
-	// if(hasBooksLoadingError) return (<div>Error</div>)
-	// console.log('BookListContainer');
+	if (!booksData.length) content = (<div>Товары не найдены</div>);
 
 	return (
-		<BookList booksData={booksData} currentView={currentView} ItemComponent={ItemComponent} />
+		<div className="book-list-container">
+			{content}
+		</div>
 	);
 };
 

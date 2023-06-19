@@ -1,8 +1,6 @@
 import { ShoppingCartBookItemType } from '../types/BooksTypes';
 import ShoppingCartListItem from './ShoppingCartListItem';
 
-import '../styles/shopping-cart-items-list.scss';
-
 type ShoppingCartItemsListProps = {
 	booksData: ShoppingCartBookItemType[]
 }

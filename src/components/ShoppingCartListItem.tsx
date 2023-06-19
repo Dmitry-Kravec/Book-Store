@@ -1,8 +1,6 @@
 import ShoppingCartFormContainer from '../containers/ShoppingCartFormContainer';
 import { ShoppingCartBookItemType } from '../types/BooksTypes';
 
-import '../styles/shopping-cart-list-item.scss';
-
 type ShoppingCartListItemProps = {
 	shoppingCartBook: ShoppingCartBookItemType
 }

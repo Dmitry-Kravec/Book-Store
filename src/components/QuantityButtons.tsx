@@ -1,5 +1,3 @@
-import '../styles/quantity-buttons.scss';
-
 export type QuantityButtonsProps = {
     handleQuantityChange: (value: number) => void,
     handleQuantityInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,

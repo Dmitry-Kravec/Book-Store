@@ -1,12 +1,33 @@
 .quantity-buttons {
-    &__quantity-button {
+	display: flex;
+    column-gap: 8px;
 
+    &__quantity-button {
+		background-color: $button-pink-color;
+		border: none;
+		border-radius: 50%;
+		width: 20px;
+		height: 20px;
+		box-shadow: 0px 0px 4px 1px $black;
+		color: $white;
+		font-weight: 700;
+
+		transition: 0.3s transform ease;
+
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.2);
+		}
     }
 
     &__quantity-input {
+		width: 25px;
+		text-align: center;
+
         -moz-appearance: textfield;
-        &input::-webkit-outer-spin-button,
-        &input::-webkit-inner-spin-button {
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }

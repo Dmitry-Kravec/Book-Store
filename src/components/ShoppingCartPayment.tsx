@@ -5,8 +5,6 @@ import { getShoppingCartTotalCost } from '../redux/selectors';
 import useFetchPayment from '../requests/ShoppingCartRequests';
 import Modal from '../hoc/Modal';
 
-import '../styles/shopping-cart-payment.scss';
-
 const ShoppingCartPayment = () => {
 	const totalCost = useSelector(getShoppingCartTotalCost);
 
@@ -29,21 +27,23 @@ const ShoppingCartPayment = () => {
 				isActive={paymentHasSuccess || isPaymentLoading || paymentHasError}
 				closeHandler={paymentReset}
 			>
-				{isPaymentLoading ? (
-					<div>Loading...</div>
-				) : null}
-				{paymentHasSuccess ? (
-					<div className="shopping-cart-payment-modal-content">
-						<span className="shopping-cart-payment-modal-content__title">Оплата завершена</span>
-						<NavLink to="/" className="shopping-cart-payment-modal-content__link">Вернуться на главную</NavLink>
-					</div>
-				) : null}
-				{paymentHasError ? (
-					<div className="shopping-cart-payment-modal-content">
-						<div className="shopping-cart-payment-modal-content__title">Ошибка при выполнении операции</div>
-						<button className="shopping-cart-payment__payment-button" type="button" onClick={doPayment}>Повторить</button>
-					</div>
-				) : null}
+				<div className="shopping-cart-payment__modal-container">
+					{isPaymentLoading ? (
+						<div>Loading...</div>
+					) : null}
+					{paymentHasSuccess ? (
+						<>
+							<span className="shopping-cart-payment__modal-title">Оплата завершена</span>
+							<NavLink to="/" className="shopping-cart-payment__modal-link">Вернуться на главную</NavLink>
+						</>
+					) : null}
+					{paymentHasError ? (
+						<>
+							<div className="shopping-cart-payment__modal-title">Ошибка при выполнении операции</div>
+							<button className="shopping-cart-payment__payment-button" type="button" onClick={doPayment}>Повторить</button>
+						</>
+					) : null}
+				</div>
 			</Modal>
 		</div>
 	);

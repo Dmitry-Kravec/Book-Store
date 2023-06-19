@@ -16,9 +16,14 @@
 	}
 
 	&__content {
+		min-width: 300px;
+		min-height: 150px;
 		max-width: 60vw;
-		background-color: white;
+		background-color: $white;
 		border-radius: 5px;
 		padding: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }

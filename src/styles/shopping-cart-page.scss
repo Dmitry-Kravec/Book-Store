@@ -29,7 +29,7 @@
 		width: 35px;
 		height: 35px;
 		border: none;
-		box-shadow: 1px 1px 6px 0 black;
+		box-shadow: 1px 1px 6px 0 $black;
 		border-radius: 50%;
 		transition: 0.3s box-shadow ease;
 
@@ -39,8 +39,8 @@
 
 		&:hover {
 			cursor: pointer;
-			background-color: #ddd;
-			box-shadow: 1px 1px 10px 0 black;
+			background-color: $gray-light;
+			box-shadow: 1px 1px 10px 0 $black;
 		}
 
 	}

@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-import '../styles/modal.scss';
-
 type ModalProps = {
 	isActive: boolean,
 	closeHandler: () => void;

@@ -1,9 +1,9 @@
 .shopping-cart-list-item {
 	display: flex;
     justify-content: space-between;
-    border: 1px solid black;
+    border: 1px solid $black;
     padding: 0 10px;
-    background-color: #f7f7f7;
+    background-color: $shopping-cart-list-item-background-color;
     border-radius: 12px;
 	column-gap: 10%;
 
@@ -17,5 +17,10 @@
 		justify-content: space-between;
 		align-items: center;
 		column-gap: 15px;
+	}
+
+	&__total-price {
+		text-align: right;
+		min-width: 75px;
 	}
 }

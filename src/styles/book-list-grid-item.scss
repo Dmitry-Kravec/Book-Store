@@ -1,0 +1,52 @@
+.book-list-grid-item {
+	box-shadow: 0px 0px 30px -20px $list-item-shadow-color;
+	background-color: $list-item-background-color;
+	border: 1px solid $orange;
+	border-radius: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	transition: 0.3s box-shadow ease;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0 0 20px 0px $list-item-shadow-color, inset 0 0 5px 0px $list-item-shadow-color;
+	}
+
+	&__image {
+		width: 100%;
+		object-fit: contain;
+		height: 350px;
+	}
+
+	&__description {
+		display: grid;
+		grid-template-rows: 3rem repeat(3, 2rem) 1rem;
+		line-height: 1rem;
+		flex-grow: 1;
+		row-gap: 6px;
+	}
+
+	&__title {
+		font-weight: 700;
+		@include line-clamp(3);
+	}
+
+	&__subtitle {
+		font-weight: 300;
+		font-size: 12px;
+		@include line-clamp(2);
+	}
+
+	&__authors,
+	&__publisher {
+		font-size: 14px;
+		@include line-clamp(2);
+	}
+
+	&__price {
+		@include line-clamp(1);
+	}
+}

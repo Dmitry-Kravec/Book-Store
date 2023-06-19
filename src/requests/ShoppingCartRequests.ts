@@ -15,7 +15,7 @@ const useFetchPayment = () => {
 
 			new Promise<void>((resolve, reject) => {
 				setTimeout(() => {
-					if (Math.random() < 0.3) {
+					if (Math.random() < 0.4) {
 						reject();
 					}
 					resolve();

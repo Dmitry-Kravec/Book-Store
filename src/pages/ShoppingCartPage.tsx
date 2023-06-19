@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 
 import ShoppingCartPayment from '../components/ShoppingCartPayment';
 // import ShoppingCartListContainer from '../containers/ShoppingCartListContainer';
-import { getSelectedBooksCount, getSelectedBooks } from '../redux/selectors';
+import { getSelectedBooks } from '../redux/selectors';
 
-import '../styles/shopping-cart-page.scss';
 import ShoppingCartItemsList from '../components/ShoppingCartItemsList';
 
 const ShoppingCartPage = () => {
@@ -28,7 +27,7 @@ const ShoppingCartPage = () => {
 							<ShoppingCartPayment />
 						</>
 					)
-					:					(
+					: (
 						<div className="shopping-cart-page__empty">Корзина пуста</div>
 					)
 

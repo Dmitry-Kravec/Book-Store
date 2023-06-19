@@ -1,12 +1,10 @@
-@import '../styles/helpers';
-
 .app-header {
 	height: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: #282c34;
-	color: white;
+	color: $white;
 
 	&__content {
 		box-sizing: border-box;
@@ -18,8 +16,8 @@
 		justify-content: space-between;
 	}
 
-	&__logo-container {
-		display: flex;
+	&__logo {
+		display: block;
 	}
 }
 
@@ -32,6 +30,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		cursor: pointer;
 
 		&_item-popover {
 			@include on_mobile {

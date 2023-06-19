@@ -1,4 +1,3 @@
-// import { Dispatch } from 'redux';
 import { BookExtendedItemType, BookItemType, SortType, ViewType } from '../../types/BooksTypes';
 import {
 	FETCH_BOOK_DETAILS_REQUESTED,
@@ -12,8 +11,6 @@ import {
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
 } from '../actionConstants';
-
-// import BookStoreService from "../../services/bookStoreService";
 
 export const changeSortType = (sort: SortType) => ({
 	type: CHANGE_SORT_TYPE,

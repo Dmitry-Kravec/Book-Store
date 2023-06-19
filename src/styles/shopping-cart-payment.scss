@@ -18,15 +18,29 @@
 		height: 35px;
 		padding: 5px 10px;
 		border-radius: 5px;
-		color: white;
-		background-color: #753ad3;
-		border: 1px solid #a254e2;
+		color: $white;
+		background-color: $violet;
+		border: 1px solid $violet-light;
 		font-weight: bold;
 		transition: 0.4s transform ease;
 
 		&:hover {
 			transform: scale(1.1);
 			cursor: pointer;
+		}
+	}
+
+	&__modal-container {
+		display: flex;
+		flex-direction: column;
+		row-gap: 15px;
+	}
+
+	&__modal-link {
+		color: $nav-link-base-color;
+
+		&:hover {
+			color: $nav-link-hover-color;
 		}
 	}
 }

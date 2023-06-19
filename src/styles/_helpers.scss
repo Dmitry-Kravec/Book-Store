@@ -18,3 +18,10 @@ $tablet-max-width: 1023px;
 		@content
 	}
 };
+
+@mixin line-clamp($string-count) {
+	display: -webkit-box;
+	-webkit-line-clamp: $string-count;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}

@@ -1,8 +1,5 @@
 import { ReactNode } from 'react';
 
-import '../styles/search-header.scss';
-import { ViewType } from '../types/BooksTypes';
-
 type SearchHeaderProps = {
 	currentView: string,
 	currentSort: string,
@@ -27,7 +24,7 @@ const SearchHeader = ({
 	onChangeView,
 } : SearchHeaderProps) => (
 	<div className="search-header">
-		<div className="search-header__label-container search-header__label-container_groving">
+		<div className="search-header__label-container">
 			<label htmlFor="publisher" className="search-header__label">
 				Фильтр:
 			</label>
@@ -48,22 +45,24 @@ const SearchHeader = ({
 				{authorsOption}
 			</select>
 		</div>
-		<div className="search-header__label-container search-header__label-container_margin-rigth_auto">
-			<label htmlFor="sort" className="search-header__label">
-				Сортировка:
-			</label>
-			<select
-				value={currentSort}
-				name="sort"
-				onChange={onChangeValueInSelect}
-				className="search-header__select"
-			>
-				{sortOption}
-			</select>
-		</div>
-		<div className="view-toggle">
-			<button className={`view-toggle__grid view-toggle__${currentView}`} type="button" aria-label="grid-toggle" value="grid" onClick={onChangeView} />
-			<button className={`view-toggle__row view-toggle__${currentView}`} type="button" aria-label="row-toggle" value="row" onClick={onChangeView} />
+		<div className="search-header__block">
+			<div className="search-header__label-container">
+				<label htmlFor="sort" className="search-header__label">
+					Сортировка:
+				</label>
+				<select
+					value={currentSort}
+					name="sort"
+					onChange={onChangeValueInSelect}
+					className="search-header__select"
+				>
+					{sortOption}
+				</select>
+			</div>
+			<div className="view-toggle">
+				<button className={`view-toggle__grid view-toggle__${currentView}`} type="button" aria-label="grid-toggle" value="grid" onClick={onChangeView} />
+				<button className={`view-toggle__row view-toggle__${currentView}`} type="button" aria-label="row-toggle" value="row" onClick={onChangeView} />
+			</div>
 		</div>
 	</div>
 );

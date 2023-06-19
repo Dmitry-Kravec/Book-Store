@@ -6,19 +6,17 @@ import logo from '../images/logo.png';
 import catalogIcon from '../images/catalog-Icon.svg';
 import shoppingCarticon from '../images/shopping-cart-Icon.svg';
 
-import '../styles/app-header.scss';
-
 const AppHeader = () => (
 	<header className="app-header">
 		<div className="app-header__content">
-			<div className="app-header__logo-container">
+			<NavLink to="/">
 				<img
 					src={logo}
 					className="app-header__logo"
 					alt="logo"
 					height="100"
 				/>
-			</div>
+			</NavLink>
 			<ul className="navigation-list">
 				<li className="navigation-list__item">
 					<NavLink to="/" className="navigation-list__item-link">

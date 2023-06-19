@@ -45,23 +45,19 @@ const updateSelectedBooks = (
 	];
 };
 
-const updateOrder = (state: ShoppingCartStateType, action: ShoppingCartActionsType) => {
-	const existingBookIndex = state.selectedBooks.findIndex(
-		({ book }) => (book.isbn13 === action.payload.book.isbn13),
-	);
-
-	const newBook = updateBookItem(state.selectedBooks, action.payload, existingBookIndex);
-
-	return {
-		...state,
-		selectedBooks: updateSelectedBooks(state.selectedBooks, newBook, existingBookIndex),
-	};
-};
-
 const shoppingCartReducer = (state = initialState, action: ShoppingCartActionsType) => {
 	switch (action.type) {
 		case UPDATE_BOOK_IN_CART: {
-			return updateOrder(state, action);
+			const existingBookIndex = state.selectedBooks.findIndex(
+				({ book }) => (book.isbn13 === action.payload.book.isbn13),
+			);
+
+			const newBook = updateBookItem(state.selectedBooks, action.payload, existingBookIndex);
+
+			return {
+				...state,
+				selectedBooks: updateSelectedBooks(state.selectedBooks, newBook, existingBookIndex),
+			};
 		}
 		default:
 			return state;

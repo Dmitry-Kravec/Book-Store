@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import QuantityButtons from '../components/QuantityButtons';
 import { updateBookInCart } from '../redux/actions/shoppingCartActionCreators';
 import { BookItemType } from '../types/BooksTypes';
+import QuantityButtons from '../components/QuantityButtons';
 
 type ShoppingCartFormContainerProps = {
 	book: BookItemType,
