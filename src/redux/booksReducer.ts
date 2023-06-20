@@ -7,10 +7,12 @@ import {
 	CHANGE_PUBLISHER_FILTER_VALUE,
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
+	UPDATE_SEARCH_QUERRY,
 } from './actionConstants';
 
 const initialState: BooksStateType = {
 	booksData: [],
+	searchQuerry: '',
 	sort: {},
 	filters: {
 		authors: 'All',
@@ -46,6 +48,11 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 					...state.filters,
 					authors: action.payload,
 				},
+			};
+		case UPDATE_SEARCH_QUERRY:
+			return {
+				...state,
+				searchQuerry: action.payload,
 			};
 		case FETCH_NEW_BOOKS_REQUESTED:
 			return {

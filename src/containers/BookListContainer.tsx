@@ -2,21 +2,21 @@ import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { getBooksData, getSortedAndFilteredBooksData, getView } from '../redux/selectors';
-import { useFetchNewBooks } from '../requests/BooksRequests';
+import { useFetchBooks } from '../requests/BooksRequests';
 import BookList from '../components/BookList';
 import BookListGridItem from '../components/BookListGridItem';
 import BookListRowItem from '../components/BookListRowItem';
 
 const BookListContainer = () => {
-	const { isLoading, getNewBooks } = useFetchNewBooks();
+	const { isLoading } = useFetchBooks();
 	const booksData = useSelector(getSortedAndFilteredBooksData);
 	const currentView = useSelector(getView);
 
 	const ItemComponent = currentView === 'grid' ? BookListGridItem : BookListRowItem;
 
-	useEffect(() => {
-		getNewBooks();
-	}, [getNewBooks]);
+	// useEffect(() => {
+	// 	fetchBooks();
+	// }, [fetchBooks]);
 
 	let content = (
 		<BookList booksData={booksData} currentView={currentView} ItemComponent={ItemComponent} />);

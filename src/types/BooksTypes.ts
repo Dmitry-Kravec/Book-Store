@@ -89,6 +89,7 @@ export type ViewType = 'grid' | 'row';
 
 export type BooksStateType = {
 	booksData: BookItemType[],
+	searchQuerry: string,
 	sort: SortType,
 	filters: FiltersType,
 	view: ViewType,
@@ -99,6 +100,7 @@ export type BookListActionsType = ReturnType<
 	typeof bookListActions.changeSortType |
 	typeof bookListActions.changePublisherFilterValue |
 	typeof bookListActions.changeAuthorsFilterValue |
+	typeof bookListActions.updateSearchQuerry |
 	typeof bookListActions.fetchNewBooks |
 	typeof bookListActions.fetchNewBooksSuccess |
 	typeof bookListActions.fetchNewBooksError |

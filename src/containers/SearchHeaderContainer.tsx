@@ -1,11 +1,13 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { debounce } from 'lodash';
 import { SortField, SortMethod, SortType, ViewType } from '../types/BooksTypes';
 import {
 	changeAuthorsFilterValue,
 	changePublisherFilterValue,
 	changeSortType,
 	changeView,
+	updateSearchQuerry,
 } from '../redux/actions/bookListActionCreators';
 import {
 	getAllAuthors,
@@ -104,6 +106,15 @@ const SearchHeaderContainer = () => {
 		}, [dispatch],
 	);
 
+	const debouncedDispatchQuerry = useMemo(
+		() => debounce((value: string) => { dispatch(updateSearchQuerry(value)); }, 300),
+		[],
+	);
+
+	const onChangeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+		debouncedDispatchQuerry(e.target.value);
+	}, [debouncedDispatchQuerry]);
+
 	return (
 		<SearchHeader
 			currentSort={mapSortTypeToSortEntry(currentSort)}
@@ -115,6 +126,7 @@ const SearchHeaderContainer = () => {
 			sortOption={sortOption}
 			onChangeView={onChangeView}
 			currentView={`${currentView}_active`}
+			onChangeSearchInput={onChangeSearchInput}
 		/>
 	);
 };

@@ -10,6 +10,7 @@ import {
 	CHANGE_PUBLISHER_FILTER_VALUE,
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
+	UPDATE_SEARCH_QUERRY,
 } from '../actionConstants';
 
 export const changeSortType = (sort: SortType) => ({
@@ -30,6 +31,11 @@ export const changePublisherFilterValue = (value: string) => ({
 export const changeAuthorsFilterValue = (value: string) => ({
 	type: CHANGE_AUTHORS_FILTER_VALUE,
 	payload: value,
+});
+
+export const updateSearchQuerry = (newQuerry: string) => ({
+	type: UPDATE_SEARCH_QUERRY,
+	payload: newQuerry,
 });
 
 export const fetchNewBooks = () => ({
