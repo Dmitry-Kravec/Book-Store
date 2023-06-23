@@ -1,13 +1,13 @@
 .shopping-cart-payment {
 	display: flex;
     justify-content: flex-end;
-    column-gap: 35px;
+    column-gap: $gap_xxl;
 
 	&__total-cost-container {
 		display: flex;
     	align-items: center;
     	min-width: 160px;
-		column-gap: 5px;
+		column-gap: $gap_s;
 	}
 
 	&__total-cost-title {
@@ -16,8 +16,8 @@
 
 	&__payment-button {
 		height: 35px;
-		padding: 5px 10px;
-		border-radius: 5px;
+		padding: $padding_m $padding_s;
+		border-radius: 8px;
 		color: $white;
 		background-color: $violet;
 		border: 1px solid $violet-light;
@@ -33,7 +33,7 @@
 	&__modal-container {
 		display: flex;
 		flex-direction: column;
-		row-gap: 15px;
+		row-gap: $gap_l;
 	}
 
 	&__modal-link {

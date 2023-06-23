@@ -1,10 +1,10 @@
 .book-list-row-item {
     display: grid;
     grid-template-columns: 100px 2fr 1fr 100px 200px;
-	padding: 10px;
-    column-gap: 8px;
+	padding: $padding_l;
+    column-gap: $gap_m;
 	align-items: center;
-	box-shadow: 0px 0px 30px -20px $list-item-shadow-color;
+	box-shadow: 0px 0px 1.9rem -1.3rem $list-item-shadow-color;
 	background-color: $list-item-background-color;
 	border: 1px solid $orange;
 	border-radius: 10px;
@@ -12,8 +12,7 @@
 	transition: 0.3s box-shadow ease;
 
 	&:hover {
-		cursor: pointer;
-		box-shadow: 0 0 20px 0px $list-item-shadow-color, inset 0 0 5px 0px $list-item-shadow-color;;
+		box-shadow: 0 0 1.3rem 0px $list-item-shadow-color, inset 0 0 0.3rem 0px $list-item-shadow-color;
 	}
 
 	&__block {
@@ -21,7 +20,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		row-gap: 10px;
+		row-gap: $gap_m;
 
 	}
 
@@ -35,14 +34,20 @@
 		object-fit: cover;
 	}
 
-	&__title {
+	&__title-link {
+		color: inherit;
+		text-decoration: none;
 		font-weight: 700;
 		@include line-clamp(2);
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
 	&__subtitle {
 		font-weight: 300;
-		font-size: 12px;
+		font-size: 0.75rem;
 		@include line-clamp(2);
 	}
 
@@ -52,7 +57,7 @@
 
 	&__authors,
 	&__publisher {
-		font-size: 14px;
+		font-size: 0.9rem;
 		@include line-clamp(2);
 	}
 }

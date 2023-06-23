@@ -98,12 +98,12 @@ const SearchHeaderContainer = () => {
 				break;
 			default:
 		}
-	}, [dispatch]);
+	}, []);
 
 	const onChangeView = useCallback(
 		(e: React.SyntheticEvent<HTMLButtonElement>) => {
 			dispatch(changeView(e.currentTarget.value as ViewType));
-		}, [dispatch],
+		}, [],
 	);
 
 	const debouncedDispatchQuerry = useMemo(

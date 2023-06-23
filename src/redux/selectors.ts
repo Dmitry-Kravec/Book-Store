@@ -1,15 +1,21 @@
 import { createSelector } from 'reselect';
-import { FiltersType, ReduxStateType, SortField, SortMethod, SortType, BookItemType, ShoppingCartBookItemType, FilterableFields } from '../types/BooksTypes';
+import {
+	ReduxStateType,
+	SortField,
+	SortMethod,
+	SortType,
+	BookItemType,
+	FilterableFields,
+} from '../types/BooksTypes';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
-// export const getHasBooksLoadingError =
-// (state: ReduxStateType) => state.books.hasBooksLoadingError;
 export const getView = (state: ReduxStateType) => state.books.view;
 export const getSort = (state: ReduxStateType) => state.books.sort;
 export const getSearchQuerry = (state: ReduxStateType) => state.books.searchQuerry;
 export const getPublisherFilterValue = (state: ReduxStateType) => state.books.filters.publisher;
 export const getAuthorsFilterValue = (state: ReduxStateType) => state.books.filters.authors;
 export const getFilters = (state: ReduxStateType) => state.books.filters;
+export const getSingleBookDetails = (state: ReduxStateType) => state.books.singleBookDetails;
 
 export const getAllPublishers = createSelector(
 	getBooksData,
@@ -74,7 +80,6 @@ export const getSortedAndFilteredBooksData = createSelector(
 	},
 );
 
-// перенести в другой файл?
 export const getSelectedBooks = (state: ReduxStateType) => state.shoppingCart.selectedBooks;
 
 export const getShoppingCartTotalCost = createSelector(

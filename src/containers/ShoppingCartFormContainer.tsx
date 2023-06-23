@@ -14,11 +14,11 @@ const ShoppingCartFormContainer = ({ book, quantity }: ShoppingCartFormContainer
 
 	const handleQuantityChange = useCallback((value: number) => {
 		dispatch(updateBookInCart(book, value));
-	}, [book, dispatch]);
+	}, [book]);
 
 	const handleQuantityInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateBookInCart(book, -quantity + Number(e.target.value)));
-	}, [book, quantity, dispatch]);
+	}, [book, quantity]);
 
 	return (
 		<QuantityButtons

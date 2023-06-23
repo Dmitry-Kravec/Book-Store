@@ -3,14 +3,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #282c34;
+	background-color: $app-header-background-color;
 	color: $white;
 
 	&__content {
 		box-sizing: border-box;
 		width: var(--max-content-width);
-		padding-left: var(--content-padding);
-		padding-right: var(--content-padding);
+		padding-left: $content-padding;
+		padding-right: $content-padding;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -24,7 +24,7 @@
 .navigation-list {
 	list-style-type: none;
 	display: flex;
-	column-gap: 25px;
+	column-gap: $gap_l;
 
 	&__item {
 		display: flex;
@@ -47,7 +47,9 @@
 		}
 	}
 
-	&__item-label {}
+	&__item-label {
+		font-weight: bold;
+	}
 
 	&__item-link {
 		display: flex;
@@ -55,7 +57,7 @@
 		align-items: center;
 		flex-grow: 1;
 		text-decoration: none;
-		color: white;
+		color: $white;
 	}
 
 	&__catalog-icon,
@@ -65,6 +67,7 @@
 	}
 
 	&__shopping-cart-icon {
-		padding-right: 5px;
+		padding-right: $padding_s;
+		opacity: 0.7;
 	}
 }

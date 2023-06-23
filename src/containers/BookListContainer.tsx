@@ -1,7 +1,6 @@
-import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getBooksData, getSortedAndFilteredBooksData, getView } from '../redux/selectors';
+import { getSortedAndFilteredBooksData, getView } from '../redux/selectors';
 import { useFetchBooks } from '../requests/BooksRequests';
 import BookList from '../components/BookList';
 import BookListGridItem from '../components/BookListGridItem';
@@ -14,16 +13,17 @@ const BookListContainer = () => {
 
 	const ItemComponent = currentView === 'grid' ? BookListGridItem : BookListRowItem;
 
-	// useEffect(() => {
-	// 	fetchBooks();
-	// }, [fetchBooks]);
-
 	let content = (
-		<BookList booksData={booksData} currentView={currentView} ItemComponent={ItemComponent} />);
-
-	if (isLoading) content = (<div>Loading...</div>);
+		<BookList
+			booksData={booksData}
+			currentView={currentView}
+			ItemComponent={ItemComponent}
+		/>
+	);
 
 	if (!booksData.length) content = (<div>Товары не найдены</div>);
+
+	if (isLoading) content = (<div>Loading...</div>);
 
 	return (
 		<div className="book-list-container">

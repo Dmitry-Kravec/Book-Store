@@ -70,8 +70,20 @@ const SearchHeader = ({
 				</select>
 			</div>
 			<div className="view-toggle">
-				<button className={`view-toggle__grid view-toggle__${currentView}`} type="button" aria-label="grid-toggle" value="grid" onClick={onChangeView} />
-				<button className={`view-toggle__row view-toggle__${currentView}`} type="button" aria-label="row-toggle" value="row" onClick={onChangeView} />
+				<button
+					className={`view-toggle__grid view-toggle__${currentView}`}
+					type="button"
+					aria-label="grid-toggle"
+					value="grid"
+					onClick={onChangeView}
+				/>
+				<button
+					className={`view-toggle__row view-toggle__${currentView}`}
+					type="button"
+					aria-label="row-toggle"
+					value="row"
+					onClick={onChangeView}
+				/>
 			</div>
 		</div>
 	</div>

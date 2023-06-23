@@ -15,7 +15,7 @@ const QuantityButtons = ({
 			type="button"
 			onClick={() => handleQuantityChange(-1)}
 		>
-			-
+			<span>&minus;</span>
 		</button>
 		<input
 			className="quantity-buttons__quantity-input"
@@ -28,7 +28,7 @@ const QuantityButtons = ({
 			type="button"
 			onClick={() => handleQuantityChange(1)}
 		>
-			+
+			<span>&#43;</span>
 		</button>
 	</div>
 );

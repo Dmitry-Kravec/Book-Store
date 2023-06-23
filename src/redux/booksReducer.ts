@@ -1,13 +1,12 @@
 import { BookListActionsType, BooksStateType, SortField, SortMethod, SortType } from '../types/BooksTypes';
 import {
-	FETCH_NEW_BOOKS_REQUESTED,
-	FETCH_NEW_BOOKS_FAILURE,
 	FETCH_NEW_BOOKS_SUCCESS,
 	CHANGE_SORT_TYPE,
 	CHANGE_PUBLISHER_FILTER_VALUE,
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
 	UPDATE_SEARCH_QUERRY,
+	FETCH_BOOK_DETAILS_SUCCESS,
 } from './actionConstants';
 
 const initialState: BooksStateType = {
@@ -19,6 +18,8 @@ const initialState: BooksStateType = {
 		publisher: 'All',
 	},
 	view: 'grid',
+
+	singleBookDetails: null,
 };
 
 const booksReducer = (state = initialState, action: BookListActionsType): BooksStateType => {
@@ -54,15 +55,15 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 				...state,
 				searchQuerry: action.payload,
 			};
-		case FETCH_NEW_BOOKS_REQUESTED:
-			return {
-				...state,
-				booksData: [],
-			};
 		case FETCH_NEW_BOOKS_SUCCESS:
 			return {
 				...state,
 				booksData: action.payload,
+			};
+		case FETCH_BOOK_DETAILS_SUCCESS:
+			return {
+				...state,
+				singleBookDetails: action.payload,
 			};
 		default:
 			return state;

@@ -1,18 +1,22 @@
 .book-add-form {
 	display: flex;
-    justify-content: center;
+	flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
-    column-gap: 10px;
-    row-gap: 10px;
-	padding: 8px 10px;
+    row-gap: $gap_m;
+	padding: $padding_m $padding_l;
+
+	&__block {
+		display: flex;
+		align-items: center;
+		column-gap: $gap_m;
+	}
 
 	&__submit-button {
 		width: 80%;
 		height: 20px;
 		background-color: $button-pink-color;
 		border: none;
-		box-shadow: 0px 0px 10px 0px $button-pink-color, 0px 0px 4px 0px $black;
+		box-shadow: 0px 0px 0.6rem 0px $button-pink-color, 0px 0px 0.25rem 0px $black;
 		color: $white;
 		font-weight: 700;
 

@@ -1,19 +1,16 @@
 .shopping-cart-page {
 	display: flex;
     flex-direction: column;
-	height: 100%;
-    row-gap: 10px;
-    padding: 10px;
+	flex-grow: 1;
+	width: 100%;
+    row-gap: $gap_m;
+    padding: $padding_m;
 
 	&__title-container {
 		display: flex;
     	align-items: center;
     	justify-content: center;
 		position: relative;
-	}
-
-	&__title {
-
 	}
 
 	&__empty {
@@ -26,22 +23,5 @@
 	&__go-back-button {
 		position: absolute;
 		left: 0;
-		width: 35px;
-		height: 35px;
-		border: none;
-		box-shadow: 1px 1px 6px 0 $black;
-		border-radius: 50%;
-		transition: 0.3s box-shadow ease;
-
-		&::before {
-			content: "\276E";
-		}
-
-		&:hover {
-			cursor: pointer;
-			background-color: $gray-light;
-			box-shadow: 1px 1px 10px 0 $black;
-		}
-
 	}
 }

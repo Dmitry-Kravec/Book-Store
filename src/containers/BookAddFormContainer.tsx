@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { message } from 'antd';
 
 import { updateBookInCart } from '../redux/actions/shoppingCartActionCreators';
 import { BookItemType } from '../types/BooksTypes';
@@ -11,15 +12,21 @@ type BookAddFormContainerProps = {
 
 const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 	const [quantity, setQuantity] = useState(0);
+	const [messageApi, contextHolder] = message.useMessage();
 	const dispatch = useDispatch();
+
 	const handleSubmit = useCallback((e: React.SyntheticEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (quantity !== 0) {
 			dispatch(updateBookInCart(book, quantity));
 			setQuantity(0);
+			messageApi.open({
+				type: 'success',
+				content: 'Товар добавлен в корзину',
+			});
 		}
-	}, [book, quantity, dispatch]);
+	}, [book, quantity]);
 
 	const handleQuantityInputChange = useCallback(
 		({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,12 +39,15 @@ const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 	}, []);
 
 	return (
-		<BookAddForm
-			handleSubmit={handleSubmit}
-			quantity={quantity}
-			handleQuantityChange={handleQuantityChange}
-			handleQuantityInputChange={handleQuantityInputChange}
-		/>
+		<>
+			{contextHolder}
+			<BookAddForm
+				handleSubmit={handleSubmit}
+				quantity={quantity}
+				handleQuantityChange={handleQuantityChange}
+				handleQuantityInputChange={handleQuantityInputChange}
+			/>
+		</>
 	);
 };
 

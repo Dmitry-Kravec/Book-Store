@@ -1,12 +1,10 @@
-import { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// import ShoppingCartListContainer from '../containers/ShoppingCartListContainer';
 import { getSelectedBooks } from '../redux/selectors';
 import ShoppingCartItemsList from './ShoppingCartItemsList';
 
-const ShoppingCart = () => {
+const ShoppingCartPopover = () => {
 	const booksData = useSelector(getSelectedBooks);
 
 	return (
@@ -21,4 +19,4 @@ const ShoppingCart = () => {
 	);
 };
 
-export default ShoppingCart;
+export default ShoppingCartPopover;

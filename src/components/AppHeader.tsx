@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Popover } from 'antd';
 
-import ShoppingCart from './ShoppingCart';
+import ShoppingCartPopover from './ShoppingCartPopover';
 import logo from '../images/logo.png';
 import catalogIcon from '../images/catalog-Icon.svg';
 import shoppingCarticon from '../images/shopping-cart-Icon.svg';
@@ -34,7 +34,7 @@ const AppHeader = () => (
 						rootClassName="navigation-list__item-popover"
 						placement="bottom"
 						trigger="click"
-						content={<ShoppingCart />}
+						content={<ShoppingCartPopover />}
 					>
 						<span className="navigation-list__item-link">
 							<img

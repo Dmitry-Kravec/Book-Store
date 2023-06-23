@@ -1,6 +1,8 @@
 import ShoppingCartFormContainer from '../containers/ShoppingCartFormContainer';
 import { ShoppingCartBookItemType } from '../types/BooksTypes';
 
+import defaultBookImage from '../images/default-book.png';
+
 type ShoppingCartListItemProps = {
 	shoppingCartBook: ShoppingCartBookItemType
 }
@@ -11,10 +13,21 @@ const ShoppingCartListItem = ({
 	const { image, price, title } = book;
 	const priceCurrency = price[0];
 	const priceValue = Number(price.slice(1));
+
 	return (
 		<div className="shopping-cart-list-item">
 			<div className="shopping-cart-list-item__block">
-				<img className="shopping-cart-list-item__image" src={image} alt="Book" width="50" height="50" />
+				<img
+					className="shopping-cart-list-item__image"
+					src={image}
+					onError={(e) => {
+						e.currentTarget.onerror = null;
+						e.currentTarget.src = defaultBookImage;
+					}}
+					alt="Book"
+					width="50"
+					height="50"
+				/>
 				<div className="shopping-cart-list-item__title">{title}</div>
 				<div className="shopping-cart-list-item__price">{price}</div>
 			</div>

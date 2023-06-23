@@ -1,47 +1,52 @@
 .search-header {
 	display: flex;
 	justify-content: space-between;
-	column-gap: 50px;
-	row-gap: 10px;
+	column-gap: $gap_xxl;
+	row-gap: $gap_m;
 	flex-wrap: wrap-reverse;
 
 	&__label-container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		column-gap: 5px;
+		column-gap: $gap_s;
 		flex-wrap: wrap;
-		row-gap: 10px;
+		row-gap: $gap_m;
 	}
 
 	&__block {
 		display: flex;
 		justify-content: space-between;
-		column-gap: 25px;
+		column-gap: $gap_xl;
 		flex-grow: 1;
 		flex-wrap: wrap;
-		row-gap: 10px;
+		row-gap: $gap_m;
 	}
 
 	&__select {
 		height: 30px;
-		border-radius: 15px;
-    	padding-left: 10px;
-		padding-right: 20px;
+		width: 150px;
+		border-radius: 16px;
+    	padding-left: $padding_m;
+		padding-right: $padding_m;
 	}
 
 	&__search-input {
 		height: 30px;
 		max-width: 300px;
-		padding-left: 8px;
-		padding-right: 8px;
+		padding-left: $padding_m;
+		padding-right: $padding_m;
 		flex-grow: 1;
+		border-radius: 16px;
+		border: 1px solid $gray;
 	}
 
 	@media (max-width: 600px) {
 		&__select,
+		&__search-input,
 		&__label-container {
 			flex-grow: 1;
+			max-width: unset;
 		}
 	}
 }
@@ -49,6 +54,7 @@
 .view-toggle {
 	display: flex;
 	border: 1px solid $gray-light;
+	margin-left: auto;
 
 	&__row,
 	&__grid {
@@ -59,7 +65,6 @@
 		padding: 4px;
 		width: 30px;
 		height: 30px;
-		box-sizing: border-box;
 		border: none;
 		background-color: unset;
 		cursor: pointer;

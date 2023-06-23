@@ -1,6 +1,5 @@
 :root {
 	--max-content-width: 1500px;
-	--content-padding: 25px;
 
 	@media (max-width: 1700px) {
 		--max-content-width: 1200px;
@@ -11,24 +10,28 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	overflow-y: scroll;
 	text-align: center;
 }
 
 .page-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	flex-grow: 1;
 	max-width: var(--max-content-width);
 	width: 100%;
 	box-sizing: border-box;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 25px;
-	padding-right: 25px;
+	padding-left: $content-padding;
+	padding-right: $content-padding;
 }
 
 .footer {
 	display: flex;
     justify-content: space-evenly;
-    padding: 15px 10px;
-	box-shadow: 0px 1px 2px 1px $gray;
-	font-size: 20px;
+	align-items: center;
+    padding: $padding_xl $padding_m;
+	box-shadow: 0px 0.07rem 0.14rem 0.07rem $gray;
 }

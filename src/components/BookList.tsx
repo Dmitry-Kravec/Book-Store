@@ -11,11 +11,15 @@ type BookListProps = {
 }
 
 const BookList = ({ booksData, currentView, ItemComponent }: BookListProps) => (
-	<div className={`book-list book-list_view_${currentView}`}>
+	<ul className={`book-list book-list_view_${currentView}`}>
 		{
-			booksData && booksData.map((book) => (<ItemComponent key={book.isbn13} book={book} />))
+			booksData && booksData.map((book) => (
+				<li key={book.isbn13} className="book-list__list-item">
+					<ItemComponent book={book} />
+				</li>
+			))
 		}
-	</div>
+	</ul>
 );
 
 export default BookList;

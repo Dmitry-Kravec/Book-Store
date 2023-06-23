@@ -1,6 +1,6 @@
 .quantity-buttons {
 	display: flex;
-    column-gap: 8px;
+    column-gap: $gap_m;
 
     &__quantity-button {
 		background-color: $button-pink-color;
@@ -8,11 +8,11 @@
 		border-radius: 50%;
 		width: 20px;
 		height: 20px;
-		box-shadow: 0px 0px 4px 1px $black;
+		box-shadow: 0 0 0.25rem 0.07rem $black;
 		color: $white;
 		font-weight: 700;
 
-		transition: 0.3s transform ease;
+		transition: 0.3s transform linear;
 
 		&:hover {
 			cursor: pointer;

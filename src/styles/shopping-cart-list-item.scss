@@ -2,10 +2,10 @@
 	display: flex;
     justify-content: space-between;
     border: 1px solid $black;
-    padding: 0 10px;
+    padding: $padding_s $padding_m;
     background-color: $shopping-cart-list-item-background-color;
     border-radius: 12px;
-	column-gap: 10%;
+	column-gap: $gap_xxl;
 
 	&__image {
 		width: 75px;
@@ -16,7 +16,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		column-gap: 15px;
+		column-gap: $gap_l;
 	}
 
 	&__total-price {
