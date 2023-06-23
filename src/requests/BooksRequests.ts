@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { sample } from 'lodash';
 
 import { fetchBookDetailsSuccess, fetchNewBooksSuccess } from '../redux/actions/bookListActionCreators';
 import { BookApiItemType, BookItemType, CustomBookFieldType } from '../types/BooksTypes';
@@ -38,8 +39,7 @@ const addCustomFields = (books: BookApiItemType[], fields: CustomBookFieldType[]
 		};
 
 		fields.forEach(([fieldValues, fieldName]) => {
-			const index = Math.floor(Math.random() * fieldValues.length);
-			newBookItem[fieldName] = fieldValues[index];
+			newBookItem[fieldName] = sample(fieldValues);
 		});
 
 		booksWithFields.push(newBookItem as BookItemType);

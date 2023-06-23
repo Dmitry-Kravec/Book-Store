@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { compact } from 'lodash';
 import {
 	ReduxStateType,
 	SortField,
@@ -20,14 +21,14 @@ export const getSingleBookDetails = (state: ReduxStateType) => state.books.singl
 export const getAllPublishers = createSelector(
 	getBooksData,
 	(books) => Array.from(new Set(
-		books.filter((book) => book.publisher).map((book) => book.publisher),
+		compact(books.map((book) => book.publisher)),
 	)),
 );
 
 export const getAllAuthors = createSelector(
 	getBooksData,
 	(books) => Array.from(new Set(
-		books.filter((book) => book.publisher).map((book) => book.authors),
+		compact(books.map((book) => book.authors)),
 	)),
 );
 
