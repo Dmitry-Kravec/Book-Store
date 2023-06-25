@@ -23,4 +23,26 @@
 		text-align: right;
 		min-width: 75px;
 	}
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+		row-gap: $gap_xl;
+
+		&__image {
+			width: 150px;
+			height: 150px;
+		}
+
+		&__block {
+			padding: 0 $padding_xl ;
+			flex-direction: column;
+			row-gap: $gap_m;
+			align-items: center;
+			text-align: center;
+		}
+
+		&__total-price {
+			text-align: center;
+		}
+	}
 }

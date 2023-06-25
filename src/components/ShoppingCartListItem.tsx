@@ -11,8 +11,10 @@ const ShoppingCartListItem = ({
 	shoppingCartBook: { quantity, book },
 }: ShoppingCartListItemProps) => {
 	const { image, price, title } = book;
+
 	const priceCurrency = price[0];
 	const priceValue = Number(price.slice(1));
+	const totalPrice = priceValue === 0 ? '' : priceCurrency + (priceValue * quantity).toFixed(2);
 
 	return (
 		<div className="shopping-cart-list-item">
@@ -29,11 +31,11 @@ const ShoppingCartListItem = ({
 					height="50"
 				/>
 				<div className="shopping-cart-list-item__title">{title}</div>
-				<div className="shopping-cart-list-item__price">{price}</div>
+				<div className="shopping-cart-list-item__price">{priceValue !== 0 ? price : 'Free'}</div>
 			</div>
 			<div className="shopping-cart-list-item__block">
 				<ShoppingCartFormContainer quantity={quantity} book={book} />
-				<div className="shopping-cart-list-item__total-price">{priceCurrency + (priceValue * quantity).toFixed(2)}</div>
+				<div className="shopping-cart-list-item__total-price">{totalPrice}</div>
 			</div>
 		</div>
 	);

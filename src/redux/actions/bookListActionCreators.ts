@@ -9,6 +9,7 @@ import {
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
 	UPDATE_SEARCH_QUERRY,
+	FETCH_BOOK_DETAILS_REQUESTED,
 } from '../actionConstants';
 
 export const changeSortType = (sort: SortType) => ({
@@ -43,6 +44,10 @@ export const fetchNewBooksSuccess = (data: BookItemType[]) => ({
 
 export const fetchNewBooksError = (error: any) => ({
 	type: FETCH_NEW_BOOKS_FAILURE,
+});
+
+export const fetchBookDetailsRequested = () => ({
+	type: FETCH_BOOK_DETAILS_REQUESTED,
 });
 
 export const fetchBookDetailsSuccess = (data: BookExtendedItemType) => ({

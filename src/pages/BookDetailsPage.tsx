@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useFetchBookDetails } from '../requests/BooksRequests';
 import { getSingleBookDetails } from '../redux/selectors';
 import BookDetails from '../components/BookDetails';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 const BookDetailsPage = () => {
 	const { isbn13 } = useParams();
@@ -22,10 +23,10 @@ const BookDetailsPage = () => {
 
 	let content: ReactNode;
 
-	if (bookDetails) {
+	if (isLoading) {
+		content = <LoadingIndicator />;
+	} else if (bookDetails) {
 		content = <BookDetails bookDetails={bookDetails} />;
-	} else if (isLoading) {
-		content = <div>Loading...</div>;
 	}
 
 	return (

@@ -41,6 +41,16 @@
 		border: 1px solid $gray;
 	}
 
+	@media (max-width: 800px) {
+		.view-toggle {
+			display: none;
+		}
+
+		&__search-input {
+			order: 2;
+		}
+	}
+
 	@media (max-width: 600px) {
 		&__select,
 		&__search-input,

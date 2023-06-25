@@ -5,6 +5,7 @@ import { useFetchBooks } from '../requests/BooksRequests';
 import BookList from '../components/BookList';
 import BookListGridItem from '../components/BookListGridItem';
 import BookListRowItem from '../components/BookListRowItem';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 const BookListContainer = () => {
 	const { isLoading } = useFetchBooks();
@@ -23,7 +24,7 @@ const BookListContainer = () => {
 
 	if (!booksData.length) content = (<div>Товары не найдены</div>);
 
-	if (isLoading) content = (<div>Loading...</div>);
+	if (isLoading) content = (<LoadingIndicator />);
 
 	return (
 		<div className="book-list-container">

@@ -1,4 +1,4 @@
-import { BookListActionsType, BooksStateType, SortField, SortMethod, SortType } from '../types/BooksTypes';
+import { BookListActionsType, BooksStateType } from '../types/BooksTypes';
 import {
 	FETCH_NEW_BOOKS_SUCCESS,
 	CHANGE_SORT_TYPE,
@@ -7,6 +7,7 @@ import {
 	CHANGE_VIEW,
 	UPDATE_SEARCH_QUERRY,
 	FETCH_BOOK_DETAILS_SUCCESS,
+	FETCH_BOOK_DETAILS_REQUESTED,
 } from './actionConstants';
 
 const initialState: BooksStateType = {
@@ -59,6 +60,11 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 			return {
 				...state,
 				booksData: action.payload,
+			};
+		case FETCH_BOOK_DETAILS_REQUESTED:
+			return {
+				...state,
+				singleBookDetails: null,
 			};
 		case FETCH_BOOK_DETAILS_SUCCESS:
 			return {

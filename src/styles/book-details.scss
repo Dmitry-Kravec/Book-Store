@@ -1,11 +1,14 @@
 .book-details-page{
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 	flex-grow: 1;
 }
 
 .book-details {
     padding-bottom: $padding_xl;
+	flex-grow: 1;
 
 	&__header-container {
 		display: flex;

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Modal from '../hoc/Modal';
 import useFetchPayment from '../requests/ShoppingCartRequests';
 import { getShoppingCartTotalCost } from '../redux/selectors';
+import LoadingIndicator from './LoadingIndicator';
 
 const ShoppingCartPayment = () => {
 	const totalCost = useSelector(getShoppingCartTotalCost);
@@ -29,7 +30,7 @@ const ShoppingCartPayment = () => {
 			>
 				<div className="shopping-cart-payment__modal-container">
 					{isPaymentLoading ? (
-						<div>Loading...</div>
+						<LoadingIndicator />
 					) : null}
 					{paymentHasSuccess ? (
 						<>

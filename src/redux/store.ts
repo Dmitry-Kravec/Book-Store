@@ -4,6 +4,10 @@ import thunk from 'redux-thunk';
 
 import rootReducer from './rootReducer';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const state = JSON.parse(localStorage.getItem('book-store-state') || '{}');
+
+const store = createStore(rootReducer, state, composeWithDevTools(applyMiddleware(thunk)));
+
+store.subscribe(() => localStorage.setItem('book-store-state', JSON.stringify(store.getState())));
 
 export default store;

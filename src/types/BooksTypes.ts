@@ -90,6 +90,7 @@ export type BookListActionsType = ReturnType<
 	typeof bookListActions.updateSearchQuerry |
 	typeof bookListActions.fetchNewBooksSuccess |
 	typeof bookListActions.fetchNewBooksError |
+	typeof bookListActions.fetchBookDetailsRequested |
 	typeof bookListActions.fetchBookDetailsSuccess |
 	typeof bookListActions.fetchBookDetailsError
 	>;

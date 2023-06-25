@@ -2,7 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sample } from 'lodash';
 
-import { fetchBookDetailsSuccess, fetchNewBooksSuccess } from '../redux/actions/bookListActionCreators';
+import {
+	fetchBookDetailsRequested,
+	fetchBookDetailsSuccess,
+	fetchNewBooksSuccess,
+} from '../redux/actions/bookListActionCreators';
 import { BookApiItemType, BookItemType, CustomBookFieldType } from '../types/BooksTypes';
 import { getSearchQuerry } from '../redux/selectors';
 import { showNotification } from '../components/Notification';
@@ -86,6 +90,7 @@ const useFetchBookDetails = () => {
 
 	const getBooksDetails = useCallback((isbn13: string, abortController: AbortController) => {
 		setIsLoading(true);
+		dispatch(fetchBookDetailsRequested());
 
 		fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
 			.then((response) => {
