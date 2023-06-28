@@ -9,11 +9,7 @@
 	row-gap: $gap_m;
 
 	&__nav-link {
-		color: $nav-link-base-color;
-
-		&:hover {
-			color: $nav-link-hover-color;
-		}
+		@extend .link;
 	}
 
 	&__empty-message {

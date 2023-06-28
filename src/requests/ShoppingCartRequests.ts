@@ -15,7 +15,7 @@ const useFetchPayment = () => {
 
 			new Promise<void>((resolve, reject) => {
 				setTimeout(() => {
-					if (Math.random() < 0.4) {
+					if (Math.random() < 0.3) {
 						reject();
 					}
 					resolve();
@@ -38,18 +38,18 @@ const useFetchPayment = () => {
 		return () => { isCanseled = true; };
 	}, [isNeedRequest]);
 
-	const doPayment = useCallback(() => {
+	const request = useCallback(() => {
 		setIsNeedRequest(true);
 	}, []);
 
-	const paymentReset = useCallback(() => {
+	const requestReset = useCallback(() => {
 		setIsNeedRequest(false);
 		setIsPaymentLoading(false);
 		setPaymentHasError(false);
 		setPaymentHasSuccess(false);
 	}, []);
 
-	return { isPaymentLoading, paymentHasSuccess, paymentHasError, doPayment, paymentReset };
+	return { isPaymentLoading, paymentHasSuccess, paymentHasError, request, requestReset };
 };
 
 export default useFetchPayment;

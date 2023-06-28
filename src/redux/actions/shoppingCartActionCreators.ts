@@ -1,4 +1,4 @@
-import { BookItemType, ShoppingCartBookItemType } from '../../types/BooksTypes';
+import { BookItemType } from '../../types/BooksTypes';
 import { UPDATE_BOOK_IN_CART } from '../actionConstants';
 
 export const updateBookInCart = (book: BookItemType, quantity: number) => ({
@@ -8,5 +8,3 @@ export const updateBookInCart = (book: BookItemType, quantity: number) => ({
 		quantity,
 	},
 });
-
-export const TESTEXPORT = () => {};

@@ -7,13 +7,15 @@
 
 	&__block {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		align-items: center;
-		column-gap: $gap_m;
+		gap: $gap_m;
 	}
 
 	&__submit-button {
 		width: 80%;
-		height: 20px;
+		height: 24px;
 		background-color: $button-pink-color;
 		border: none;
 		box-shadow: 0px 0px 0.6rem 0px $button-pink-color, 0px 0px 0.25rem 0px $black;

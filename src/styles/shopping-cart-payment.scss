@@ -15,19 +15,7 @@
 	}
 
 	&__payment-button {
-		height: 35px;
-		padding: $padding_m $padding_s;
-		border-radius: 8px;
-		color: $white;
-		background-color: $violet;
-		border: 1px solid $violet-light;
-		font-weight: bold;
-		transition: 0.4s transform ease;
-
-		&:hover {
-			transform: scale(1.1);
-			cursor: pointer;
-		}
+		@extend .action-button;
 	}
 
 	&__modal-container {
@@ -37,10 +25,6 @@
 	}
 
 	&__modal-link {
-		color: $nav-link-base-color;
-
-		&:hover {
-			color: $nav-link-hover-color;
-		}
+		@extend .link;
 	}
 }

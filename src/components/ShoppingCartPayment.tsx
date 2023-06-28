@@ -13,8 +13,8 @@ const ShoppingCartPayment = () => {
 		isPaymentLoading,
 		paymentHasSuccess,
 		paymentHasError,
-		doPayment,
-		paymentReset,
+		request,
+		requestReset,
 	} = useFetchPayment();
 
 	return (
@@ -23,10 +23,10 @@ const ShoppingCartPayment = () => {
 				<div className="shopping-cart-payment__total-cost-title">Итого:</div>
 				<div className="shopping-cart-payment__total-cost">{totalCost}</div>
 			</div>
-			<button className="shopping-cart-payment__payment-button" type="button" onClick={doPayment}>Оплатить</button>
+			<button className="shopping-cart-payment__payment-button" type="button" onClick={request}>Оплатить</button>
 			<Modal
 				isActive={paymentHasSuccess || isPaymentLoading || paymentHasError}
-				closeHandler={paymentReset}
+				closeHandler={requestReset}
 			>
 				<div className="shopping-cart-payment__modal-container">
 					{isPaymentLoading ? (
@@ -44,7 +44,7 @@ const ShoppingCartPayment = () => {
 							<button
 								className="shopping-cart-payment__payment-button"
 								type="button"
-								onClick={doPayment}
+								onClick={request}
 							>
 								Повторить
 							</button>

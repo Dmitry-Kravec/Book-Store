@@ -1,6 +1,6 @@
 import { BookListActionsType, BooksStateType } from '../types/BooksTypes';
 import {
-	FETCH_NEW_BOOKS_SUCCESS,
+	FETCH_BOOKS_SUCCESS,
 	CHANGE_SORT_TYPE,
 	CHANGE_PUBLISHER_FILTER_VALUE,
 	CHANGE_AUTHORS_FILTER_VALUE,
@@ -8,10 +8,13 @@ import {
 	UPDATE_SEARCH_QUERRY,
 	FETCH_BOOK_DETAILS_SUCCESS,
 	FETCH_BOOK_DETAILS_REQUESTED,
+	FETCH_BOOKS_FAILURE,
+	FETCH_BOOKS_REQUESTED,
 } from './actionConstants';
 
 const initialState: BooksStateType = {
 	booksData: [],
+	booksDataRequestError: null,
 	searchQuerry: '',
 	sort: {},
 	filters: {
@@ -56,10 +59,21 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 				...state,
 				searchQuerry: action.payload,
 			};
-		case FETCH_NEW_BOOKS_SUCCESS:
+		case FETCH_BOOKS_REQUESTED:
+			return {
+				...state,
+				booksData: [],
+				booksDataRequestError: null,
+			};
+		case FETCH_BOOKS_SUCCESS:
 			return {
 				...state,
 				booksData: action.payload,
+			};
+		case FETCH_BOOKS_FAILURE:
+			return {
+				...state,
+				booksDataRequestError: action.payload,
 			};
 		case FETCH_BOOK_DETAILS_REQUESTED:
 			return {

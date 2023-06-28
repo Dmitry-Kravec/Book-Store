@@ -19,12 +19,13 @@ const AppHeader = () => (
 			</NavLink>
 			<ul className="navigation-list">
 				<li className="navigation-list__item">
-					<NavLink to="/" className="navigation-list__item-link">
+					<NavLink to="/" className="navigation-list__item-content">
 						<img
 							src={catalogIcon}
 							alt="catalog"
 							className="navigation-list__catalog-icon"
-							width="35"
+							width="36"
+							height="36"
 						/>
 						<span className="navigation-list__item-label">Каталог</span>
 					</NavLink>
@@ -36,12 +37,13 @@ const AppHeader = () => (
 						trigger="click"
 						content={<ShoppingCartPopover />}
 					>
-						<span className="navigation-list__item-link">
+						<span className="navigation-list__item-content">
 							<img
 								src={shoppingCarticon}
 								className="navigation-list__shopping-cart-icon"
 								alt="shopping-cart"
-								width="35"
+								width="36"
+								height="36"
 							/>
 							<span className="navigation-list__item-label">Корзина</span>
 						</span>

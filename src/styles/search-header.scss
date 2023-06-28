@@ -32,13 +32,8 @@
 	}
 
 	&__search-input {
-		height: 30px;
 		max-width: 300px;
-		padding-left: $padding_m;
-		padding-right: $padding_m;
 		flex-grow: 1;
-		border-radius: 16px;
-		border: 1px solid $gray;
 	}
 
 	@media (max-width: 800px) {

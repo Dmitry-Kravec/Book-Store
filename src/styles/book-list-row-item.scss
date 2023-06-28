@@ -4,16 +4,6 @@
 	padding: $padding_l;
     column-gap: $gap_m;
 	align-items: center;
-	box-shadow: 0px 0px 1.9rem -1.3rem $list-item-shadow-color;
-	background-color: $list-item-background-color;
-	border: 1px solid $orange;
-	border-radius: 10px;
-
-	transition: 0.3s box-shadow ease;
-
-	&:hover {
-		box-shadow: 0 0 1.3rem 0px $list-item-shadow-color, inset 0 0 0.3rem 0px $list-item-shadow-color;
-	}
 
 	&__block {
 		display: flex;
@@ -22,10 +12,6 @@
 		align-items: center;
 		row-gap: $gap_m;
 
-	}
-
-	&__add-form {
-		flex-basis: 20%;
 	}
 
 	&__image {

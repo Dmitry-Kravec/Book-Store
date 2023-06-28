@@ -1,24 +1,3 @@
-$mobile-max-width: 425px;
-$tablet-max-width: 1023px;
-
-@mixin on_mobile {
-	@media (max-width: $mobile-max-width) {
-		@content
-	}
-};
-
-@mixin on_tablet {
-	@media (min-width: calc($mobile-max-width + 1px)) and (max-width: $tablet-max-width) {
-		@content
-	}
-};
-
-@mixin on_desktop {
-	@media (min-width: calc($tablet-max-width + 1px)) {
-		@content
-	}
-};
-
 @mixin line-clamp($string-count) {
 	display: -webkit-box;
 	-webkit-line-clamp: $string-count;

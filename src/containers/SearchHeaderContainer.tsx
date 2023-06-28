@@ -1,22 +1,20 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { debounce } from 'lodash';
 import { SortField, SortMethod, SortType, ViewType } from '../types/BooksTypes';
 import {
 	changeAuthorsFilterValue,
 	changePublisherFilterValue,
 	changeSortType,
 	changeView,
-	updateSearchQuerry,
 } from '../redux/actions/bookListActionCreators';
 import {
-	getAllAuthors,
-	getAllPublishers,
 	getAuthorsFilterValue,
 	getPublisherFilterValue,
 	getSort,
 	getView,
 } from '../redux/selectors';
+
+import { authors, publishers } from '../utils/CustomFields';
 
 import SearchHeader from '../components/SearchHeader';
 
@@ -60,6 +58,18 @@ const sortOption = Object.values(SortEntries).map((el) => (
 	</option>
 ));
 
+const publishersOption = ['All', ...publishers].map((el) => (
+	<option key={el} value={el}>
+		{el}
+	</option>
+));
+
+const authorsOption = ['All', ...authors].map((el) => (
+	<option key={el} value={el}>
+		{el}
+	</option>
+));
+
 const SearchHeaderContainer = () => {
 	const dispatch = useDispatch();
 
@@ -67,23 +77,6 @@ const SearchHeaderContainer = () => {
 	const currentSort = useSelector(getSort);
 	const currentPublisherFilterValue = useSelector(getPublisherFilterValue);
 	const currentAuthorsFilterValue = useSelector(getAuthorsFilterValue);
-	const publishers = useSelector(getAllPublishers);
-	const authors = useSelector(getAllAuthors);
-
-	const publishersOption = useMemo(() =>
-		['All', ...publishers].map((el) => (
-			<option key={el} value={el}>
-				{el}
-			</option>
-		)),
-	[publishers]);
-
-	const authorsOption = useMemo(() =>
-		['All', ...authors].map((el) => (
-			<option key={el} value={el}>
-				{el}
-			</option>
-		)), [authors]);
 
 	const onChangeValueInSelect = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
 		switch (e.target.name) {
@@ -106,15 +99,6 @@ const SearchHeaderContainer = () => {
 		}, [],
 	);
 
-	const debouncedDispatchQuerry = useMemo(
-		() => debounce((value: string) => { dispatch(updateSearchQuerry(value)); }, 300),
-		[],
-	);
-
-	const onChangeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		debouncedDispatchQuerry(e.target.value);
-	}, [debouncedDispatchQuerry]);
-
 	return (
 		<SearchHeader
 			currentSort={mapSortTypeToSortEntry(currentSort)}
@@ -126,7 +110,6 @@ const SearchHeaderContainer = () => {
 			sortOption={sortOption}
 			onChangeView={onChangeView}
 			currentView={`${currentView}_active`}
-			onChangeSearchInput={onChangeSearchInput}
 		/>
 	);
 };

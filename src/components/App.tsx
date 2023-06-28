@@ -14,7 +14,7 @@ function App() {
 				<Route index element={<BookListPage />} />
 				<Route path="cart" element={<ShoppingCartPage />} />
 				<Route path="product/:isbn13" element={<BookDetailsPage />} />
-				<Route path="*" element={<h2>404 Not Found</h2>} />
+				<Route path="*" element={<h2>Страница не найдена</h2>} />
 			</Route>
 		</Routes>
 	);

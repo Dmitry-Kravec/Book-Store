@@ -14,18 +14,13 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: $gap_m;
 
-		@include on_tablet {
+		@media (min-width: 426px) and (max-width: 1023px) {
 			grid-template-columns: repeat(3, 1fr);
 		}
 
 		@media (max-width: 800px) {
 			grid-template-columns: repeat(2, 1fr);
 		}
-
-		@media (max-width: 480px) {
-			grid-template-columns: repeat(1, 1fr);
-		}
-
 	}
 
 	&_view_row {
@@ -33,5 +28,18 @@
 		grid-template-columns: 1fr;
 		row-gap: $gap_m;
 		width: 100%;
+	}
+
+	&__list-item {
+		box-shadow: 0px 0px 1.9rem -1.3rem $list-item-shadow-color;
+		background-color: $list-item-background-color;
+		border: 1px solid $orange;
+		border-radius: 10px;
+
+		transition: 0.3s box-shadow ease;
+
+		&:hover {
+			box-shadow: 0 0 1.3rem 0px $list-item-shadow-color, inset 0 0 0.3rem 0px $list-item-shadow-color;
+		}
 	}
 }

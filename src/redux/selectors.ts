@@ -10,6 +10,7 @@ import {
 } from '../types/BooksTypes';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
+export const getBooksDataRequestError = (state: ReduxStateType) => state.books.booksDataRequestError;
 export const getView = (state: ReduxStateType) => state.books.view;
 export const getSort = (state: ReduxStateType) => state.books.sort;
 export const getSearchQuerry = (state: ReduxStateType) => state.books.searchQuerry;
@@ -17,20 +18,6 @@ export const getPublisherFilterValue = (state: ReduxStateType) => state.books.fi
 export const getAuthorsFilterValue = (state: ReduxStateType) => state.books.filters.authors;
 export const getFilters = (state: ReduxStateType) => state.books.filters;
 export const getSingleBookDetails = (state: ReduxStateType) => state.books.singleBookDetails;
-
-export const getAllPublishers = createSelector(
-	getBooksData,
-	(books) => Array.from(new Set(
-		compact(books.map((book) => book.publisher)),
-	)),
-);
-
-export const getAllAuthors = createSelector(
-	getBooksData,
-	(books) => Array.from(new Set(
-		compact(books.map((book) => book.authors)),
-	)),
-);
 
 export const getFilteredBooksData = createSelector(
 	getBooksData,

@@ -2,14 +2,15 @@ import { BookExtendedItemType, BookItemType, SortType, ViewType } from '../../ty
 import {
 	FETCH_BOOK_DETAILS_FAILURE,
 	FETCH_BOOK_DETAILS_SUCCESS,
-	FETCH_NEW_BOOKS_FAILURE,
-	FETCH_NEW_BOOKS_SUCCESS,
+	FETCH_BOOKS_FAILURE,
+	FETCH_BOOKS_SUCCESS,
 	CHANGE_SORT_TYPE,
 	CHANGE_PUBLISHER_FILTER_VALUE,
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
 	UPDATE_SEARCH_QUERRY,
 	FETCH_BOOK_DETAILS_REQUESTED,
+	FETCH_BOOKS_REQUESTED,
 } from '../actionConstants';
 
 export const changeSortType = (sort: SortType) => ({
@@ -37,13 +38,18 @@ export const updateSearchQuerry = (newQuerry: string) => ({
 	payload: newQuerry,
 });
 
-export const fetchNewBooksSuccess = (data: BookItemType[]) => ({
-	type: FETCH_NEW_BOOKS_SUCCESS,
+export const fetchBooksRequested = () => ({
+	type: FETCH_BOOKS_REQUESTED,
+});
+
+export const fetchBooksSuccess = (data: BookItemType[]) => ({
+	type: FETCH_BOOKS_SUCCESS,
 	payload: data,
 });
 
-export const fetchNewBooksError = (error: any) => ({
-	type: FETCH_NEW_BOOKS_FAILURE,
+export const fetchBooksFailure = (error: Error) => ({
+	type: FETCH_BOOKS_FAILURE,
+	payload: error,
 });
 
 export const fetchBookDetailsRequested = () => ({

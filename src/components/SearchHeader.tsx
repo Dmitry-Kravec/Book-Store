@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import SearchInput from './SearchInput';
 
 type SearchHeaderProps = {
 	currentView: string,
@@ -10,7 +11,6 @@ type SearchHeaderProps = {
 	authorsOption: ReactNode[],
 	sortOption: ReactNode[],
 	onChangeView: (e: React.SyntheticEvent<HTMLButtonElement>) => void,
-	onChangeSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 const SearchHeader = ({
@@ -23,16 +23,10 @@ const SearchHeader = ({
 	authorsOption,
 	sortOption,
 	onChangeView,
-	onChangeSearchInput,
 } : SearchHeaderProps) => (
 	<div className="search-header">
 		<div className="search-header__block">
-			<input
-				className="search-header__search-input"
-				type="search"
-				placeholder="Найти книгу..."
-				onChange={onChangeSearchInput}
-			/>
+			<SearchInput className="search-header__search-input" placeholder="Найти книгу..." />
 			<div className="search-header__label-container">
 				<label htmlFor="publisher" className="search-header__label">
 					Фильтр:
