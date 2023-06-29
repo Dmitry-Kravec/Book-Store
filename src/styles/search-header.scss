@@ -19,7 +19,7 @@
 		justify-content: space-between;
 		column-gap: $gap_xl;
 		flex-grow: 1;
-		flex-wrap: wrap;
+		flex-wrap: wrap-reverse;
 		row-gap: $gap_m;
 	}
 
@@ -40,10 +40,6 @@
 		.view-toggle {
 			display: none;
 		}
-
-		&__search-input {
-			order: 2;
-		}
 	}
 
 	@media (max-width: 600px) {
@@ -52,6 +48,10 @@
 		&__label-container {
 			flex-grow: 1;
 			max-width: unset;
+		}
+
+		&__search-input {
+			margin-top: $margin_xl;
 		}
 	}
 }

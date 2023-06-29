@@ -21,12 +21,12 @@ const publishers = [
 	'Apress',
 	'Springer',
 	'Syncfusion',
-	'Self-publishing',
-	'Milf-publishing',
-	'Ecros',
-	'Triokin',
-	'Elpunor',
-	'Nova-Books',
+	// 'Self-publishing',
+	// 'Milf-publishing',
+	// 'Ecros',
+	// 'Triokin',
+	// 'Elpunor',
+	// 'Nova-Books',
 ];
 
 const authorField: CustomBookFieldType = [authors, 'authors'];

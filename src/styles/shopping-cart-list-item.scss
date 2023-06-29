@@ -29,12 +29,12 @@
 		row-gap: $gap_xl;
 
 		&__image {
-			width: 150px;
-			height: 150px;
+			width: 100%;
+			height: auto;
 		}
 
 		&__block {
-			padding: 0 $padding_xl ;
+			padding: 0 $padding_s ;
 			flex-direction: column;
 			row-gap: $gap_m;
 			align-items: center;

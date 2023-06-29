@@ -1,5 +1,10 @@
 .shopping-cart-items-list {
     display: flex;
     flex-direction: column;
-    row-gap: $gap_m;
+    gap: $gap_m;
+
+	@media (max-width: 600px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
 }

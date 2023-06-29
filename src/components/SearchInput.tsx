@@ -1,5 +1,5 @@
 import { debounce } from 'lodash';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSearchQuerry } from '../redux/actions/bookListActionCreators';
 import { getSearchQuerry } from '../redux/selectors';
@@ -10,9 +10,9 @@ const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputE
 	const [localSearchQuerry, setLocalSearchQuerry] = useState(currentSearchQuerry);
 	const ref = useRef<Function>(() => {});
 
-	const sendFunc = () => {
+	const sendFunc = useCallback(() => {
 		dispatch(updateSearchQuerry(localSearchQuerry));
-	};
+	}, [localSearchQuerry]);
 
 	const debouncedDispatchQuerry = useMemo(
 		() => debounce(() => {
@@ -23,7 +23,7 @@ const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputE
 
 	useEffect(() => {
 		ref.current = sendFunc;
-	}, [localSearchQuerry]);
+	}, [sendFunc]);
 
 	const onChangeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setLocalSearchQuerry(e.target.value);
@@ -31,8 +31,6 @@ const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputE
 	}, [debouncedDispatchQuerry]);
 
 	const inputClass = `search-input${className ? ` ${className}` : ''}`;
-
-	console.log('SearchInput render', currentSearchQuerry);
 
 	return (
 		<input

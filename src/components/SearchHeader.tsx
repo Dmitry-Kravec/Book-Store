@@ -29,7 +29,7 @@ const SearchHeader = ({
 			<SearchInput className="search-header__search-input" placeholder="Найти книгу..." />
 			<div className="search-header__label-container">
 				<label htmlFor="publisher" className="search-header__label">
-					Фильтр:
+					Фильтры:
 				</label>
 				<select
 					value={currentPublisherFilterValue}

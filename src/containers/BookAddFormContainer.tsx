@@ -26,11 +26,11 @@ const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 				content: 'Товар добавлен в корзину',
 			});
 		}
-	}, [book, quantity]);
+	}, [book, quantity, messageApi]);
 
 	const handleQuantityInputChange = useCallback(
-		({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-			setQuantity(+value);
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			setQuantity(+e.target.value);
 		}, [],
 	);
 

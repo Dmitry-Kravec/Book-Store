@@ -30,9 +30,9 @@ const useFetchBookDetails = () => {
 
 		return fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
 			.then((response) => {
-				if (Math.random() < 0.5) {
-					throw new Error('TEST ERROR');
-				}
+				// if (Math.random() < 0.5) {
+				// 	throw new Error('TEST ERROR');
+				// }
 
 				if (response.ok) {
 					return response.json();
@@ -89,9 +89,9 @@ const useFetchNewBooks = () => {
 
 		fetch('https://api.itbook.store/1.0/new', { signal: abortController.signal })
 			.then((response) => {
-				if (Math.random() < 0.4) {
-					throw new Error('TEST ERROR');
-				}
+				// if (Math.random() < 0.4) {
+				// 	throw new Error('TEST ERROR');
+				// }
 
 				if (response.ok) {
 					return response.json();
@@ -141,9 +141,9 @@ const useSearchBooks = () => {
 
 		fetch(`https://api.itbook.store/1.0/search/${searchQuerry}`, { signal: abortController.signal })
 			.then((response) => {
-				if (Math.random() < 0.4) {
-					throw new Error('TEST ERROR');
-				}
+				// if (Math.random() < 0.4) {
+				// 	throw new Error('TEST ERROR');
+				// }
 
 				if (response.ok) {
 					return response.json();
@@ -221,7 +221,7 @@ const useFetchBooks = () => {
 };
 
 const useFetchBooksV2 = () => {
-	// версия, в которой запоминаем последний запрос в состоянии,
+	// версия, в которой храним последний запрос в состоянии,
 	// чтобы потом при необходимости вызвать его ещё раз
 	const searchQuerry = useSelector(getSearchQuerry);
 	const booksRequestError = useSelector(getBooksDataRequestError);
