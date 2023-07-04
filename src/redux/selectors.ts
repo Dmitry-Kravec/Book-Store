@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { compact } from 'lodash';
+import moment from 'moment';
 import {
 	ReduxStateType,
 	SortField,
@@ -8,6 +9,7 @@ import {
 	BookItemType,
 	FilterableFields,
 } from '../types/BooksTypes';
+import { dateTimeFormat } from '../constants';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
 export const getBooksDataRequestError = (state: ReduxStateType) => state.books.booksDataRequestError;
@@ -17,6 +19,7 @@ export const getSearchQuerry = (state: ReduxStateType) => state.books.searchQuer
 export const getPublisherFilterValue = (state: ReduxStateType) => state.books.filters.publisher;
 export const getAuthorsFilterValue = (state: ReduxStateType) => state.books.filters.authors;
 export const getFilters = (state: ReduxStateType) => state.books.filters;
+export const getDateFilterValues = (state: ReduxStateType) => state.books.filters.date;
 export const getSingleBookDetails = (state: ReduxStateType) => state.books.singleBookDetails;
 
 export const getFilteredBooksData = createSelector(
@@ -25,7 +28,31 @@ export const getFilteredBooksData = createSelector(
 	(books, filters) => {
 		const filtersKeys = Object.keys(filters) as FilterableFields[];
 		const filteredBooks = books.filter((book) => {
-			const isRightBook = filtersKeys.findIndex((key) => filters[key] !== 'All' && book[key] !== filters[key]);
+			const isRightBook = filtersKeys.findIndex((key) => {
+				if (typeof filters[key] === 'string') {
+					return filters[key] !== 'All' && book[key] !== filters[key];
+				}
+				if (key === 'date') {
+					if (!filters[key][0] && !filters[key][1]) return false;
+
+					const bookDateValue = moment.utc(book[key], dateTimeFormat);
+					const rangeEndValue = moment.utc(filters[key][1], dateTimeFormat);
+
+					if (!filters[key][0]) {
+						return bookDateValue.isBefore(rangeEndValue);
+					}
+
+					const rangeStartValue = moment.utc(filters[key][0], dateTimeFormat);
+
+					// console.log('-----------------');
+					// console.log('start:', rangeStartValue);
+					// console.log('end:', rangeEndValue);
+					// console.log('book:', bookDateValue);
+					return !bookDateValue.isBetween(rangeStartValue, rangeEndValue, null, '[]');
+				}
+
+				return false;
+			});
 
 			return isRightBook === -1;
 		});
@@ -33,6 +60,21 @@ export const getFilteredBooksData = createSelector(
 		return filteredBooks;
 	},
 );
+
+// export const getFilteredBooksData = createSelector(
+// 	getBooksData,
+// 	getFilters,
+// 	(books, filters) => {
+// 		const filtersKeys = Object.keys(filters) as FilterableFields[];
+// 		const filteredBooks = books.filter((book) => {
+// 			const isRightBook = filtersKeys.findIndex((key) => filters[key] !== 'All' && book[key] !== filters[key]);
+
+// 			return isRightBook === -1;
+// 		});
+
+// 		return filteredBooks;
+// 	},
+// );
 
 function sortHelper(sort: SortType, books: BookItemType[]) {
 	const { field } = sort;

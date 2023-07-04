@@ -1,4 +1,4 @@
-import { BookExtendedItemType, BookItemType, SortType, ViewType } from '../../types/BooksTypes';
+import { BookExtendedItemType, BookItemType, RangedFilterValueType, SortType, ViewType } from '../../types/BooksTypes';
 import {
 	FETCH_BOOK_DETAILS_FAILURE,
 	FETCH_BOOK_DETAILS_SUCCESS,
@@ -11,6 +11,7 @@ import {
 	UPDATE_SEARCH_QUERRY,
 	FETCH_BOOK_DETAILS_REQUESTED,
 	FETCH_BOOKS_REQUESTED,
+	CHANGE_DATE_FILTER_VALUE,
 } from '../actionConstants';
 
 export const changeSortType = (sort: SortType) => ({
@@ -30,6 +31,11 @@ export const changePublisherFilterValue = (value: string) => ({
 
 export const changeAuthorsFilterValue = (value: string) => ({
 	type: CHANGE_AUTHORS_FILTER_VALUE,
+	payload: value,
+});
+
+export const changeDateFilterValue = (value: RangedFilterValueType) => ({
+	type: CHANGE_DATE_FILTER_VALUE,
 	payload: value,
 });
 

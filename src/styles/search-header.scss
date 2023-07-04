@@ -18,9 +18,9 @@
 		display: flex;
 		justify-content: space-between;
 		column-gap: $gap_xl;
-		flex-grow: 1;
 		flex-wrap: wrap-reverse;
 		row-gap: $gap_m;
+		width: 100%;
 	}
 
 	&__select {
@@ -29,6 +29,10 @@
 		border-radius: 16px;
     	padding-left: $padding_m;
 		padding-right: $padding_m;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 
 	&__search-input {
@@ -47,11 +51,11 @@
 		&__search-input,
 		&__label-container {
 			flex-grow: 1;
-			max-width: unset;
 		}
 
 		&__search-input {
 			margin-top: $margin_xl;
+			max-width: unset;
 		}
 	}
 }

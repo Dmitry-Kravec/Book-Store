@@ -1,0 +1,74 @@
+.date-picker {
+	position: relative;
+
+	&__open-button {
+		height: 30px;
+		border-radius: $border-radius_l;
+		padding-left: $padding_l;
+		padding-right: $padding_l;
+		border: 1px solid $gray;
+		background: none;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__content {
+		display: none;
+		top: 2.2rem;
+		padding: $padding_m;
+		border: 1px solid $gray;
+		border-radius: $border-radius_l;
+		background-color: $white;
+		position: absolute;
+
+		&_visible {
+			display: block;
+		}
+	}
+
+	&__label {
+		display: flex;
+		flex-direction: column;
+		row-gap: $gap_s;
+	}
+
+	&__buttons-container {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		row-gap: $gap_m;
+		text-align: left;
+	}
+
+	&__submit-button {
+		@extend .action-button;
+		padding: $padding_m;
+
+		&:hover {
+			transform: none;
+		}
+	}
+
+	&__clear-button {
+		padding: $padding_m;
+		border-radius: $border-radius_l;
+		border: 1px solid $gray-light;
+		cursor: pointer;
+		background-color: initial;
+
+		&:hover {
+			border-color: $gray;
+		}
+
+		&_hide {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+}

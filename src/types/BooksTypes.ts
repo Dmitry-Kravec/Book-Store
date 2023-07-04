@@ -16,6 +16,7 @@ export const BookItemTypeRuntime = t.intersection([
 	t.type({
 		authors: t.string,
 		publisher: t.string,
+		date: t.string,
 	}),
 ]);
 
@@ -64,9 +65,38 @@ export type SortType = {
 	direction?: SortMethod,
 }
 
-export type FilterableFields = 'authors' | 'publisher';
+export type ExactFilterableFields = 'authors' | 'publisher';
+export type RangedFilterableFields = 'date';
+export type RangedFilterValueType = [ rangeStart?: string, rangeEnd?: string ];
 
-export type FiltersType = Record<FilterableFields, string>;
+export type FilterableFields = ExactFilterableFields | RangedFilterableFields;
+
+export type SimpleFiltersType = Record<ExactFilterableFields, string>;
+export type RangedFiltersType = Record<RangedFilterableFields, RangedFilterValueType>;
+
+export type FiltersType = SimpleFiltersType & RangedFiltersType;
+
+// export type FilterableFields = 'authors' | 'publisher' | 'date';
+
+// export type FilterExactValueType = {
+// 	filterRule: 'exact';
+// 	value: string;
+// };
+
+// export type FilterInRangeValueType = {
+// 	filterRule: 'inRange';
+// 	value: [string | undefined, string | undefined];
+// };
+
+// export type FilterValueType = FilterExactValueType | FilterInRangeValueType;
+
+// export type FiltersType = Record<FilterableFields, FilterValueType>;
+
+//
+
+// export type FilterableFields = 'authors' | 'publisher';
+
+// export type FiltersType = Record<FilterableFields, string>;
 
 export type ViewType = 'grid' | 'row';
 
@@ -86,6 +116,7 @@ export type BookListActionsType = ReturnType<
 	typeof bookListActions.changeSortType |
 	typeof bookListActions.changePublisherFilterValue |
 	typeof bookListActions.changeAuthorsFilterValue |
+	typeof bookListActions.changeDateFilterValue |
 	typeof bookListActions.updateSearchQuerry |
 	typeof bookListActions.fetchBooksRequested |
 	typeof bookListActions.fetchBooksSuccess |

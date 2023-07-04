@@ -24,6 +24,7 @@
 
 	&:hover {
 		transform: scale(1.1);
+		background-color: $violet-dark;
 		cursor: pointer;
 	}
 }
@@ -36,6 +37,7 @@
 @import '../styles/book-list-page.scss';
 @import '../styles/book-list-row-item.scss';
 @import '../styles/book-list.scss';
+@import '../styles/date-picker.scss';
 @import '../styles//error.scss';
 @import '../styles/index.scss';
 @import '../styles/modal.scss';

@@ -10,6 +10,7 @@ import {
 	FETCH_BOOK_DETAILS_REQUESTED,
 	FETCH_BOOKS_FAILURE,
 	FETCH_BOOKS_REQUESTED,
+	CHANGE_DATE_FILTER_VALUE,
 } from './actionConstants';
 
 const initialState: BooksStateType = {
@@ -20,6 +21,7 @@ const initialState: BooksStateType = {
 	filters: {
 		authors: 'All',
 		publisher: 'All',
+		date: [],
 	},
 	view: 'grid',
 
@@ -52,6 +54,14 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 				filters: {
 					...state.filters,
 					authors: action.payload,
+				},
+			};
+		case CHANGE_DATE_FILTER_VALUE:
+			return {
+				...state,
+				filters: {
+					...state.filters,
+					date: action.payload,
 				},
 			};
 		case UPDATE_SEARCH_QUERRY:
