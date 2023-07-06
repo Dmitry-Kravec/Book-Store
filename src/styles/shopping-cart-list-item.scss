@@ -20,7 +20,8 @@
 	}
 
 	&__total-price {
-		text-align: right;
+		text-align: left;
+		padding-left: $padding_m;
 		min-width: 75px;
 	}
 

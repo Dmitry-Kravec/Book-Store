@@ -1,7 +1,5 @@
-import { BookExtendedItemType, BookItemType, RangedFilterValueType, SortType, ViewType } from '../../types/BooksTypes';
+import { BookItemType, RangedFilterValueType, SortType, ViewType } from '../../types/BooksTypes';
 import {
-	FETCH_BOOK_DETAILS_FAILURE,
-	FETCH_BOOK_DETAILS_SUCCESS,
 	FETCH_BOOKS_FAILURE,
 	FETCH_BOOKS_SUCCESS,
 	CHANGE_SORT_TYPE,
@@ -9,9 +7,9 @@ import {
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
 	UPDATE_SEARCH_QUERRY,
-	FETCH_BOOK_DETAILS_REQUESTED,
 	FETCH_BOOKS_REQUESTED,
 	CHANGE_DATE_FILTER_VALUE,
+	SET_UTC_OFFSET,
 } from '../actionConstants';
 
 export const changeSortType = (sort: SortType) => ({
@@ -44,6 +42,11 @@ export const updateSearchQuerry = (newQuerry: string) => ({
 	payload: newQuerry,
 });
 
+export const setUTCOffset = (hours: number) => ({
+	type: SET_UTC_OFFSET,
+	payload: hours,
+});
+
 export const fetchBooksRequested = () => ({
 	type: FETCH_BOOKS_REQUESTED,
 });
@@ -56,17 +59,4 @@ export const fetchBooksSuccess = (data: BookItemType[]) => ({
 export const fetchBooksFailure = (error: Error) => ({
 	type: FETCH_BOOKS_FAILURE,
 	payload: error,
-});
-
-export const fetchBookDetailsRequested = () => ({
-	type: FETCH_BOOK_DETAILS_REQUESTED,
-});
-
-export const fetchBookDetailsSuccess = (data: BookExtendedItemType) => ({
-	type: FETCH_BOOK_DETAILS_SUCCESS,
-	payload: data,
-});
-
-export const fetchBookDetailsError = (error: any) => ({
-	type: FETCH_BOOK_DETAILS_FAILURE,
 });

@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { compact } from 'lodash';
 import moment from 'moment';
 import {
 	ReduxStateType,
@@ -20,7 +19,10 @@ export const getPublisherFilterValue = (state: ReduxStateType) => state.books.fi
 export const getAuthorsFilterValue = (state: ReduxStateType) => state.books.filters.authors;
 export const getFilters = (state: ReduxStateType) => state.books.filters;
 export const getDateFilterValues = (state: ReduxStateType) => state.books.filters.date;
-export const getSingleBookDetails = (state: ReduxStateType) => state.books.singleBookDetails;
+export const getBookDetails = (state: ReduxStateType) => state.bookDetails.book;
+export const getBookDetailsIsLoading = (state: ReduxStateType) => state.bookDetails.isLoading;
+export const getBookDetailsError = (state: ReduxStateType) => state.bookDetails.error;
+export const getUTSOffset = (state: ReduxStateType) => state.books.utsOffset;
 
 export const getFilteredBooksData = createSelector(
 	getBooksData,
@@ -36,7 +38,8 @@ export const getFilteredBooksData = createSelector(
 					if (!filters[key][0] && !filters[key][1]) return false;
 
 					const bookDateValue = moment.utc(book[key], dateTimeFormat);
-					const rangeEndValue = moment.utc(filters[key][1], dateTimeFormat);
+					const rangeEndValue = filters[key][1]
+						? moment.utc(filters[key][1], dateTimeFormat) : moment.utc(moment.utc(), dateTimeFormat);
 
 					if (!filters[key][0]) {
 						return bookDateValue.isBefore(rangeEndValue);
@@ -44,10 +47,6 @@ export const getFilteredBooksData = createSelector(
 
 					const rangeStartValue = moment.utc(filters[key][0], dateTimeFormat);
 
-					// console.log('-----------------');
-					// console.log('start:', rangeStartValue);
-					// console.log('end:', rangeEndValue);
-					// console.log('book:', bookDateValue);
 					return !bookDateValue.isBetween(rangeStartValue, rangeEndValue, null, '[]');
 				}
 
@@ -60,21 +59,6 @@ export const getFilteredBooksData = createSelector(
 		return filteredBooks;
 	},
 );
-
-// export const getFilteredBooksData = createSelector(
-// 	getBooksData,
-// 	getFilters,
-// 	(books, filters) => {
-// 		const filtersKeys = Object.keys(filters) as FilterableFields[];
-// 		const filteredBooks = books.filter((book) => {
-// 			const isRightBook = filtersKeys.findIndex((key) => filters[key] !== 'All' && book[key] !== filters[key]);
-
-// 			return isRightBook === -1;
-// 		});
-
-// 		return filteredBooks;
-// 	},
-// );
 
 function sortHelper(sort: SortType, books: BookItemType[]) {
 	const { field } = sort;

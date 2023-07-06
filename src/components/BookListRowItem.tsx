@@ -6,10 +6,11 @@ import { BookListItemProps } from './BookList';
 import defaultBookImage from '../images/default-book.png';
 import { dateTimeFormat, serverDateTimeFormat } from '../constants';
 
-const BookListRowItem = ({ book }: BookListItemProps) => {
+const BookListRowItem = ({ book, utcOffset }: BookListItemProps) => {
 	const { image, price, subtitle, title, authors, publisher, isbn13, date } = book;
 	const formattedPrice = Number(price.slice(1)) === 0 ? 'Free' : price;
-	const localDate = moment.utc(date, serverDateTimeFormat).local().format(dateTimeFormat);
+
+	const dateWithOffset = moment.utc(date, serverDateTimeFormat).utcOffset(utcOffset).format(dateTimeFormat);
 
 	return (
 		<div className="book-list-row-item">
@@ -34,7 +35,7 @@ const BookListRowItem = ({ book }: BookListItemProps) => {
 				<div className="book-list-row-item__authors">Authors: {authors}</div>
 				<div className="book-list-row-item__publisher">Publisher: {publisher}</div>
 				<div className="book-list-row-item__date">
-					Date: {localDate}
+					Date: {dateWithOffset}
 				</div>
 			</div>
 			<div className="book-list-row-item__price">{formattedPrice}</div>

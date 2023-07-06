@@ -62,13 +62,12 @@
 		cursor: pointer;
 		background-color: initial;
 
-		&:hover {
+		&:hover:not(:disabled) {
 			border-color: $gray;
 		}
 
-		&_hide {
-			opacity: 0;
-			pointer-events: none;
+		&:disabled {
+			cursor: not-allowed;
 		}
 	}
 }

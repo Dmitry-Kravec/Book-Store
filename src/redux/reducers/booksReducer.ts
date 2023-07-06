@@ -1,4 +1,5 @@
-import { BookListActionsType, BooksStateType } from '../types/BooksTypes';
+import moment from 'moment';
+import { BookListActionsType, BooksStateType } from '../../types/BooksTypes';
 import {
 	FETCH_BOOKS_SUCCESS,
 	CHANGE_SORT_TYPE,
@@ -6,12 +7,11 @@ import {
 	CHANGE_AUTHORS_FILTER_VALUE,
 	CHANGE_VIEW,
 	UPDATE_SEARCH_QUERRY,
-	FETCH_BOOK_DETAILS_SUCCESS,
-	FETCH_BOOK_DETAILS_REQUESTED,
 	FETCH_BOOKS_FAILURE,
 	FETCH_BOOKS_REQUESTED,
 	CHANGE_DATE_FILTER_VALUE,
-} from './actionConstants';
+	SET_UTC_OFFSET,
+} from '../actionConstants';
 
 const initialState: BooksStateType = {
 	booksData: [],
@@ -23,9 +23,8 @@ const initialState: BooksStateType = {
 		publisher: 'All',
 		date: [],
 	},
+	utsOffset: moment().utcOffset() / 60,
 	view: 'grid',
-
-	singleBookDetails: null,
 };
 
 const booksReducer = (state = initialState, action: BookListActionsType): BooksStateType => {
@@ -69,6 +68,11 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 				...state,
 				searchQuerry: action.payload,
 			};
+		case SET_UTC_OFFSET:
+			return {
+				...state,
+				utsOffset: action.payload,
+			};
 		case FETCH_BOOKS_REQUESTED:
 			return {
 				...state,
@@ -84,16 +88,6 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 			return {
 				...state,
 				booksDataRequestError: action.payload,
-			};
-		case FETCH_BOOK_DETAILS_REQUESTED:
-			return {
-				...state,
-				singleBookDetails: null,
-			};
-		case FETCH_BOOK_DETAILS_SUCCESS:
-			return {
-				...state,
-				singleBookDetails: action.payload,
 			};
 		default:
 			return state;

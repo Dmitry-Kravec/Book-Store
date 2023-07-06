@@ -44,28 +44,3 @@ const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputE
 };
 
 export default SearchInput;
-
-/*
-const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputElement>) => {
-	const dispatch = useDispatch();
-	const debouncedDispatchQuerry = useMemo(
-		() => debounce((value: string) => { dispatch(updateSearchQuerry(value)); }, 300),
-		[],
-	);
-
-	const onChangeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		debouncedDispatchQuerry(e.target.value);
-	}, [debouncedDispatchQuerry]);
-
-	const inputClass = `search-input${className ? ` ${className}` : ''}`;
-
-	return (
-		<input
-			className={inputClass}
-			type="search"
-			placeholder={placeholder}
-			onChange={onChangeSearchInput}
-		/>
-	);
-};
-*/

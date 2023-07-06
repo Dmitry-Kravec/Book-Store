@@ -7,7 +7,6 @@
 
 	&__label-container {
 		display: flex;
-		justify-content: center;
 		align-items: center;
 		column-gap: $gap_s;
 		flex-wrap: wrap;
@@ -18,7 +17,6 @@
 		display: flex;
 		justify-content: space-between;
 		column-gap: $gap_xl;
-		flex-wrap: wrap-reverse;
 		row-gap: $gap_m;
 		width: 100%;
 	}
@@ -38,6 +36,7 @@
 	&__search-input {
 		max-width: 300px;
 		flex-grow: 1;
+		margin-top: $margin_xl;
 	}
 
 	@media (max-width: 800px) {
@@ -54,7 +53,6 @@
 		}
 
 		&__search-input {
-			margin-top: $margin_xl;
 			max-width: unset;
 		}
 	}

@@ -3,8 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLeft } from 'fp-ts/lib/Either';
 import {
-	fetchBookDetailsRequested,
-	fetchBookDetailsSuccess,
 	fetchBooksFailure,
 	fetchBooksRequested,
 	fetchBooksSuccess,
@@ -12,72 +10,10 @@ import {
 import {
 	ErrorNames,
 	BookApiItemTypeRuntime,
-	BookExtendedItemTypeRuntime,
 } from '../types/BooksTypes';
 import { getBooksDataRequestError, getSearchQuerry } from '../redux/selectors';
 import { showNotification } from '../utils/Notification';
 import { addCustomFields } from '../utils/CustomFields';
-
-const useFetchBookDetails = () => {
-	const dispatch = useDispatch();
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<Error | null>(null);
-
-	const getBooksDetails = useCallback((isbn13: string, abortController: AbortController) => {
-		setIsLoading(true);
-		setError(null);
-		dispatch(fetchBookDetailsRequested());
-
-		return fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
-			.then((response) => {
-				// if (Math.random() < 0.5) {
-				// 	throw new Error('TEST ERROR');
-				// }
-
-				if (response.ok) {
-					return response.json();
-				}
-
-				const error: Error = { message: 'Возникла сетевая ошибка', name: ErrorNames.network };
-
-				if (response.status === 404) {
-					error.message = 'Книга не найдена';
-					error.name = ErrorNames.notFound;
-				}
-
-				return Promise.reject(error);
-			})
-			.then((json) => {
-				setIsLoading(false);
-
-				if (isLeft(BookExtendedItemTypeRuntime.decode(json))) {
-					const error: Error = {
-						message: 'Произошла ошибка обработки данных',
-						name: ErrorNames.validationError,
-					};
-
-					showNotification({
-						message: error.message,
-						type: 'error',
-					});
-
-					throw error;
-				} else {
-					dispatch(fetchBookDetailsSuccess(json));
-				}
-			})
-			.catch((error: Error) => {
-				// console.log('useFetchBookDetails fetch error ');
-
-				if (error.name !== 'AbortError') {
-					setIsLoading(false);
-					setError(error);
-				}
-			});
-	}, []);
-
-	return { isLoading, error, getBooksDetails };
-};
 
 const useFetchNewBooks = () => {
 	const dispatch = useDispatch();
@@ -120,7 +56,6 @@ const useFetchNewBooks = () => {
 				}
 			})
 			.catch((error: Error) => {
-				// console.log('useFetchNewBooks promise fetch error ', error);
 				if (error.name !== 'AbortError') {
 					setIsLoading(false);
 					dispatch(fetchBooksFailure(error));
@@ -141,9 +76,9 @@ const useSearchBooks = () => {
 
 		fetch(`https://api.itbook.store/1.0/search/${searchQuerry}`, { signal: abortController.signal })
 			.then((response) => {
-				// if (Math.random() < 0.4) {
-				// 	throw new Error('TEST ERROR');
-				// }
+				if (Math.random() < 0.4) {
+					throw new Error('TEST ERROR');
+				}
 
 				if (response.ok) {
 					return response.json();
@@ -173,7 +108,6 @@ const useSearchBooks = () => {
 				}
 			})
 			.catch((error) => {
-				// console.log('useSearchBooks promise fetch error ', error);
 				if (error.name !== 'AbortError') {
 					setIsLoading(false);
 					dispatch(fetchBooksFailure(error));
@@ -262,7 +196,7 @@ const useFetchBooksV2 = () => {
 	};
 };
 
-export { useFetchNewBooks, useFetchBookDetails, useSearchBooks, useFetchBooks, useFetchBooksV2 };
+export { useFetchNewBooks, useSearchBooks, useFetchBooks, useFetchBooksV2 };
 
 // const useFetchNewBooksWithFullInfo = () => {
 //     const dispatch = useDispatch();

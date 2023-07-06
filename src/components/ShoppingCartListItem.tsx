@@ -14,7 +14,7 @@ const ShoppingCartListItem = ({
 
 	const priceCurrency = price[0];
 	const priceValue = Number(price.slice(1));
-	const totalPrice = priceValue === 0 ? '' : priceCurrency + (priceValue * quantity).toFixed(2);
+	const totalPrice = priceCurrency + (priceValue * quantity).toFixed(2);
 
 	return (
 		<div className="shopping-cart-list-item">

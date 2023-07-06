@@ -1,7 +1,8 @@
 import * as t from 'io-ts';
 import * as bookListActions from '../redux/actions/bookListActionCreators';
 import * as shoppingCartActions from '../redux/actions/shoppingCartActionCreators';
-import rootReducer from '../redux/rootReducer';
+import * as bookDetailsActions from '../redux/actions/bookDetailsActionCreators';
+import rootReducer from '../redux/reducers/rootReducer';
 
 export const BookApiItemTypeRuntime = t.type({
 	image: t.string,
@@ -76,28 +77,6 @@ export type RangedFiltersType = Record<RangedFilterableFields, RangedFilterValue
 
 export type FiltersType = SimpleFiltersType & RangedFiltersType;
 
-// export type FilterableFields = 'authors' | 'publisher' | 'date';
-
-// export type FilterExactValueType = {
-// 	filterRule: 'exact';
-// 	value: string;
-// };
-
-// export type FilterInRangeValueType = {
-// 	filterRule: 'inRange';
-// 	value: [string | undefined, string | undefined];
-// };
-
-// export type FilterValueType = FilterExactValueType | FilterInRangeValueType;
-
-// export type FiltersType = Record<FilterableFields, FilterValueType>;
-
-//
-
-// export type FilterableFields = 'authors' | 'publisher';
-
-// export type FiltersType = Record<FilterableFields, string>;
-
 export type ViewType = 'grid' | 'row';
 
 export type BooksStateType = {
@@ -106,9 +85,8 @@ export type BooksStateType = {
 	searchQuerry: string,
 	sort: SortType,
 	filters: FiltersType,
+	utsOffset: number,
 	view: ViewType,
-
-	singleBookDetails: BookExtendedItemType | null,
 }
 
 export type BookListActionsType = ReturnType<
@@ -118,13 +96,11 @@ export type BookListActionsType = ReturnType<
 	typeof bookListActions.changeAuthorsFilterValue |
 	typeof bookListActions.changeDateFilterValue |
 	typeof bookListActions.updateSearchQuerry |
+	typeof bookListActions.setUTCOffset |
 	typeof bookListActions.fetchBooksRequested |
 	typeof bookListActions.fetchBooksSuccess |
-	typeof bookListActions.fetchBooksFailure |
-	typeof bookListActions.fetchBookDetailsRequested |
-	typeof bookListActions.fetchBookDetailsSuccess |
-	typeof bookListActions.fetchBookDetailsError
-	>;
+	typeof bookListActions.fetchBooksFailure
+>;
 
 export type ShoppingCartBookItemType = {
 	book: BookItemType,
@@ -137,4 +113,17 @@ export type ShoppingCartStateType = {
 
 export type ShoppingCartActionsType = ReturnType<
 	typeof shoppingCartActions.updateBookInCart
+>
+
+export type BookDetailsStateType = {
+	book: BookExtendedItemType | null,
+	isLoading: boolean,
+	error: Error | null,
+}
+
+export type BookDetailsActionsType = ReturnType<
+	typeof bookDetailsActions.fetchBookDetailsRequested |
+	typeof bookDetailsActions.fetchBookDetailsSuccess |
+	typeof bookDetailsActions.fetchBookDetailsFailure |
+	typeof bookDetailsActions.resetBookDetailsInfo
 >

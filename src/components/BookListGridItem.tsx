@@ -6,10 +6,11 @@ import { BookListItemProps } from './BookList';
 import defaultBookImage from '../images/default-book.png';
 import { dateTimeFormat, serverDateTimeFormat } from '../constants';
 
-const BookListGridItem = ({ book }: BookListItemProps) => {
+const BookListGridItem = ({ book, utcOffset }: BookListItemProps) => {
 	const { image, price, subtitle, title, authors, publisher, isbn13, date } = book;
 	const formattedPrice = Number(price.slice(1)) === 0 ? 'Free' : price;
-	const localDate = moment.utc(date, serverDateTimeFormat).local().format(dateTimeFormat);
+
+	const dateWithOffset = moment.utc(date, serverDateTimeFormat).utcOffset(utcOffset).format(dateTimeFormat);
 
 	return (
 		<div className="book-list-grid-item">
@@ -30,7 +31,7 @@ const BookListGridItem = ({ book }: BookListItemProps) => {
 				</NavLink>
 				<div className="book-list-grid-item__subtitle">{subtitle}</div>
 				<div className="book-list-grid-item__date">
-					Date: {localDate}
+					Date: {dateWithOffset}
 				</div>
 				<div className="book-list-grid-item__authors">Authors: {authors}</div>
 				<div className="book-list-grid-item__publisher">Publisher: {publisher}</div>

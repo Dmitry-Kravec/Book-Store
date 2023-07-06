@@ -12,6 +12,7 @@
 	&_view_grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
+		flex-grow: 1;
 		gap: $gap_m;
 
 		@media (min-width: 426px) and (max-width: 1023px) {
