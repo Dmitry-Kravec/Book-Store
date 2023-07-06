@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { compact } from 'lodash';
+import moment from 'moment';
 import {
 	ReduxStateType,
 	SortField,
@@ -8,6 +8,7 @@ import {
 	BookItemType,
 	FilterableFields,
 } from '../types/BooksTypes';
+import { dateTimeFormat } from '../constants';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
 export const getBooksDataRequestError = (state: ReduxStateType) => state.books.booksDataRequestError;
@@ -17,7 +18,11 @@ export const getSearchQuerry = (state: ReduxStateType) => state.books.searchQuer
 export const getPublisherFilterValue = (state: ReduxStateType) => state.books.filters.publisher;
 export const getAuthorsFilterValue = (state: ReduxStateType) => state.books.filters.authors;
 export const getFilters = (state: ReduxStateType) => state.books.filters;
-export const getSingleBookDetails = (state: ReduxStateType) => state.books.singleBookDetails;
+export const getDateFilterValues = (state: ReduxStateType) => state.books.filters.date;
+export const getBookDetails = (state: ReduxStateType) => state.bookDetails.book;
+export const getBookDetailsIsLoading = (state: ReduxStateType) => state.bookDetails.isLoading;
+export const getBookDetailsError = (state: ReduxStateType) => state.bookDetails.error;
+export const getUTCOffset = (state: ReduxStateType) => state.books.utcOffset;
 
 export const getFilteredBooksData = createSelector(
 	getBooksData,
@@ -25,7 +30,28 @@ export const getFilteredBooksData = createSelector(
 	(books, filters) => {
 		const filtersKeys = Object.keys(filters) as FilterableFields[];
 		const filteredBooks = books.filter((book) => {
-			const isRightBook = filtersKeys.findIndex((key) => filters[key] !== 'All' && book[key] !== filters[key]);
+			const isRightBook = filtersKeys.findIndex((key) => {
+				if (typeof filters[key] === 'string') {
+					return filters[key] !== 'All' && book[key] !== filters[key];
+				}
+				if (key === 'date') {
+					if (!filters[key][0] && !filters[key][1]) return false;
+
+					const bookDateValue = moment.utc(book[key], dateTimeFormat);
+					const rangeEndValue = filters[key][1]
+						? moment.utc(filters[key][1], dateTimeFormat) : moment.utc(moment.utc(), dateTimeFormat);
+
+					if (!filters[key][0]) {
+						return !bookDateValue.isBefore(rangeEndValue);
+					}
+
+					const rangeStartValue = moment.utc(filters[key][0], dateTimeFormat);
+
+					return !bookDateValue.isBetween(rangeStartValue, rangeEndValue, null, '[]');
+				}
+
+				return false;
+			});
 
 			return isRightBook === -1;
 		});

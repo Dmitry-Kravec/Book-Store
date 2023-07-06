@@ -16,9 +16,9 @@
 
 	&__description {
 		display: grid;
-		grid-template-rows: 3rem repeat(3, 2rem) 1rem;
+		grid-template-rows: 3rem repeat(4, 2rem) 1rem;
 		line-height: 1rem;
-		row-gap: $gap_m;
+		row-gap: $gap_ml;
 	}
 
 	&__title-link {
@@ -39,7 +39,8 @@
 	}
 
 	&__authors,
-	&__publisher {
+	&__publisher,
+	&__date {
 		font-size: 0.9rem;
 		@include line-clamp(2);
 	}

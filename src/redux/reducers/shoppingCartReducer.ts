@@ -1,5 +1,5 @@
-import { ShoppingCartActionsType, ShoppingCartBookItemType, ShoppingCartStateType } from '../types/BooksTypes';
-import { UPDATE_BOOK_IN_CART } from './actionConstants';
+import { ShoppingCartActionsType, ShoppingCartBookItemType, ShoppingCartStateType } from '../../types/BooksTypes';
+import { UPDATE_BOOK_IN_CART } from '../actionConstants';
 
 const initialState: ShoppingCartStateType = {
 	selectedBooks: [],

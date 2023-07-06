@@ -1,12 +1,16 @@
+import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import BookAddFormContainer from '../containers/BookAddFormContainer';
 import { BookListItemProps } from './BookList';
 
 import defaultBookImage from '../images/default-book.png';
+import { dateTimeFormat, serverDateTimeFormat } from '../constants';
 
-const BookListGridItem = ({ book }: BookListItemProps) => {
-	const { image, price, subtitle, title, authors, publisher, isbn13 } = book;
+const BookListGridItem = ({ book, currentUTCOffset }: BookListItemProps) => {
+	const { image, price, subtitle, title, authors, publisher, isbn13, date } = book;
 	const formattedPrice = Number(price.slice(1)) === 0 ? 'Free' : price;
+
+	const dateWithOffset = moment.utc(date, serverDateTimeFormat).utcOffset(currentUTCOffset).format(dateTimeFormat);
 
 	return (
 		<div className="book-list-grid-item">
@@ -26,6 +30,9 @@ const BookListGridItem = ({ book }: BookListItemProps) => {
 					{title}
 				</NavLink>
 				<div className="book-list-grid-item__subtitle">{subtitle}</div>
+				<div className="book-list-grid-item__date">
+					Date: {dateWithOffset}
+				</div>
 				<div className="book-list-grid-item__authors">Authors: {authors}</div>
 				<div className="book-list-grid-item__publisher">Publisher: {publisher}</div>
 				<div className="book-list-grid-item__price">{formattedPrice}</div>

@@ -1,7 +1,9 @@
 import { sample } from 'lodash';
+import moment from 'moment';
 import { BookApiItemType, BookItemType } from '../types/BooksTypes';
+import { serverDateTimeFormat } from '../constants';
 
-type CustomBookFields = 'authors' | 'publisher'
+type CustomBookFields = 'authors' | 'publisher' | 'date'
 type CustomBookFieldType = [fieldValues: string[], fieldName: CustomBookFields]
 
 const authors = [
@@ -21,7 +23,7 @@ const publishers = [
 	'Apress',
 	'Springer',
 	'Syncfusion',
-	// 'Self-publishing',
+	'Self-publishing',
 	// 'Milf-publishing',
 	// 'Ecros',
 	// 'Triokin',
@@ -29,14 +31,27 @@ const publishers = [
 	// 'Nova-Books',
 ];
 
+const makeDates = (count: number = 20) => {
+	const arr: string[] = [];
+	for (let i = 0; i < count; i += 1) {
+		const randomHour = Math.floor(Math.random() * 24);
+
+		arr.push(moment.utc().hours(randomHour).format(serverDateTimeFormat));
+	}
+
+	return arr;
+};
+
 const authorField: CustomBookFieldType = [authors, 'authors'];
 
 const publisherField: CustomBookFieldType = [publishers, 'publisher'];
 
-const customBookFields = [authorField, publisherField];
+const dateField: CustomBookFieldType = [makeDates(), 'date'];
 
-const addCustomFields = (books: BookApiItemType[]) => {
-	const booksWithFields: BookItemType[] = [];
+const customBookFields = [authorField, publisherField, dateField];
+
+const addCustomFields = <T extends BookApiItemType>(books: T[]) => {
+	const booksWithFields: T[] = [];
 
 	books.forEach((book) => {
 		const newBookItem: any = {
@@ -47,23 +62,27 @@ const addCustomFields = (books: BookApiItemType[]) => {
 			newBookItem[fieldName] = sample(fieldValues);
 		});
 
-		booksWithFields.push(newBookItem as BookItemType);
+		booksWithFields.push(newBookItem as T);
 	});
 
 	return booksWithFields;
 };
 
-const addCustomFieldsV2 = (books: BookApiItemType[]) => {
-	const booksWithFields: (Partial<Omit<BookItemType, keyof BookApiItemType>> & BookApiItemType)[] = [...books];
+const addCustomFieldsV2 = <T extends BookApiItemType>(books: T[]) => {
+	const booksWithFields: (Partial<Omit<BookItemType, keyof BookApiItemType>> & T)[] = [...books];
 
 	customBookFields.forEach(([fieldValues, fieldName]) => {
 		fieldValues.forEach((value, index) => {
-			booksWithFields[index * 2] && (booksWithFields[index * 2][fieldName] = value);
-			booksWithFields[index * 2] && (booksWithFields[index * 2 + 1][fieldName] = value);
+			if (fieldName !== 'date') {
+				booksWithFields[index * 2] && (booksWithFields[index * 2][fieldName] = value);
+				booksWithFields[index * 2 + 1] && (booksWithFields[index * 2 + 1][fieldName] = value);
+			} else {
+				booksWithFields[index] && (booksWithFields[index][fieldName] = value);
+			}
 		});
 	});
 
-	return booksWithFields as BookItemType[];
+	return booksWithFields as T[];
 };
 
 export { authors, publishers, addCustomFields };

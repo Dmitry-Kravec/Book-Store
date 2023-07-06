@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import SearchInput from './SearchInput';
+import DatePicker from './DatePicker';
 
 type SearchHeaderProps = {
 	currentView: string,
@@ -27,10 +28,13 @@ const SearchHeader = ({
 	<div className="search-header">
 		<div className="search-header__block">
 			<SearchInput className="search-header__search-input" placeholder="Найти книгу..." />
+		</div>
+		<div className="search-header__block">
 			<div className="search-header__label-container">
 				<label htmlFor="publisher" className="search-header__label">
 					Фильтры:
 				</label>
+				<DatePicker />
 				<select
 					value={currentPublisherFilterValue}
 					name="publisher"

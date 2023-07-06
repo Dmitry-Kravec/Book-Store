@@ -2,7 +2,7 @@ import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import rootReducer from './rootReducer';
+import rootReducer from './reducers/rootReducer';
 
 const state = JSON.parse(localStorage.getItem('book-store-state') || '{}');
 
