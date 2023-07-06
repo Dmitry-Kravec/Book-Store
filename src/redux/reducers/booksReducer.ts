@@ -23,7 +23,7 @@ const initialState: BooksStateType = {
 		publisher: 'All',
 		date: [],
 	},
-	utsOffset: moment().utcOffset() / 60,
+	utcOffset: moment().utcOffset() / 60,
 	view: 'grid',
 };
 
@@ -71,7 +71,7 @@ const booksReducer = (state = initialState, action: BookListActionsType): BooksS
 		case SET_UTC_OFFSET:
 			return {
 				...state,
-				utsOffset: action.payload,
+				utcOffset: action.payload,
 			};
 		case FETCH_BOOKS_REQUESTED:
 			return {

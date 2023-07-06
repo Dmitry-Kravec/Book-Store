@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDateFilterValues, getUTSOffset } from '../redux/selectors';
+import { getDateFilterValues, getUTCOffset } from '../redux/selectors';
 import { changeDateFilterValue, setUTCOffset } from '../redux/actions/bookListActionCreators';
 import { inputDatetimeLocalFormat, serverDateTimeFormat } from '../constants';
 
 const DatePicker = () => {
 	const dispatch = useDispatch();
 	const [rangeStart, rangeEnd] = useSelector(getDateFilterValues);
-	const currentUtcOffset = useSelector(getUTSOffset);
+	const currentUtcOffset = useSelector(getUTCOffset);
 
 	const [isPickerOpen, setIsPickerOpen] = useState(false);
 	const [currentStartDate, setCurrentStartDate] = useState(
@@ -29,10 +29,15 @@ const DatePicker = () => {
 	const pickerFormHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		dispatch(changeDateFilterValue([
-			moment.utc(currentStartDate).utcOffset(-currentUtcOffset).format(serverDateTimeFormat),
-			moment.utc(currentEndDate).utcOffset(-currentUtcOffset).format(serverDateTimeFormat),
-		]));
+		const startDate = currentStartDate
+			? moment.utc(currentStartDate).utcOffset(-currentUtcOffset).format(serverDateTimeFormat)
+			: undefined;
+
+		const endDate = currentEndDate
+			? moment.utc(currentEndDate).utcOffset(-currentUtcOffset).format(serverDateTimeFormat)
+			: undefined;
+
+		dispatch(changeDateFilterValue([startDate, endDate]));
 	};
 
 	const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +49,7 @@ const DatePicker = () => {
 	};
 
 	const handleUtcOffsetInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(setUTCOffset(Number(e.target.value))); // UTC
+		dispatch(setUTCOffset(Number(e.target.value)));
 	};
 
 	const clearButtonHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {
@@ -53,6 +58,8 @@ const DatePicker = () => {
 		setCurrentEndDate(undefined);
 	};
 
+	const isFilterActive = Boolean(rangeStart || rangeEnd);
+
 	return (
 		<div className="date-picker">
 			<button
@@ -60,7 +67,16 @@ const DatePicker = () => {
 				type="button"
 				onClick={pickerVisabilityHandler}
 			>
-				&#128197;
+				<span>&#128197;</span>
+			</button>
+			<button
+				className={
+					`date-picker__mini-clear-button${!isFilterActive ? ' date-picker__mini-clear-button_hide' : ''}`
+				}
+				type="button"
+				onClick={clearButtonHandler}
+			>
+				<span>&#x2715;</span>
 			</button>
 
 			<div className={`date-picker__content${isPickerOpen ? ' date-picker__content_visible' : ''}`}>
@@ -98,7 +114,7 @@ const DatePicker = () => {
 						</button>
 						<button
 							className="date-picker__clear-button"
-							disabled={!rangeStart && !rangeEnd}
+							disabled={!isFilterActive}
 							onClick={clearButtonHandler}
 							type="button"
 						>

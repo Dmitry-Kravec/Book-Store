@@ -55,6 +55,21 @@
 		}
 	}
 
+	&__mini-clear-button {
+		cursor: pointer;
+		position: absolute;
+		right: -4px;
+		top: -6px;
+		border-radius: 50%;
+		border: none;
+		background-color: $dark-orange;
+		color: $white;
+
+		&_hide {
+			display: none;
+		}
+	}
+
 	&__clear-button {
 		padding: $padding_m;
 		border-radius: $border-radius_l;

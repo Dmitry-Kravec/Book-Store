@@ -22,7 +22,7 @@ export const getDateFilterValues = (state: ReduxStateType) => state.books.filter
 export const getBookDetails = (state: ReduxStateType) => state.bookDetails.book;
 export const getBookDetailsIsLoading = (state: ReduxStateType) => state.bookDetails.isLoading;
 export const getBookDetailsError = (state: ReduxStateType) => state.bookDetails.error;
-export const getUTSOffset = (state: ReduxStateType) => state.books.utsOffset;
+export const getUTCOffset = (state: ReduxStateType) => state.books.utcOffset;
 
 export const getFilteredBooksData = createSelector(
 	getBooksData,
@@ -42,7 +42,7 @@ export const getFilteredBooksData = createSelector(
 						? moment.utc(filters[key][1], dateTimeFormat) : moment.utc(moment.utc(), dateTimeFormat);
 
 					if (!filters[key][0]) {
-						return bookDateValue.isBefore(rangeEndValue);
+						return !bookDateValue.isBefore(rangeEndValue);
 					}
 
 					const rangeStartValue = moment.utc(filters[key][0], dateTimeFormat);

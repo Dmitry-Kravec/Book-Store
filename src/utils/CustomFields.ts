@@ -39,7 +39,6 @@ const makeDates = (count: number = 20) => {
 		arr.push(moment.utc().hours(randomHour).format(serverDateTimeFormat));
 	}
 
-	console.log('makeDates arr: ', arr);
 	return arr;
 };
 

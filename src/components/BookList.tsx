@@ -2,7 +2,7 @@ import { BookItemType, ViewType } from '../types/BooksTypes';
 
 export type BookListItemProps = {
     book: BookItemType,
-	utcOffset: number,
+	currentUTCOffset: number,
 }
 
 type BookListProps = {
@@ -17,7 +17,7 @@ const BookList = ({ booksData, currentView, utcOffset, ItemComponent }: BookList
 		{
 			booksData && booksData.map((book) => (
 				<li key={book.isbn13} className="book-list__list-item">
-					<ItemComponent book={book} utcOffset={utcOffset} />
+					<ItemComponent book={book} currentUTCOffset={utcOffset} />
 				</li>
 			))
 		}

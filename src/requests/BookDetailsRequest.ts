@@ -1,6 +1,5 @@
 import { isLeft } from 'fp-ts/lib/Either';
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useState } from 'react';
 import { ThunkAction } from 'redux-thunk';
 import {
 	fetchBookDetailsRequested,
@@ -26,9 +25,9 @@ export const fetchBookDetailsThunk = (
 
 		fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
 			.then((response) => {
-				if (Math.random() < 0.5) {
-					throw new Error('TEST ERROR');
-				}
+				// if (Math.random() < 0.5) {
+				// 	throw new Error('TEST ERROR');
+				// }
 
 				if (response.ok) {
 					return response.json();
@@ -70,10 +69,13 @@ export const fetchBookDetailsThunk = (
 	};
 
 export const useFetchBookDetails = () => {
-	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<Error | null>(null);
+	const [book, setBook] = useState<BookExtendedItemType | null>(null);
 
 	const getBooksDetails = useCallback((isbn13: string, abortController: AbortController) => {
-		dispatch(fetchBookDetailsRequested());
+		setIsLoading(true);
+		setError(null);
 
 		return fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
 			.then((response) => {
@@ -110,15 +112,17 @@ export const useFetchBookDetails = () => {
 
 					throw error;
 				} else {
-					dispatch(fetchBookDetailsSuccess(booksWithCustomFields));
+					setIsLoading(false);
+					setBook(booksWithCustomFields);
 				}
 			})
 			.catch((error: Error) => {
 				if (error.name !== 'AbortError') {
-					dispatch(fetchBookDetailsFailure(error));
+					setIsLoading(false);
+					setError(error);
 				}
 			});
 	}, []);
 
-	return { getBooksDetails };
+	return { isLoading, error, bookDetails: book, getBooksDetails };
 };

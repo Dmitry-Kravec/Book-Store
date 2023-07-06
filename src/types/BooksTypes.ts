@@ -85,7 +85,7 @@ export type BooksStateType = {
 	searchQuerry: string,
 	sort: SortType,
 	filters: FiltersType,
-	utsOffset: number,
+	utcOffset: number,
 	view: ViewType,
 }
 

@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 
-const useAbortController = (request: (abortController: AbortController, ...args: any) => void) => {
-	const [currentAC, setAC] = useState<AbortController>(new AbortController());
-
+const useAbortController = (request: (abortController: AbortController) => void) => {
+	const [requestWithAC, setRequestWithAC] = useState<() => void>(() => () => {});
 	useEffect(() => {
 		const abortController = new AbortController();
 
-		setAC(abortController);
+		setRequestWithAC(() => () => request(abortController));
 
 		return () => abortController.abort();
 	}, [request]);
 
-	return currentAC;
+	return requestWithAC;
 };
 
 export default useAbortController;
