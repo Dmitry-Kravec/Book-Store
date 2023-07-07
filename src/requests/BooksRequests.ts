@@ -78,7 +78,6 @@ const newBooksFetch = (abortController: AbortController) =>
 
 const useFetchBooks = () => {
 	const searchQuerry = useSelector(getSearchQuerry);
-	// const booksRequestError = useSelector(getBooksDataRequestError);
 
 	const { isLoading, error, getBooks } = useBooksRequest();
 

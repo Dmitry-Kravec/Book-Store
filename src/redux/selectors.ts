@@ -35,19 +35,21 @@ export const getFilteredBooksData = createSelector(
 					return filters[key] !== 'All' && book[key] !== filters[key];
 				}
 				if (key === 'date') {
-					if (!filters[key][0] && !filters[key][1]) return false;
+					const { rangeStart, rangeEnd } = filters[key];
 
-					const bookDateValue = moment.utc(book[key], dateTimeFormat);
-					const rangeEndValue = filters[key][1]
-						? moment.utc(filters[key][1], dateTimeFormat) : moment.utc(moment.utc(), dateTimeFormat);
+					if (!rangeStart && !rangeEnd) return false;
 
-					if (!filters[key][0]) {
-						return !bookDateValue.isBefore(rangeEndValue);
+					const bookDateMoment = moment.utc(book[key], dateTimeFormat);
+					const rangeEndMoment = rangeEnd
+						? moment.utc(rangeEnd, dateTimeFormat) : moment.utc(moment.utc(), dateTimeFormat);
+
+					if (!rangeStart) {
+						return !bookDateMoment.isBefore(rangeEndMoment);
 					}
 
-					const rangeStartValue = moment.utc(filters[key][0], dateTimeFormat);
+					const rangeStartMoment = moment.utc(rangeStart, dateTimeFormat);
 
-					return !bookDateValue.isBetween(rangeStartValue, rangeEndValue, null, '[]');
+					return !bookDateMoment.isBetween(rangeStartMoment, rangeEndMoment, null, '[]');
 				}
 
 				return false;
@@ -76,6 +78,9 @@ function sortHelper(sort: SortType, books: BookItemType[]) {
 				const bValue = Number(b[field].slice(1));
 				return (bValue - aValue) * directionMultiplier;
 			});
+		}
+		case SortField.date: {
+			return [...books].sort((a, b) => ((moment.utc(b.date).unix() - moment.utc(a.date).unix()) * directionMultiplier));
 		}
 		default:
 			return books;

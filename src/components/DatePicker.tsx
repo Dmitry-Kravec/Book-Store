@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDateFilterValues, getUTCOffset } from '../redux/selectors';
 import { changeDateFilterValue, setUTCOffset } from '../redux/actions/bookListActionCreators';
 import { inputDatetimeLocalFormat, serverDateTimeFormat } from '../constants';
+import useOutsideClick from '../hooks/useOutsideClick';
 
 const DatePicker = () => {
 	const dispatch = useDispatch();
-	const [rangeStart, rangeEnd] = useSelector(getDateFilterValues);
+	const { rangeStart, rangeEnd } = useSelector(getDateFilterValues);
 	const currentUtcOffset = useSelector(getUTCOffset);
 
 	const [isPickerOpen, setIsPickerOpen] = useState(false);
@@ -22,7 +23,14 @@ const DatePicker = () => {
 			: rangeEnd,
 	);
 
-	const pickerVisabilityHandler = () => {
+	const ref = useRef<HTMLDivElement>(null);
+
+	const outsideClickHandler = useCallback(() => setIsPickerOpen(false), []);
+
+	useOutsideClick(ref, outsideClickHandler);
+
+	const pickerVisabilityHandler = (e: React.SyntheticEvent) => {
+		e.stopPropagation();
 		setIsPickerOpen((prevValue) => !prevValue);
 	};
 
@@ -37,7 +45,7 @@ const DatePicker = () => {
 			? moment.utc(currentEndDate).utcOffset(-currentUtcOffset).format(serverDateTimeFormat)
 			: undefined;
 
-		dispatch(changeDateFilterValue([startDate, endDate]));
+		dispatch(changeDateFilterValue({ rangeStart: startDate, rangeEnd: endDate }));
 	};
 
 	const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +61,7 @@ const DatePicker = () => {
 	};
 
 	const clearButtonHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-		dispatch(changeDateFilterValue([]));
+		dispatch(changeDateFilterValue({}));
 		setCurrentStartDate(undefined);
 		setCurrentEndDate(undefined);
 	};
@@ -78,12 +86,17 @@ const DatePicker = () => {
 			>
 				<span>&#x2715;</span>
 			</button>
-
-			<div className={`date-picker__content${isPickerOpen ? ' date-picker__content_visible' : ''}`}>
+			<div ref={ref} className={`date-picker__content${isPickerOpen ? ' date-picker__content_visible' : ''}`}>
 				<form className="date-picker__form" onSubmit={pickerFormHandler}>
 					<label className="date-picker__label">
 						<span>Смещение по UTC: {currentUtcOffset}</span>
-						<input type="range" min={-11} max={12} value={currentUtcOffset} onChange={handleUtcOffsetInputChange} />
+						<input
+							type="range"
+							min={-11}
+							max={12}
+							value={currentUtcOffset}
+							onChange={handleUtcOffsetInputChange}
+						/>
 					</label>
 					<label className="date-picker__label">
 						Начало:

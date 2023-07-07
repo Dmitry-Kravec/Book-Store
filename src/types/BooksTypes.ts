@@ -54,6 +54,7 @@ export enum SortField {
 	authors = 'authors',
 	publisher = 'publisher',
 	price = 'price',
+	date = 'date'
 }
 
 export enum SortMethod {
@@ -68,7 +69,7 @@ export type SortType = {
 
 export type ExactFilterableFields = 'authors' | 'publisher';
 export type RangedFilterableFields = 'date';
-export type RangedFilterValueType = [ rangeStart?: string, rangeEnd?: string ];
+export type RangedFilterValueType = { rangeStart?: string, rangeEnd?: string };
 
 export type FilterableFields = ExactFilterableFields | RangedFilterableFields;
 

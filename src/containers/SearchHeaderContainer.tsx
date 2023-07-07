@@ -26,6 +26,8 @@ enum SortEntries {
   publisher_za = 'Publisher (Z - A)',
   price_asc = 'Price (asc)',
   price_dsc = 'Price (desc)',
+  date_asc = 'Date (asc)',
+  date_dsc = 'Date (desc)',
 }
 
 const mapObject: Record<SortEntries, SortType> = {
@@ -35,6 +37,8 @@ const mapObject: Record<SortEntries, SortType> = {
 	[SortEntries.publisher_za]: { field: SortField.publisher, direction: SortMethod.asc },
 	[SortEntries.price_asc]: { field: SortField.price, direction: SortMethod.asc },
 	[SortEntries.price_dsc]: { field: SortField.price, direction: SortMethod.dsc },
+	[SortEntries.date_asc]: { field: SortField.date, direction: SortMethod.asc },
+	[SortEntries.date_dsc]: { field: SortField.date, direction: SortMethod.dsc },
 	[SortEntries.none]: {},
 };
 

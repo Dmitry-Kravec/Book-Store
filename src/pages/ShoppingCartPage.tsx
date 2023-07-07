@@ -11,9 +11,7 @@ const ShoppingCartPage = () => {
 	return (
 		<article className="shopping-cart-page">
 			<h3 className="shopping-cart-page__title-container">
-				<div className="shopping-cart-page__go-back-button">
-					<NavigationBackButton />
-				</div>
+				<NavigationBackButton className="shopping-cart-page__go-back-button" />
 				<span className="shopping-cart-page__title">Корзина</span>
 			</h3>
 			{

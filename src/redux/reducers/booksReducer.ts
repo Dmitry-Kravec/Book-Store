@@ -21,7 +21,7 @@ const initialState: BooksStateType = {
 	filters: {
 		authors: 'All',
 		publisher: 'All',
-		date: [],
+		date: {},
 	},
 	utcOffset: moment().utcOffset() / 60,
 	view: 'grid',
