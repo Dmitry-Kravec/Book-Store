@@ -1,6 +1,7 @@
 .book-list-row-item {
     display: grid;
     grid-template-columns: 100px 2fr 1fr 100px 200px;
+	grid-template-rows: 126px;
 	padding: $padding_l;
     column-gap: $gap_m;
 	align-items: center;

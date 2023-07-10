@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import * as t from 'io-ts';
 import * as bookListActions from '../redux/actions/bookListActionCreators';
 import * as shoppingCartActions from '../redux/actions/shoppingCartActionCreators';
@@ -37,6 +39,8 @@ export type BookItemType = t.TypeOf<typeof BookItemTypeRuntime>;
 
 export type BookExtendedItemType = t.TypeOf<typeof BookExtendedItemTypeRuntime>;
 
+export type CustomBookFieldType = [fieldValues: string[], fieldName: string];
+
 export enum ErrorNames {
 	network = 'networkError',
 	notFound = 'notFoundError',
@@ -45,10 +49,6 @@ export enum ErrorNames {
 	fetchError = 'TypeError',
 	error = 'Error',
 }
-
-export type ReduxStateType = ReturnType<typeof rootReducer>
-
-export type CustomBookFieldType = [fieldValues: string[], fieldName: string]
 
 export enum SortField {
 	authors = 'authors',
@@ -128,3 +128,9 @@ export type BookDetailsActionsType = ReturnType<
 	typeof bookDetailsActions.fetchBookDetailsFailure |
 	typeof bookDetailsActions.resetBookDetailsInfo
 >
+
+export type ReduxStateType = ReturnType<typeof rootReducer>
+
+export type ReduxActionsType = BookListActionsType | ShoppingCartActionsType | BookDetailsActionsType;
+
+export type DispatchType = ThunkDispatch<ReduxStateType, unknown, ReduxActionsType> & Dispatch<ReduxActionsType>;

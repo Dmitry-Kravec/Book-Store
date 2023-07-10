@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { message } from 'antd';
 
 import { updateBookInCart } from '../redux/actions/shoppingCartActionCreators';
 import { BookItemType } from '../types/BooksTypes';
 import BookAddForm from '../components/BookAddForm';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 
 type BookAddFormContainerProps = {
     book: BookItemType,
@@ -13,7 +13,7 @@ type BookAddFormContainerProps = {
 const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 	const [quantity, setQuantity] = useState(0);
 	const [messageApi, contextHolder] = message.useMessage();
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 
 	const handleSubmit = useCallback((e: React.SyntheticEvent<HTMLFormElement>) => {
 		e.preventDefault();

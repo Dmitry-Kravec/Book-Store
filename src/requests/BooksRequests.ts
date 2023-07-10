@@ -1,6 +1,6 @@
 import * as t from 'io-ts';
 import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { isLeft } from 'fp-ts/lib/Either';
 import {
 	fetchBooksFailure,
@@ -15,9 +15,10 @@ import { getBooksDataRequestError, getSearchQuerry } from '../redux/selectors';
 import { showNotification } from '../utils/Notification';
 import { addCustomFields } from '../utils/CustomFields';
 import useAbortController from '../hooks/useAbortController';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 
 const useBooksRequest = () => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<Error | null>(null);
 
@@ -105,7 +106,7 @@ const useFetchBooks = () => {
 // Старая версия:
 
 const useFetchNewBooks = () => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const getNewBooks = useCallback((abortController: AbortController) => {
@@ -154,7 +155,7 @@ const useFetchNewBooks = () => {
 };
 
 const useSearchBooks = () => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const getFilteredBooks = useCallback((searchQuerry: string, abortController: AbortController) => {

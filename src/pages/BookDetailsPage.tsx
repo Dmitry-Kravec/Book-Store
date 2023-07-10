@@ -1,22 +1,20 @@
 import { useParams } from 'react-router-dom';
-import { ReactNode, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { AnyAction, Dispatch } from 'redux';
+import { ReactNode, useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useFetchBookDetails, fetchBookDetailsThunk } from '../requests/BookDetailsRequest';
 import { getBookDetails, getBookDetailsError, getBookDetailsIsLoading } from '../redux/selectors';
 import BookDetails from '../components/BookDetails';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Error from '../components/Error';
-import { BookListActionsType, ReduxStateType } from '../types/BooksTypes';
 import { resetBookDetailsInfo } from '../redux/actions/bookDetailsActionCreators';
 import useAbortController from '../hooks/useAbortController';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 
 // V2 with Thunk
 const BookDetailsPage = () => {
 	const { isbn13 } = useParams();
 
-	const dispatch: ThunkDispatch<ReduxStateType, unknown, BookListActionsType> & Dispatch<AnyAction> = useDispatch();
+	const dispatch = useTypedDispatch();
 	const bookDetails = useSelector(getBookDetails);
 	const isLoading = useSelector(getBookDetailsIsLoading);
 	const error = useSelector(getBookDetailsError);

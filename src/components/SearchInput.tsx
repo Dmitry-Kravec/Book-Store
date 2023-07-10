@@ -1,11 +1,12 @@
 import { debounce } from 'lodash';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { updateSearchQuerry } from '../redux/actions/bookListActionCreators';
 import { getSearchQuerry } from '../redux/selectors';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 
 const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputElement>) => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 	const currentSearchQuerry = useSelector(getSearchQuerry);
 	const [localSearchQuerry, setLocalSearchQuerry] = useState(currentSearchQuerry);
 	const ref = useRef<Function>(() => {});

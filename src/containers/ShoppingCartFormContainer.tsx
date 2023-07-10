@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 import { updateBookInCart } from '../redux/actions/shoppingCartActionCreators';
 import { BookItemType } from '../types/BooksTypes';
 import QuantityButtons from '../components/QuantityButtons';
@@ -10,7 +10,7 @@ type ShoppingCartFormContainerProps = {
 }
 
 const ShoppingCartFormContainer = ({ book, quantity }: ShoppingCartFormContainerProps) => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 
 	const handleQuantityChange = useCallback((value: number) => {
 		dispatch(updateBookInCart(book, value));

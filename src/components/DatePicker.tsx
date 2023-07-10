@@ -1,13 +1,14 @@
 import { useCallback, useRef, useState } from 'react';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getDateFilterValues, getUTCOffset } from '../redux/selectors';
 import { changeDateFilterValue, setUTCOffset } from '../redux/actions/bookListActionCreators';
 import { inputDatetimeLocalFormat, serverDateTimeFormat } from '../constants';
 import useOutsideClick from '../hooks/useOutsideClick';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 
 const DatePicker = () => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 	const { rangeStart, rangeEnd } = useSelector(getDateFilterValues);
 	const currentUtcOffset = useSelector(getUTCOffset);
 

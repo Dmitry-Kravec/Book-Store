@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import useTypedDispatch from '../hooks/useTypedDispatch';
 import { SortField, SortMethod, SortType, ViewType } from '../types/BooksTypes';
 import {
 	changeAuthorsFilterValue,
@@ -75,7 +76,7 @@ const authorsOption = ['All', ...authors].map((el) => (
 ));
 
 const SearchHeaderContainer = () => {
-	const dispatch = useDispatch();
+	const dispatch = useTypedDispatch();
 
 	const currentView = useSelector(getView);
 	const currentSort = useSelector(getSort);
