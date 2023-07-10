@@ -1,11 +1,11 @@
 import { BookItemType, ViewType } from '../types/BooksTypes';
 
-export type BookListItemProps = {
+export interface BookListItemProps {
     book: BookItemType,
 	currentUTCOffset: number,
 }
 
-type BookListProps = {
+interface BookListProps {
     booksData: BookItemType[],
     currentView: ViewType,
 	utcOffset: number,

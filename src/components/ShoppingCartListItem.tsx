@@ -3,7 +3,7 @@ import { ShoppingCartBookItemType } from '../types/BooksTypes';
 
 import defaultBookImage from '../images/default-book.png';
 
-type ShoppingCartListItemProps = {
+interface ShoppingCartListItemProps {
 	shoppingCartBook: ShoppingCartBookItemType
 }
 

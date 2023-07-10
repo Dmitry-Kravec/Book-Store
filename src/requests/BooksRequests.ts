@@ -1,4 +1,3 @@
-import * as t from 'io-ts';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isLeft } from 'fp-ts/lib/Either';
@@ -9,7 +8,10 @@ import {
 } from '../redux/actions/bookListActionCreators';
 import {
 	ErrorNames,
-	BookApiItemTypeRuntime,
+	BookSearchResponseTypeRuntime,
+	BookSearchResponseType,
+	BookItemType,
+	BookApiItemType,
 } from '../types/BooksTypes';
 import { getBooksDataRequestError, getSearchQuerry } from '../redux/selectors';
 import { showNotification } from '../utils/Notification';
@@ -43,8 +45,10 @@ const useBooksRequest = () => {
 
 				return Promise.reject(error);
 			})
-			.then((json) => {
-				if (isLeft(t.array(BookApiItemTypeRuntime).decode(json.books))) {
+			.then((json: BookSearchResponseType) => {
+				console.log('json: ', json);
+
+				if (isLeft(BookSearchResponseTypeRuntime.decode(json))) {
 					const error: Error = {
 						message: 'Произошла ошибка обработки данных',
 						name: ErrorNames.validationError,
@@ -57,10 +61,10 @@ const useBooksRequest = () => {
 
 					throw error;
 				} else {
-					dispatch(fetchBooksSuccess(addCustomFields(json.books)));
+					dispatch(fetchBooksSuccess(addCustomFields<BookItemType, BookApiItemType>(json.books)));
 				}
 			})
-			.catch((error) => {
+			.catch((error: Error) => {
 				if (error.name !== 'AbortError') {
 					setError(error);
 				}
@@ -127,8 +131,8 @@ const useFetchNewBooks = () => {
 
 				return Promise.reject(error);
 			})
-			.then((json) => {
-				if (isLeft(t.array(BookApiItemTypeRuntime).decode(json.books))) {
+			.then((json: BookSearchResponseType) => {
+				if (isLeft(BookSearchResponseTypeRuntime.decode(json))) {
 					const error: Error = {
 						message: 'Произошла ошибка обработки данных',
 						name: ErrorNames.validationError,
@@ -176,8 +180,8 @@ const useSearchBooks = () => {
 
 				return Promise.reject(error);
 			})
-			.then((json) => {
-				if (isLeft(t.array(BookApiItemTypeRuntime).decode(json.books))) {
+			.then((json: BookSearchResponseType) => {
+				if (isLeft(BookSearchResponseTypeRuntime.decode(json))) {
 					const error: Error = {
 						message: 'Произошла ошибка обработки данных',
 						name: ErrorNames.validationError,
@@ -193,7 +197,7 @@ const useSearchBooks = () => {
 					dispatch(fetchBooksSuccess(addCustomFields(json.books)));
 				}
 			})
-			.catch((error) => {
+			.catch((error: Error) => {
 				if (error.name !== 'AbortError') {
 					dispatch(fetchBooksFailure(error));
 				}

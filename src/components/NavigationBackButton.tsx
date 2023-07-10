@@ -1,6 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-const NavigationBackButton = ({ className }: React.HTMLAttributes<HTMLElement>) => {
+interface NavigationBackButtonProps {
+	className?: string,
+}
+
+const NavigationBackButton = ({ className }: NavigationBackButtonProps) => {
 	const navigate = useNavigate();
 
 	const goBack = () => navigate(-1);

@@ -1,4 +1,4 @@
-type ModalProps = {
+interface ModalProps {
 	isActive: boolean,
 	closeHandler: () => void;
 	children: React.ReactNode,

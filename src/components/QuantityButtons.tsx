@@ -1,4 +1,4 @@
-export type QuantityButtonsProps = {
+export interface QuantityButtonsProps {
     handleQuantityChange: (value: number) => void,
     handleQuantityInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     quantity: number,

@@ -1,7 +1,7 @@
 import { ShoppingCartBookItemType } from '../types/BooksTypes';
 import ShoppingCartListItem from './ShoppingCartListItem';
 
-type ShoppingCartItemsListProps = {
+interface ShoppingCartItemsListProps {
 	booksData: ShoppingCartBookItemType[]
 }
 

@@ -1,6 +1,6 @@
 import QuantityButtons, { QuantityButtonsProps } from './QuantityButtons';
 
-type BookAddFormProps = QuantityButtonsProps & {
+interface BookAddFormProps extends QuantityButtonsProps {
     handleSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void,
 }
 

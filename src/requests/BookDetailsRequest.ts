@@ -42,10 +42,10 @@ export const fetchBookDetailsThunk = (
 
 				return Promise.reject(error);
 			})
-			.then((json: BookExtendedItemType) => {
-				const booksWithCustomFields = addCustomFields([json])[0];
+			.then((json: Omit<BookExtendedItemType, 'date'>) => {
+				const extendedBooks = addCustomFields<BookExtendedItemType, Omit<BookExtendedItemType, 'date'>>([json])[0];
 
-				if (isLeft(BookExtendedItemTypeRuntime.decode(booksWithCustomFields))) {
+				if (isLeft(BookExtendedItemTypeRuntime.decode(extendedBooks))) {
 					const error: Error = {
 						message: 'Произошла ошибка обработки данных',
 						name: ErrorNames.validationError,
@@ -58,7 +58,7 @@ export const fetchBookDetailsThunk = (
 
 					throw error;
 				} else {
-					dispatch(fetchBookDetailsSuccess(booksWithCustomFields));
+					dispatch(fetchBookDetailsSuccess(extendedBooks));
 				}
 			})
 			.catch((error: Error) => {
@@ -96,10 +96,10 @@ export const useFetchBookDetails = () => {
 
 				return Promise.reject(error);
 			})
-			.then((json) => {
-				const booksWithCustomFields = addCustomFields([json])[0];
+			.then((json: Omit<BookExtendedItemType, 'date'>) => {
+				const extendedBooks = addCustomFields<BookExtendedItemType, Omit<BookExtendedItemType, 'date'>>([json])[0];
 
-				if (isLeft(BookExtendedItemTypeRuntime.decode(booksWithCustomFields))) {
+				if (isLeft(BookExtendedItemTypeRuntime.decode(extendedBooks))) {
 					const error: Error = {
 						message: 'Произошла ошибка обработки данных',
 						name: ErrorNames.validationError,
@@ -113,7 +113,7 @@ export const useFetchBookDetails = () => {
 					throw error;
 				} else {
 					setIsLoading(false);
-					setBook(booksWithCustomFields);
+					setBook(extendedBooks);
 				}
 			})
 			.catch((error: Error) => {

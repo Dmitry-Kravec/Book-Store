@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { ErrorNames } from '../types/BooksTypes';
 import defaultBookImage from '../images/default-book.png';
 
-type ErrorProps = {
+interface ErrorProps {
 	buttonHandler?: () => void,
 	error: Error,
 }

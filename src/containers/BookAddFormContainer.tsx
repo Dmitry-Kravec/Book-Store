@@ -6,7 +6,7 @@ import { BookItemType } from '../types/BooksTypes';
 import BookAddForm from '../components/BookAddForm';
 import useTypedDispatch from '../hooks/useTypedDispatch';
 
-type BookAddFormContainerProps = {
+interface BookAddFormContainerProps {
     book: BookItemType,
 }
 

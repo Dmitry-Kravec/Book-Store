@@ -33,6 +33,12 @@ export const BookExtendedItemTypeRuntime = t.intersection([
 	}),
 ]);
 
+export const BookSearchResponseTypeRuntime = t.type({
+	books: t.array(BookApiItemTypeRuntime),
+});
+
+export type BookSearchResponseType = t.TypeOf<typeof BookSearchResponseTypeRuntime>;
+
 export type BookApiItemType = t.TypeOf<typeof BookApiItemTypeRuntime>;
 
 export type BookItemType = t.TypeOf<typeof BookItemTypeRuntime>;

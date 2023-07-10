@@ -4,7 +4,7 @@ import { updateBookInCart } from '../redux/actions/shoppingCartActionCreators';
 import { BookItemType } from '../types/BooksTypes';
 import QuantityButtons from '../components/QuantityButtons';
 
-type ShoppingCartFormContainerProps = {
+interface ShoppingCartFormContainerProps {
 	book: BookItemType,
 	quantity: number;
 }

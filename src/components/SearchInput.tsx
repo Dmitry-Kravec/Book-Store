@@ -5,7 +5,12 @@ import { updateSearchQuerry } from '../redux/actions/bookListActionCreators';
 import { getSearchQuerry } from '../redux/selectors';
 import useTypedDispatch from '../hooks/useTypedDispatch';
 
-const SearchInput = ({ className, placeholder }: React.HTMLAttributes<HTMLInputElement>) => {
+interface SearchInputProps {
+	className?: string,
+	placeholder?: string,
+}
+
+const SearchInput = ({ className, placeholder }: SearchInputProps) => {
 	const dispatch = useTypedDispatch();
 	const currentSearchQuerry = useSelector(getSearchQuerry);
 	const [localSearchQuerry, setLocalSearchQuerry] = useState(currentSearchQuerry);

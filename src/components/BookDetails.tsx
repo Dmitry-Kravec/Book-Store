@@ -4,7 +4,7 @@ import NavigationBackButton from './NavigationBackButton';
 
 import defaultBookImage from '../images/default-book.png';
 
-type BookDetailsProps = {
+interface BookDetailsProps {
 	bookDetails: BookExtendedItemType;
 }
 

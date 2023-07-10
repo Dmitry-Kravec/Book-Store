@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import SearchInput from './SearchInput';
 import DatePicker from './DatePicker';
 
-type SearchHeaderProps = {
+interface SearchHeaderProps {
 	currentView: string,
 	currentSort: string,
 	currentPublisherFilterValue: string,

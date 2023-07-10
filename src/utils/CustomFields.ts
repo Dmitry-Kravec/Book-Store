@@ -50,7 +50,7 @@ const dateField: CustomBookFieldType = [makeDates(), 'date'];
 
 const customBookFields = [authorField, publisherField, dateField];
 
-const addCustomFields = <T extends BookApiItemType>(books: T[]) => {
+const addCustomFields = <T extends BookApiItemType, U>(books: U[]) => {
 	const booksWithFields: T[] = [];
 
 	books.forEach((book) => {
