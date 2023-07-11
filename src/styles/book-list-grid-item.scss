@@ -1,0 +1,51 @@
+.book-list-grid-item {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding: $padding_m;
+
+	&__image {
+		width: 100%;
+		object-fit: contain;
+		height: 350px;
+
+		@media (max-width: $mobile-max-width) {
+			height: auto;
+		}
+	}
+
+	&__description {
+		display: grid;
+		grid-template-rows: 3rem repeat(4, 2rem) 1rem;
+		line-height: 1rem;
+		row-gap: $gap_ml;
+	}
+
+	&__title-link {
+		color: inherit;
+		text-decoration: none;
+		font-weight: 700;
+		@include line-clamp(3);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__subtitle {
+		font-weight: 300;
+		font-size: 0.75rem;
+		@include line-clamp(2);
+	}
+
+	&__authors,
+	&__publisher,
+	&__date {
+		font-size: 0.9rem;
+		@include line-clamp(2);
+	}
+
+	&__price {
+		@include line-clamp(1);
+	}
+}

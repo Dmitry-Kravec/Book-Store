@@ -1,0 +1,17 @@
+.book-list-page {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	width: 100%;
+
+	&__header {
+		margin: 0;
+		padding: $padding_xxl 0;
+	}
+
+	&__content {
+		@extend .book-list-page;
+		display: flex;
+		flex-direction: column;
+	}
+}

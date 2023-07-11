@@ -1,0 +1,127 @@
+.search-header {
+	display: flex;
+	justify-content: space-between;
+	column-gap: $gap_xxl;
+	row-gap: $gap_m;
+	flex-wrap: wrap-reverse;
+
+	&__label-container {
+		display: flex;
+		align-items: center;
+		column-gap: $gap_s;
+		flex-wrap: wrap;
+		row-gap: $gap_m;
+	}
+
+	&__block {
+		display: flex;
+		justify-content: space-between;
+		column-gap: $gap_xl;
+		row-gap: $gap_m;
+		width: 100%;
+	}
+
+	&__select {
+		height: 30px;
+		width: 150px;
+		border-radius: 16px;
+    	padding-left: $padding_m;
+		padding-right: $padding_m;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__search-input {
+		max-width: 300px;
+		flex-grow: 1;
+		margin-top: $margin_xl;
+	}
+
+	@media (max-width: 800px) {
+		.view-toggle {
+			display: none;
+		}
+	}
+
+	@media (max-width: 600px) {
+		&__select,
+		&__search-input,
+		&__label-container {
+			flex-grow: 1;
+		}
+
+		&__search-input {
+			max-width: unset;
+		}
+	}
+}
+
+.view-toggle {
+	display: flex;
+	border: 1px solid $gray-light;
+	margin-left: auto;
+
+	&__row,
+	&__grid {
+		--current-color: #dcdcdc;
+
+		display: inline-block;
+		position: relative;
+		padding: 4px;
+		width: 30px;
+		height: 30px;
+		border: none;
+		background-color: unset;
+		cursor: pointer;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 6px;
+			left: 6px;
+			background-color: var(--current-color);
+			transition: all 0.5s ease;
+
+		}
+
+		&:hover {
+			--current-color: #8c8c8c;
+		}
+
+		&%_active {
+			--current-color: #353535;
+
+			background-color: #ebebeb;
+
+			&::before {
+				background-color: var(--current-color);
+			}
+		}
+	}
+
+	&__row {
+		&.view-toggle__row_active {
+			@extend %_active
+		}
+
+		&::before {
+			height: 4px;
+			width: 18px;
+			box-shadow: 0 7px 0 var(--current-color), 0 14px 0 var(--current-color);
+		}
+	}
+
+	&__grid {
+		&.view-toggle__grid_active {
+			@extend %_active
+		}
+
+		&::before {
+			height: 8px;
+			width: 8px;
+			box-shadow: 0 10px 0 var(--current-color), 10px 10px 0 var(--current-color), 10px 0 0 var(--current-color);
+		}
+	}
+}

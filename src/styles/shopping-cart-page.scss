@@ -1,0 +1,27 @@
+.shopping-cart-page {
+	display: flex;
+    flex-direction: column;
+	flex-grow: 1;
+	width: 100%;
+    row-gap: $gap_m;
+    padding: $padding_m;
+
+	&__title-container {
+		display: flex;
+    	align-items: center;
+    	justify-content: center;
+		position: relative;
+	}
+
+	&__empty {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	&__go-back-button {
+		position: absolute;
+		left: 0;
+	}
+}

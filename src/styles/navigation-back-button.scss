@@ -1,0 +1,18 @@
+.navigation-back-button {
+	width: 35px;
+	height: 35px;
+	border: none;
+	box-shadow: 0.07rem 0.07rem 0.4rem 0 $black;
+	border-radius: 50%;
+	transition: 0.3s box-shadow ease;
+
+	&::before {
+		content: "\276E";
+	}
+
+	&:hover {
+		cursor: pointer;
+		background-color: $gray-light;
+		box-shadow: 0.07rem 0.07rem 0.6rem 0 $black;
+	}
+}

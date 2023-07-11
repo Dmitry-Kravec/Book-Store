@@ -1,0 +1,55 @@
+.app-header {
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $app-header-background-color;
+	color: $white;
+
+	&__content {
+		box-sizing: border-box;
+		width: var(--max-content-width);
+		padding-left: $content-padding;
+		padding-right: $content-padding;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__logo {
+		display: block;
+	}
+}
+
+.navigation-list {
+	list-style-type: none;
+	display: flex;
+	column-gap: $gap_l;
+
+	&__item {
+		cursor: pointer;
+	}
+
+	&__item-label {
+		font-weight: bold;
+	}
+
+	&__item-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-grow: 1;
+		text-decoration: none;
+		color: $white;
+	}
+
+	&__catalog-icon,
+	&__shopping-cart-icon {
+		filter: invert(1);
+	}
+
+	&__shopping-cart-icon {
+		padding-right: $padding_s;
+		opacity: 0.7;
+	}
+}

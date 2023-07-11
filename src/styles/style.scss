@@ -1,0 +1,57 @@
+@import '../styles/_colors.scss';
+@import '../styles/_helpers.scss';
+@import '../styles/_vars.scss';
+
+.link {
+	color: $nav-link-base-color;
+	text-decoration: none;
+
+	&:hover {
+		color: $nav-link-hover-color;
+		text-decoration: underline;
+	}
+}
+
+.action-button {
+	padding: $padding_m;
+	border-radius: $border-radius_l;
+	background-color: $violet;
+	border: 1px solid $violet-light;
+	font-weight: bold;
+	transition: 0.4s transform ease;
+	cursor: pointer;
+	color: $white;
+
+	&:hover {
+		transform: scale(1.1);
+		background-color: $violet-dark;
+		cursor: pointer;
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+@import '../styles/app-header.scss';
+@import '../styles/app.scss';
+@import '../styles/book-add-form.scss';
+@import '../styles/book-details.scss';
+@import '../styles/book-list-grid-item.scss';
+@import '../styles/book-list-page.scss';
+@import '../styles/book-list-row-item.scss';
+@import '../styles/book-list.scss';
+@import '../styles/date-picker.scss';
+@import '../styles//error.scss';
+@import '../styles/index.scss';
+@import '../styles/modal.scss';
+@import '../styles/navigation-back-button.scss';
+@import '../styles/quantity-buttons.scss';
+@import '../styles/search-header.scss';
+@import '../styles/search-input.scss';
+@import '../styles/shopping-cart-items-list.scss';
+@import '../styles/shopping-cart-list-item.scss';
+@import '../styles/shopping-cart-page.scss';
+@import '../styles/shopping-cart-payment.scss';
+@import '../styles/shopping-cart-popover.scss';

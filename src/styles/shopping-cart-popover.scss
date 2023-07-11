@@ -1,0 +1,20 @@
+.shopping-cart-popover {
+	min-width: 280px;
+	min-height: 100px;
+	max-height: 80vh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	row-gap: $gap_m;
+
+	&__nav-link {
+		@extend .link;
+	}
+
+	&__empty-message {
+		width: 100%;
+		text-align: center;
+		flex-grow: 1;
+	}
+}
