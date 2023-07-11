@@ -46,8 +46,6 @@ const useBooksRequest = () => {
 				return Promise.reject(error);
 			})
 			.then((json: BookSearchResponseType) => {
-				console.log('json: ', json);
-
 				if (isLeft(BookSearchResponseTypeRuntime.decode(json))) {
 					const error: Error = {
 						message: 'Произошла ошибка обработки данных',

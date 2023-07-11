@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import ShoppingCartFormContainer from '../containers/ShoppingCartFormContainer';
 import { ShoppingCartBookItemType } from '../types/BooksTypes';
 
@@ -41,4 +42,4 @@ const ShoppingCartListItem = ({
 	);
 };
 
-export default ShoppingCartListItem;
+export default memo(ShoppingCartListItem);

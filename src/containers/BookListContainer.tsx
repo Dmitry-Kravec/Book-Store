@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { getSortedAndFilteredBooksData, getUTCOffset, getView } from '../redux/selectors';
 import { useFetchBooks } from '../requests/BooksRequests';
@@ -13,7 +14,7 @@ const BookListContainer = () => {
 	const currentView = useSelector(getView);
 	const utcOffset = useSelector(getUTCOffset);
 
-	const ItemComponent = currentView === 'grid' ? BookListGridItem : BookListRowItem;
+	const ItemComponent = useMemo(() => (currentView === 'grid' ? BookListGridItem : BookListRowItem), [currentView]);
 
 	let content: React.ReactNode;
 

@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, memo } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { getDateFilterValues, getUTCOffset } from '../redux/selectors';
@@ -141,4 +141,4 @@ const DatePicker = () => {
 	);
 };
 
-export default DatePicker;
+export default memo(DatePicker);

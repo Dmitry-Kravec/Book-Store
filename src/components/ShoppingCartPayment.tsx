@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux';
+import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Modal from '../hoc/Modal';
 import useFetchPayment from '../requests/ShoppingCartRequests';
-import { getShoppingCartTotalCost } from '../redux/selectors';
 import LoadingIndicator from './LoadingIndicator';
+import ShoppingCartTotalCost from './ShoppingCartTotalCost';
 
 const ShoppingCartPayment = () => {
-	const totalCost = useSelector(getShoppingCartTotalCost);
-
 	const {
 		isPaymentLoading,
 		paymentHasSuccess,
@@ -21,7 +19,7 @@ const ShoppingCartPayment = () => {
 		<div className="shopping-cart-payment">
 			<div className="shopping-cart-payment__total-cost-container">
 				<div className="shopping-cart-payment__total-cost-title">Итого:</div>
-				<div className="shopping-cart-payment__total-cost">{totalCost}</div>
+				<ShoppingCartTotalCost className="shopping-cart-payment__total-cost" />
 			</div>
 			<button className="shopping-cart-payment__payment-button" type="button" onClick={request}>Оплатить</button>
 			<Modal
@@ -56,4 +54,4 @@ const ShoppingCartPayment = () => {
 	);
 };
 
-export default ShoppingCartPayment;
+export default memo(ShoppingCartPayment);

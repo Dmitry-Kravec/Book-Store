@@ -1,5 +1,5 @@
 import { debounce } from 'lodash';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { updateSearchQuerry } from '../redux/actions/bookListActionCreators';
 import { getSearchQuerry } from '../redux/selectors';
@@ -49,4 +49,4 @@ const SearchInput = ({ className, placeholder }: SearchInputProps) => {
 	);
 };
 
-export default SearchInput;
+export default memo(SearchInput);

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { BookItemType, ViewType } from '../types/BooksTypes';
 
 export interface BookListItemProps {
@@ -24,4 +25,4 @@ const BookList = ({ booksData, currentView, utcOffset, ItemComponent }: BookList
 	</ul>
 );
 
-export default BookList;
+export default memo(BookList);

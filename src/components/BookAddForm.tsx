@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import QuantityButtons, { QuantityButtonsProps } from './QuantityButtons';
 
 interface BookAddFormProps extends QuantityButtonsProps {
@@ -26,4 +27,4 @@ const BookAddForm = ({
 	</form>
 );
 
-export default BookAddForm;
+export default memo(BookAddForm);
