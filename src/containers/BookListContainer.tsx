@@ -15,7 +15,7 @@ const BookListContainer = () => {
 		content = (<LoadingIndicator />);
 	} else if (error) {
 		content = (
-			<Error error={error} buttonHandler={requestWithAbortController} />
+			<Error error={error} onButtonClick={requestWithAbortController} />
 		);
 	} else if (booksData.length) {
 		content = (

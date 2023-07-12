@@ -4,11 +4,11 @@ import { ErrorNames } from '../types/BooksTypes';
 import defaultBookImage from '../images/default-book.png';
 
 interface ErrorProps {
-	buttonHandler?: () => void,
+	onButtonClick?: () => void,
 	error: Error,
 }
 
-const Error = ({ buttonHandler, error }: ErrorProps) => {
+const Error = ({ onButtonClick, error }: ErrorProps) => {
 	let body: React.ReactNode;
 
 	switch (error.name) {
@@ -21,12 +21,12 @@ const Error = ({ buttonHandler, error }: ErrorProps) => {
 			body = (
 				<>
 					{error.message}
-					{buttonHandler
+					{onButtonClick
 						? (
 							<button
 								className="error__button"
 								type="button"
-								onClick={buttonHandler}
+								onClick={onButtonClick}
 							>
 								Повторить
 							</button>

@@ -41,7 +41,7 @@ const BookDetailsPage = () => {
 		content = (
 			<Error
 				error={error}
-				buttonHandler={requestWithAbortController}
+				onButtonClick={requestWithAbortController}
 			/>
 		);
 	} else if (bookDetails) {
@@ -78,7 +78,7 @@ const BookDetailsPageV1 = () => {
 	if (isLoading) {
 		content = <LoadingIndicator />;
 	} else if (error) {
-		content = <Error error={error} buttonHandler={requestWithAbortController} />;
+		content = <Error error={error} onButtonClick={requestWithAbortController} />;
 	} else if (bookDetails) {
 		content = <BookDetails bookDetails={bookDetails} />;
 	}
