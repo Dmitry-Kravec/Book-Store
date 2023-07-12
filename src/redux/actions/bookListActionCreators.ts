@@ -42,7 +42,7 @@ export const updateSearchQuerry = (newQuerry: string) => ({
 	payload: newQuerry,
 });
 
-export const setUTCOffset = (hours: number) => ({
+export const setUtcOffset = (hours: number) => ({
 	type: SET_UTC_OFFSET,
 	payload: hours,
 });

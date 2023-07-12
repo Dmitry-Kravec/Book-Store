@@ -1,8 +1,8 @@
 import { useCallback, useRef, useState, memo } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
-import { getDateFilterValues, getUTCOffset } from '../redux/selectors';
-import { changeDateFilterValue, setUTCOffset } from '../redux/actions/bookListActionCreators';
+import { getDateFilterValues, getUtcOffset } from '../redux/selectors';
+import { changeDateFilterValue, setUtcOffset } from '../redux/actions/bookListActionCreators';
 import { inputDatetimeLocalFormat, serverDateTimeFormat } from '../constants';
 import useOutsideClick from '../hooks/useOutsideClick';
 import useTypedDispatch from '../hooks/useTypedDispatch';
@@ -10,7 +10,7 @@ import useTypedDispatch from '../hooks/useTypedDispatch';
 const DatePicker = () => {
 	const dispatch = useTypedDispatch();
 	const { rangeStart, rangeEnd } = useSelector(getDateFilterValues);
-	const currentUtcOffset = useSelector(getUTCOffset);
+	const currentUtcOffset = useSelector(getUtcOffset);
 
 	const [isPickerOpen, setIsPickerOpen] = useState(false);
 	const [currentStartDate, setCurrentStartDate] = useState(
@@ -58,7 +58,7 @@ const DatePicker = () => {
 	};
 
 	const handleUtcOffsetInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(setUTCOffset(Number(e.target.value)));
+		dispatch(setUtcOffset(Number(e.target.value)));
 	};
 
 	const clearButtonHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {

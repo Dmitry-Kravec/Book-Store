@@ -12,7 +12,7 @@ import useTypedDispatch from '../hooks/useTypedDispatch';
 
 // V2 with Thunk
 const BookDetailsPage = () => {
-	const { isbn13 } = useParams();
+	const { id: isbn13 } = useParams();
 
 	const dispatch = useTypedDispatch();
 	const bookDetails = useSelector(getBookDetails);
@@ -57,7 +57,7 @@ const BookDetailsPage = () => {
 
 // V1 with Hooks and using local state
 const BookDetailsPageV1 = () => {
-	const { isbn13 } = useParams();
+	const { id: isbn13 } = useParams();
 
 	const { isLoading, error, bookDetails, getBooksDetails } = useFetchBookDetails();
 

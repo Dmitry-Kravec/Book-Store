@@ -24,7 +24,7 @@ const ShoppingCartPayment = () => {
 			<button className="shopping-cart-payment__payment-button" type="button" onClick={request}>Оплатить</button>
 			<Modal
 				isActive={paymentHasSuccess || isPaymentLoading || paymentHasError}
-				closeHandler={requestReset}
+				onClose={requestReset}
 			>
 				<div className="shopping-cart-payment__modal-container">
 					{isPaymentLoading ? (

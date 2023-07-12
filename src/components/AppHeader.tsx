@@ -38,7 +38,7 @@ const AppHeader = () => (
 						trigger="click"
 						content={<ShoppingCartPopover />}
 					>
-						<span className="navigation-list__item-content">
+						<div className="navigation-list__item-content">
 							<img
 								src={shoppingCarticon}
 								className="navigation-list__shopping-cart-icon"
@@ -47,7 +47,7 @@ const AppHeader = () => (
 								height="36"
 							/>
 							<span className="navigation-list__item-label">Корзина</span>
-						</span>
+						</div>
 					</Popover>
 				</li>
 			</ul>

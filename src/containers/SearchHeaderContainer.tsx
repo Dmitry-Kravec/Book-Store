@@ -15,7 +15,7 @@ import {
 	getView,
 } from '../redux/selectors';
 
-import { authors, publishers } from '../utils/CustomFields';
+import { authors, publishers } from '../utils/customFields';
 
 import SearchHeader from '../components/SearchHeader';
 

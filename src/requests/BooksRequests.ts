@@ -14,8 +14,8 @@ import {
 	BookApiItemType,
 } from '../types/BooksTypes';
 import { getBooksDataRequestError, getSearchQuerry } from '../redux/selectors';
-import { showNotification } from '../utils/Notification';
-import { addCustomFields } from '../utils/CustomFields';
+import { showNotification } from '../utils/notification';
+import { addCustomFields } from '../utils/customFields';
 import useAbortController from '../hooks/useAbortController';
 import useTypedDispatch from '../hooks/useTypedDispatch';
 

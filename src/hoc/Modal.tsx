@@ -1,10 +1,10 @@
 interface ModalProps {
 	isActive: boolean,
-	closeHandler: () => void;
+	onClose: () => void;
 	children: React.ReactNode,
 }
 
-const Modal = ({ isActive, closeHandler, children }: ModalProps) => (isActive ? (
+const Modal = ({ isActive, onClose: closeHandler, children }: ModalProps) => (isActive ? (
 	<div className="modal" onClick={closeHandler} role="generic">
 		<div className="modal__content" onClick={(e) => e.stopPropagation()} role="generic">
 			{children}

@@ -20,18 +20,16 @@ const SearchInput = ({ className, placeholder }: SearchInputProps) => {
 		dispatch(updateSearchQuerry(localSearchQuerry));
 	}, [localSearchQuerry]);
 
-	const debouncedDispatchQuerry = useMemo(
-		() => debounce(() => {
-			ref.current();
-		},
-		300), [],
-	);
-
 	useEffect(() => {
 		ref.current = sendFunc;
 	}, [sendFunc]);
 
-	const onChangeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+	const debouncedDispatchQuerry = useMemo(
+		() => debounce(() => ref.current(), 300),
+		[],
+	);
+
+	const onSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setLocalSearchQuerry(e.target.value);
 		debouncedDispatchQuerry();
 	}, [debouncedDispatchQuerry]);
@@ -43,7 +41,7 @@ const SearchInput = ({ className, placeholder }: SearchInputProps) => {
 			className={inputClass}
 			type="search"
 			placeholder={placeholder}
-			onChange={onChangeSearchInput}
+			onChange={onSearchInputChange}
 			value={localSearchQuerry}
 		/>
 	);

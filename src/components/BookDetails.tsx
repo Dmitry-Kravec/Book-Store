@@ -3,7 +3,7 @@ import { BookExtendedItemType } from '../types/BooksTypes';
 import BookAddFormContainer from '../containers/BookAddFormContainer';
 import NavigationBackButton from './NavigationBackButton';
 
-import defaultBookImage from '../images/default-book.png';
+import { getFormattedPrice, onImageError } from '../utils/helpers';
 
 interface BookDetailsProps {
 	bookDetails: BookExtendedItemType;
@@ -23,8 +23,6 @@ const BookDetails = ({ bookDetails }: BookDetailsProps) => {
 		desc,
 	} = bookDetails;
 
-	const formattedPrice = Number(price.slice(1)) === 0 ? 'Free' : price;
-
 	return (
 		<div className="book-details">
 			<div className="book-details__header-container">
@@ -39,10 +37,7 @@ const BookDetails = ({ bookDetails }: BookDetailsProps) => {
 					<img
 						className="book-details__image"
 						src={image}
-						onError={(e) => {
-							e.currentTarget.onerror = null;
-							e.currentTarget.src = defaultBookImage;
-						}}
+						onError={onImageError}
 						alt="book"
 						width="300"
 						height="300"
@@ -69,7 +64,7 @@ const BookDetails = ({ bookDetails }: BookDetailsProps) => {
 						</tr>
 						<tr>
 							<th>Price:</th>
-							<td>{formattedPrice}</td>
+							<td>{getFormattedPrice(price)}</td>
 						</tr>
 						<tr>
 							<th>Rating:</th>

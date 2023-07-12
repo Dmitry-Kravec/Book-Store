@@ -23,8 +23,8 @@ const ShoppingCartFormContainer = ({ book, quantity }: ShoppingCartFormContainer
 	return (
 		<QuantityButtons
 			quantity={quantity}
-			handleQuantityChange={handleQuantityChange}
-			handleQuantityInputChange={handleQuantityInputChange}
+			onQuantityChange={handleQuantityChange}
+			onQuantityInputChange={handleQuantityInputChange}
 		/>
 	);
 };

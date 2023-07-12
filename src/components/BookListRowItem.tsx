@@ -1,27 +1,28 @@
 import moment from 'moment';
 import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
-import { BookListItemProps } from './BookList';
 import BookAddFormContainer from '../containers/BookAddFormContainer';
 
-import defaultBookImage from '../images/default-book.png';
 import { dateTimeFormat, serverDateTimeFormat } from '../constants';
+import { BookItemType } from '../types/BooksTypes';
+import { getFormattedPrice, onImageError } from '../utils/helpers';
 
-const BookListRowItem = ({ book, currentUTCOffset }: BookListItemProps) => {
+interface BookListRowItemProps {
+	book: BookItemType,
+	currentUtcOffset: number,
+}
+
+const BookListRowItem = ({ book, currentUtcOffset }: BookListRowItemProps) => {
 	const { image, price, subtitle, title, authors, publisher, isbn13, date } = book;
-	const formattedPrice = Number(price.slice(1)) === 0 ? 'Free' : price;
 
-	const dateWithOffset = moment.utc(date, serverDateTimeFormat).utcOffset(currentUTCOffset).format(dateTimeFormat);
+	const dateWithOffset = moment.utc(date, serverDateTimeFormat).utcOffset(currentUtcOffset).format(dateTimeFormat);
 
 	return (
 		<div className="book-list-row-item">
 			<img
 				className="book-list-row-item__image"
 				src={image}
-				onError={(e) => {
-					e.currentTarget.onerror = null;
-					e.currentTarget.src = defaultBookImage;
-				}}
+				onError={onImageError}
 				alt="book"
 				width="50"
 				height="50"
@@ -39,7 +40,7 @@ const BookListRowItem = ({ book, currentUTCOffset }: BookListItemProps) => {
 					Date: {dateWithOffset}
 				</div>
 			</div>
-			<div className="book-list-row-item__price">{formattedPrice}</div>
+			<div className="book-list-row-item__price">{getFormattedPrice(price)}</div>
 			<div className="book-list-row-item__add-form">
 				<BookAddFormContainer book={book} />
 			</div>

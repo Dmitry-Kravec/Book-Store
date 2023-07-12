@@ -13,7 +13,7 @@ function App() {
 			<Route path="/" element={<Layout />}>
 				<Route index element={<BookListPage />} />
 				<Route path="cart" element={<ShoppingCartPage />} />
-				<Route path="product/:isbn13" element={<BookDetailsPage />} />
+				<Route path="product/:id" element={<BookDetailsPage />} />
 				<Route path="*" element={<h2>Страница не найдена</h2>} />
 			</Route>
 		</Routes>

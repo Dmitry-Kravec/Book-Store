@@ -2,15 +2,15 @@ import { memo } from 'react';
 import QuantityButtons, { QuantityButtonsProps } from './QuantityButtons';
 
 interface BookAddFormProps extends QuantityButtonsProps {
-    handleSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void,
+	handleSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void,
 }
 
 const BookAddForm = ({
 	handleSubmit,
 	quantity,
-	handleQuantityChange,
-	handleQuantityInputChange,
-} : BookAddFormProps) => (
+	onQuantityChange,
+	onQuantityInputChange,
+}: BookAddFormProps) => (
 	<form
 		className="book-add-form"
 		onSubmit={handleSubmit}
@@ -18,8 +18,8 @@ const BookAddForm = ({
 		<div className="book-add-form__block">
 			<span>Quantity:</span>
 			<QuantityButtons
-				handleQuantityInputChange={handleQuantityInputChange}
-				handleQuantityChange={handleQuantityChange}
+				onQuantityInputChange={onQuantityInputChange}
+				onQuantityChange={onQuantityChange}
 				quantity={quantity}
 			/>
 		</div>

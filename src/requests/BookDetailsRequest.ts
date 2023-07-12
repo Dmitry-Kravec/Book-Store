@@ -13,8 +13,8 @@ import {
 	BookExtendedItemType,
 	BookExtendedItemTypeRuntime,
 } from '../types/BooksTypes';
-import { addCustomFields } from '../utils/CustomFields';
-import { showNotification } from '../utils/Notification';
+import { addCustomFields } from '../utils/customFields';
+import { showNotification } from '../utils/notification';
 
 export const fetchBookDetailsThunk = (
 	isbn13: string,

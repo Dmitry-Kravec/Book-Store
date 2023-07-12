@@ -44,8 +44,8 @@ const BookAddFormContainer = ({ book } : BookAddFormContainerProps) => {
 			<BookAddForm
 				handleSubmit={handleSubmit}
 				quantity={quantity}
-				handleQuantityChange={handleQuantityChange}
-				handleQuantityInputChange={handleQuantityInputChange}
+				onQuantityChange={handleQuantityChange}
+				onQuantityInputChange={handleQuantityInputChange}
 			/>
 		</>
 	);

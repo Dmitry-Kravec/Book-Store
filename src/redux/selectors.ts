@@ -22,7 +22,7 @@ export const getDateFilterValues = (state: ReduxStateType) => state.books.filter
 export const getBookDetails = (state: ReduxStateType) => state.bookDetails.book;
 export const getBookDetailsIsLoading = (state: ReduxStateType) => state.bookDetails.isLoading;
 export const getBookDetailsError = (state: ReduxStateType) => state.bookDetails.error;
-export const getUTCOffset = (state: ReduxStateType) => state.books.utcOffset;
+export const getUtcOffset = (state: ReduxStateType) => state.books.utcOffset;
 
 export const getFilteredBooksData = createSelector(
 	getBooksData,

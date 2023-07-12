@@ -103,7 +103,7 @@ export type BookListActionsType = ReturnType<
 	typeof bookListActions.changeAuthorsFilterValue |
 	typeof bookListActions.changeDateFilterValue |
 	typeof bookListActions.updateSearchQuerry |
-	typeof bookListActions.setUTCOffset |
+	typeof bookListActions.setUtcOffset |
 	typeof bookListActions.fetchBooksRequested |
 	typeof bookListActions.fetchBooksSuccess |
 	typeof bookListActions.fetchBooksFailure
