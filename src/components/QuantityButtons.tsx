@@ -4,10 +4,12 @@ export interface QuantityButtonsProps {
     onQuantityChange: (value: number) => void,
     onQuantityInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     quantity: number,
+	onQuantityInputBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
 }
 
 const QuantityButtons = ({
 	onQuantityInputChange,
+	onQuantityInputBlur,
 	onQuantityChange,
 	quantity,
 }: QuantityButtonsProps) => (
@@ -24,6 +26,7 @@ const QuantityButtons = ({
 			type="number"
 			value={quantity.toString()}
 			onChange={onQuantityInputChange}
+			onBlur={onQuantityInputBlur}
 		/>
 		<button
 			className="quantity-buttons__quantity-button"

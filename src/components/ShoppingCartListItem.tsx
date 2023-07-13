@@ -29,7 +29,7 @@ const ShoppingCartListItem = ({
 					height="50"
 				/>
 				<div className="shopping-cart-list-item__title">{title}</div>
-				<div className="shopping-cart-list-item__price">{priceValue}</div>
+				<div className="shopping-cart-list-item__price">{price}</div>
 			</div>
 			<div className="shopping-cart-list-item__block">
 				<ShoppingCartFormContainer quantity={quantity} book={book} />
