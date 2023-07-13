@@ -4,8 +4,8 @@ interface ModalProps {
 	children: React.ReactNode,
 }
 
-const Modal = ({ isActive, onClose: closeHandler, children }: ModalProps) => (isActive ? (
-	<div className="modal" onClick={closeHandler} role="generic">
+const Modal = ({ isActive, onClose, children }: ModalProps) => (isActive ? (
+	<div className="modal" onClick={onClose} role="generic">
 		<div className="modal__content" onClick={(e) => e.stopPropagation()} role="generic">
 			{children}
 		</div>
