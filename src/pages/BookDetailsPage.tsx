@@ -55,39 +55,39 @@ const BookDetailsPage = () => {
 	);
 };
 
-// V1 with Hooks and using local state
-const BookDetailsPageV1 = () => {
-	const { id: isbn13 } = useParams();
-
-	const { isLoading, error, bookDetails, getBooksDetails } = useFetchBookDetails();
-
-	const request = useCallback((abortController: AbortController) => {
-		if (isbn13) {
-			getBooksDetails(isbn13, abortController);
-		}
-	}, [isbn13]);
-
-	const requestWithAbortController = useAbortController(request);
-
-	useEffect(() => {
-		requestWithAbortController();
-	}, [requestWithAbortController]);
-
-	let content: ReactNode;
-
-	if (isLoading) {
-		content = <LoadingIndicator />;
-	} else if (error) {
-		content = <Error error={error} onButtonClick={requestWithAbortController} />;
-	} else if (bookDetails) {
-		content = <BookDetails bookDetails={bookDetails} />;
-	}
-
-	return (
-		<div className="book-details-page">
-			{content}
-		</div>
-	);
-};
-
 export default BookDetailsPage;
+
+// // V1 with Hooks and using local state
+// const BookDetailsPageV1 = () => {
+// 	const { id: isbn13 } = useParams();
+
+// 	const { isLoading, error, bookDetails, getBooksDetails } = useFetchBookDetails();
+
+// 	const request = useCallback((abortController: AbortController) => {
+// 		if (isbn13) {
+// 			getBooksDetails(isbn13, abortController);
+// 		}
+// 	}, [isbn13]);
+
+// 	const requestWithAbortController = useAbortController(request);
+
+// 	useEffect(() => {
+// 		requestWithAbortController();
+// 	}, [requestWithAbortController]);
+
+// 	let content: ReactNode;
+
+// 	if (isLoading) {
+// 		content = <LoadingIndicator />;
+// 	} else if (error) {
+// 		content = <Error error={error} onButtonClick={requestWithAbortController} />;
+// 	} else if (bookDetails) {
+// 		content = <BookDetails bookDetails={bookDetails} />;
+// 	}
+
+// 	return (
+// 		<div className="book-details-page">
+// 			{content}
+// 		</div>
+// 	);
+// };

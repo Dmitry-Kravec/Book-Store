@@ -105,9 +105,11 @@ const useFetchBooks = () => {
 	};
 };
 
+export { useFetchBooks };
+
 // ----------------
 // Старая версия:
-
+/*
 const useFetchNewBooks = () => {
 	const dispatch = useTypedDispatch();
 	const [isLoading, setIsLoading] = useState(false);
@@ -238,6 +240,4 @@ const useFetchBooksV1 = () => {
 		error: searchQuerry.length > 0 && searchQuerry.length <= 2 ? null : booksRequestError,
 		requestWithAbortController,
 	};
-};
-
-export { useFetchBooks };
+}; */
