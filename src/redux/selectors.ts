@@ -8,7 +8,7 @@ import {
 	BookItemType,
 	FilterableFields,
 } from '../types/BooksTypes';
-import { dateTimeFormat } from '../constants';
+import { dateTimeFormat, serverDateTimeFormat } from '../constants';
 
 export const getBooksData = (state: ReduxStateType) => state.books.booksData;
 export const getBooksDataRequestError = (state: ReduxStateType) => state.books.booksDataRequestError;
@@ -80,7 +80,8 @@ function sortHelper(sort: SortType, books: BookItemType[]) {
 			});
 		}
 		case SortField.date: {
-			return [...books].sort((a, b) => ((moment.utc(b.date).unix() - moment.utc(a.date).unix()) * directionMultiplier));
+			return [...books].sort((a, b) => (moment.utc(b.date, serverDateTimeFormat).unix()
+					- moment.utc(a.date, serverDateTimeFormat).unix()) * directionMultiplier);
 		}
 		default:
 			return books;
