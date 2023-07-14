@@ -7,6 +7,8 @@ import {
 	SortType,
 	BookItemType,
 	FilterableFields,
+	ExactFilterableFields,
+	RangedFilterableFields,
 } from '../types/BooksTypes';
 import { dateTimeFormat, serverDateTimeFormat } from '../constants';
 
@@ -30,32 +32,36 @@ export const getFilteredBooksData = createSelector(
 	(books, filters) => {
 		const filtersKeys = Object.keys(filters) as FilterableFields[];
 		const filteredBooks = books.filter((book) => {
-			const isRightBook = filtersKeys.findIndex((key) => {
-				if (typeof filters[key] === 'string') {
-					return filters[key] !== 'All' && book[key] !== filters[key];
-				}
-				if (key === 'date') {
-					const { rangeStart, rangeEnd } = filters[key];
+			const irrelevantFilterIndex = filtersKeys.findIndex((key) => {
+				switch (key) {
+					case ExactFilterableFields.authors:
+					case ExactFilterableFields.publisher: {
+						return filters[key] !== 'All' && book[key] !== filters[key];
+					}
+					case RangedFilterableFields.date: {
+						const { rangeStart, rangeEnd } = filters[key];
 
-					if (!rangeStart && !rangeEnd) return false;
+						if (!rangeStart && !rangeEnd) return false;
 
-					const bookDateMoment = moment.utc(book[key], dateTimeFormat);
-					const rangeEndMoment = rangeEnd
-						? moment.utc(rangeEnd, dateTimeFormat) : moment.utc(moment.utc(), dateTimeFormat);
+						const bookDateMoment = moment.utc(book[key], dateTimeFormat);
+						const rangeEndMoment = rangeEnd
+							? moment.utc(rangeEnd, dateTimeFormat)
+							: moment.utc(moment.utc(), dateTimeFormat);
 
-					if (!rangeStart) {
-						return !bookDateMoment.isBefore(rangeEndMoment);
+						if (!rangeStart) {
+							return !bookDateMoment.isBefore(rangeEndMoment);
+						}
+
+						const rangeStartMoment = moment.utc(rangeStart, dateTimeFormat);
+
+						return !bookDateMoment.isBetween(rangeStartMoment, rangeEndMoment, null, '[]');
 					}
 
-					const rangeStartMoment = moment.utc(rangeStart, dateTimeFormat);
-
-					return !bookDateMoment.isBetween(rangeStartMoment, rangeEndMoment, null, '[]');
+					default: return false;
 				}
-
-				return false;
 			});
 
-			return isRightBook === -1;
+			return irrelevantFilterIndex === -1;
 		});
 
 		return filteredBooks;

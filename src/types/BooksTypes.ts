@@ -73,8 +73,14 @@ export type SortType = {
 	direction?: SortMethod,
 }
 
-export type ExactFilterableFields = 'authors' | 'publisher';
-export type RangedFilterableFields = 'date';
+export enum ExactFilterableFields {
+	authors = 'authors',
+	publisher = 'publisher',
+}
+export enum RangedFilterableFields {
+	date = 'date',
+}
+
 export type RangedFilterValueType = { rangeStart?: string, rangeEnd?: string };
 
 export type FilterableFields = ExactFilterableFields | RangedFilterableFields;
@@ -88,7 +94,7 @@ export type ViewType = 'grid' | 'row';
 
 export type BooksStateType = {
 	booksData: BookItemType[],
-	booksDataRequestError: null | Error,
+	booksDataRequestError: Error | null,
 	searchQuerry: string,
 	sort: SortType,
 	filters: FiltersType,

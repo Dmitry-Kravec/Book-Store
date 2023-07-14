@@ -73,10 +73,10 @@ const useBooksRequest = () => {
 	return { isLoading, error, getBooks };
 };
 
-const searchBooksFetch = (abortController: AbortController, searchQuerry: string) =>
+const searchBooksRequest = (abortController: AbortController, searchQuerry: string) =>
 	fetch(`https://api.itbook.store/1.0/search/${searchQuerry}`, { signal: abortController.signal });
 
-const newBooksFetch = (abortController: AbortController) =>
+const newBooksRequest = (abortController: AbortController) =>
 	fetch('https://api.itbook.store/1.0/new', { signal: abortController.signal });
 
 const useFetchBooks = () => {
@@ -86,13 +86,14 @@ const useFetchBooks = () => {
 
 	const request = useCallback((abortController: AbortController) => {
 		if (searchQuerry.length > 2) {
-			getBooks(() => searchBooksFetch(abortController, searchQuerry));
+			getBooks(() => searchBooksRequest(abortController, searchQuerry));
 		} else if (searchQuerry === '') {
-			getBooks(() => newBooksFetch(abortController));
+			getBooks(() => newBooksRequest(abortController));
 		}
 	}, [searchQuerry, getBooks]);
 
 	const requestWithAbortController = useAbortController(request);
+
 	useEffect(() => {
 		requestWithAbortController();
 	}, [requestWithAbortController]);

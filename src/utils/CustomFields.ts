@@ -74,10 +74,14 @@ const addCustomFieldsV2 = <T extends BookApiItemType>(books: T[]) => {
 	customBookFields.forEach(([fieldValues, fieldName]) => {
 		fieldValues.forEach((value, index) => {
 			if (fieldName !== 'date') {
-				booksWithFields[index * 2] && (booksWithFields[index * 2][fieldName] = value);
-				booksWithFields[index * 2 + 1] && (booksWithFields[index * 2 + 1][fieldName] = value);
-			} else {
-				booksWithFields[index] && (booksWithFields[index][fieldName] = value);
+				if (booksWithFields[index * 2]) {
+					booksWithFields[index * 2][fieldName] = value;
+				}
+				if (booksWithFields[index * 2 + 1]) {
+					booksWithFields[index * 2 + 1][fieldName] = value;
+				}
+			} else if (booksWithFields[index]) {
+				booksWithFields[index][fieldName] = value;
 			}
 		});
 	});
@@ -86,3 +90,27 @@ const addCustomFieldsV2 = <T extends BookApiItemType>(books: T[]) => {
 };
 
 export { authors, publishers, addCustomFields };
+
+// const addCustomFields = <T extends BookApiItemType, U>(books: U[]) =>
+// 	books.map((book) => {
+// 		const additionalFields = customBookFields.reduce((acc, [values, fieldName]) => {
+// 			const value = sample(values);
+
+// 			return {
+// 				...acc,
+// 				[fieldName]: value,
+// 			};
+// 		}, { authors: '', publisher: '', date: '' });
+
+// 		return {
+// 			...book,
+// 			...additionalFields,
+// 		};
+// 	});
+
+// if (fieldName !== 'date') {
+// 	booksWithFields[index * 2] && (booksWithFields[index * 2][fieldName] = value);
+// 	booksWithFields[index * 2 + 1] && (booksWithFields[index * 2 + 1][fieldName] = value);
+// } else {
+// 	booksWithFields[index] && (booksWithFields[index][fieldName] = value);
+// }
