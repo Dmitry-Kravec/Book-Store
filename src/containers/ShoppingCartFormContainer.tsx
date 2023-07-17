@@ -20,7 +20,7 @@ const ShoppingCartFormContainer = ({ book, quantity }: ShoppingCartFormContainer
 
 	const handleQuantityInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setCurrentQuantity(Number(e.target.value));
-	}, [book, quantity]);
+	}, []);
 
 	const handleQuantityInputBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
 		dispatch(updateBookInCart(book, -quantity + currentQuantity));

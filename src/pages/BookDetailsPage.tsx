@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { ReactNode, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useFetchBookDetails, fetchBookDetailsThunk } from '../requests/BookDetailsRequest';
+import { fetchBookDetailsThunk } from '../requests/BookDetailsRequest';
 import { getBookDetails, getBookDetailsError, getBookDetailsIsLoading } from '../redux/selectors';
 import BookDetails from '../components/BookDetails';
 import LoadingIndicator from '../components/LoadingIndicator';

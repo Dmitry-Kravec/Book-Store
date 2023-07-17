@@ -68,61 +68,61 @@ export const fetchBookDetailsThunk = (
 			});
 	};
 
-export const useFetchBookDetails = () => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<Error | null>(null);
-	const [book, setBook] = useState<BookExtendedItemType | null>(null);
+// export const useFetchBookDetails = () => {
+// 	const [isLoading, setIsLoading] = useState(false);
+// 	const [error, setError] = useState<Error | null>(null);
+// 	const [book, setBook] = useState<BookExtendedItemType | null>(null);
 
-	const getBooksDetails = useCallback((isbn13: string, abortController: AbortController) => {
-		setIsLoading(true);
-		setError(null);
+// 	const getBooksDetails = useCallback((isbn13: string, abortController: AbortController) => {
+// 		setIsLoading(true);
+// 		setError(null);
 
-		return fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
-			.then((response) => {
-				// if (Math.random() < 0.5) {
-				// 	throw new Error('TEST ERROR');
-				// }
+// 		return fetch(`https://api.itbook.store/1.0/books/${isbn13}`, { signal: abortController.signal })
+// 			.then((response) => {
+// 				// if (Math.random() < 0.5) {
+// 				// 	throw new Error('TEST ERROR');
+// 				// }
 
-				if (response.ok) {
-					return response.json();
-				}
+// 				if (response.ok) {
+// 					return response.json();
+// 				}
 
-				const error: Error = { message: 'Возникла сетевая ошибка', name: ErrorNames.network };
+// 				const error: Error = { message: 'Возникла сетевая ошибка', name: ErrorNames.network };
 
-				if (response.status === 404) {
-					error.message = 'Книга не найдена';
-					error.name = ErrorNames.notFound;
-				}
+// 				if (response.status === 404) {
+// 					error.message = 'Книга не найдена';
+// 					error.name = ErrorNames.notFound;
+// 				}
 
-				return Promise.reject(error);
-			})
-			.then((json: Omit<BookExtendedItemType, 'date'>) => {
-				const extendedBooks = addCustomFields<BookExtendedItemType, Omit<BookExtendedItemType, 'date'>>([json])[0];
+// 				return Promise.reject(error);
+// 			})
+// 			.then((json: Omit<BookExtendedItemType, 'date'>) => {
+// 				const extendedBooks = addCustomFields<BookExtendedItemType, Omit<BookExtendedItemType, 'date'>>([json])[0];
 
-				if (isLeft(BookExtendedItemTypeRuntime.decode(extendedBooks))) {
-					const error: Error = {
-						message: 'Произошла ошибка обработки данных',
-						name: ErrorNames.validationError,
-					};
+// 				if (isLeft(BookExtendedItemTypeRuntime.decode(extendedBooks))) {
+// 					const error: Error = {
+// 						message: 'Произошла ошибка обработки данных',
+// 						name: ErrorNames.validationError,
+// 					};
 
-					showNotification({
-						message: error.message,
-						type: 'error',
-					});
+// 					showNotification({
+// 						message: error.message,
+// 						type: 'error',
+// 					});
 
-					throw error;
-				} else {
-					setIsLoading(false);
-					setBook(extendedBooks);
-				}
-			})
-			.catch((error: Error) => {
-				if (error.name !== 'AbortError') {
-					setIsLoading(false);
-					setError(error);
-				}
-			});
-	}, []);
+// 					throw error;
+// 				} else {
+// 					setIsLoading(false);
+// 					setBook(extendedBooks);
+// 				}
+// 			})
+// 			.catch((error: Error) => {
+// 				if (error.name !== 'AbortError') {
+// 					setIsLoading(false);
+// 					setError(error);
+// 				}
+// 			});
+// 	}, []);
 
-	return { isLoading, error, bookDetails: book, getBooksDetails };
-};
+// 	return { isLoading, error, bookDetails: book, getBooksDetails };
+// };

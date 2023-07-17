@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isLeft } from 'fp-ts/lib/Either';
 import {
-	fetchBooksFailure,
 	fetchBooksRequested,
 	fetchBooksSuccess,
 } from '../redux/actions/bookListActionCreators';
@@ -13,7 +12,7 @@ import {
 	BookItemType,
 	BookApiItemType,
 } from '../types/BooksTypes';
-import { getBooksDataRequestError, getSearchQuerry } from '../redux/selectors';
+import { getSearchQuerry } from '../redux/selectors';
 import { showNotification } from '../utils/notification';
 import { addCustomFields } from '../utils/customFields';
 import useAbortController from '../hooks/useAbortController';
